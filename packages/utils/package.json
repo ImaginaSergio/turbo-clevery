@@ -1,0 +1,31 @@
+{
+  "name": "utils",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.tsx --format cjs --dts --external react",
+    "clean": "rm -rf dist",
+    "dev": "tsup src/index.tsx --format cjs --watch --dts --external react",
+    "lint": "eslint src/*.ts*"
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router-dom": "^6.2.1",
+    "markdown-it": "^12.3.2",
+    "markdown-it-codeblocks": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.40",
+    "@types/react-dom": "17.0.13",
+    "eslint": "^8.4.1",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "tsup": "^5.10.1",
+    "typescript": "^4.5.3"
+  }
+}
