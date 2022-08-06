@@ -1,4 +1,4 @@
-import { ApiFile, IEstado, IPais } from 'data';
+import { ApiFile, IEstado, IPais } from '../index';
 import { ApiItem } from '../common.model';
 
 import { AdminConfig } from '../config/admin';

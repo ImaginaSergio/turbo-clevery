@@ -1,1 +1,1 @@
-export * from './FormTextEditor/FormTextEditor';
+export * from './FormTextEditor';

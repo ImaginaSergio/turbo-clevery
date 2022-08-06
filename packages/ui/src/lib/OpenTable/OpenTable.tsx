@@ -24,7 +24,7 @@ import {
   BiChevronRight,
 } from 'react-icons/bi';
 
-import { FilterAsyncSelect } from './FilterAsyncSelect/FilterAsyncSelect';
+import { FilterAsyncSelect } from './FilterAsyncSelect';
 
 import './OpenTable.module.scss';
 import { debounce, throttle } from 'lodash';
