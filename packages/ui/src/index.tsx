@@ -2,6 +2,6 @@
 import * as React from 'react';
 
 export * from './lib';
- export * from './form';
+export * from './form';
 export * from './core';
- export * from './theme';
+export * from './theme';
