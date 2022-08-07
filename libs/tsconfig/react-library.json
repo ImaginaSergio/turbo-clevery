@@ -4,10 +4,9 @@
   "extends": "./base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["DOM", "DOM.Iterable", "esnext"],
     "module": "ESNext",
     "target": "es6",
-
     "declarationMap": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
