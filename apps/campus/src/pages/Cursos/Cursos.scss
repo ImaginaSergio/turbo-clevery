@@ -1,0 +1,19 @@
+.player-wrapper {
+  position: relative;
+
+  min-height: 450px;
+}
+
+.react-player {
+  min-height: 450px;
+}
+
+.react-player .player#id {
+  max-width: 0 !important;
+}
+
+
+.contenido-markdown a {
+  color: var(--chakra-colors-gray_4);
+  text-decoration: underline;
+}
