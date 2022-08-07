@@ -14,17 +14,17 @@ export enum ThumbnailSizeEnum {
 }
 
 export const ThumbnailLeccion = ({
-  moduloNumber,
-  leccionNumber,
-  leccion,
   size,
   curso,
+  leccion,
+  moduloNumber,
+  leccionNumber,
 }: {
+  size: any;
+  curso?: ICurso;
+  leccion?: ILeccion;
   moduloNumber?: number;
   leccionNumber?: number;
-  leccion?: ILeccion;
-  curso?: ICurso;
-  size: any;
 }) => {
   const backgroundSelect = (id: any) => {
     if (/[1-3]+$/.test(id)) return BgArray[0];

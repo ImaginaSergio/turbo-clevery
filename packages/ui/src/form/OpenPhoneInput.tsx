@@ -1,15 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Text,
-  Flex,
-  Box,
-  InputGroup,
-  Icon,
-  InputRightElement,
-} from '@chakra-ui/react';
 import { BiX } from 'react-icons/bi';
 import PhoneInput from 'react-phone-number-input';
+import { Text, Flex, Box, InputGroup, Icon, InputRightElement } from '@chakra-ui/react';
 
 import { localeEs } from './es';
 
@@ -44,13 +37,9 @@ export const OpenPhoneInput = ({
 
   useEffect(() => {
     (async () => {
-      await fetch(
-        `https://api.ipdata.co?api-key=${process.env.NX_IPDATA_KEY}&fields=country_code`
-      )
+      await fetch(`https://api.ipdata.co?api-key=${process.env.NX_IPDATA_KEY}&fields=country_code`)
         .then((data) => data.json())
-        .then((response: any) =>
-          setCountryCode(response?.data?.country_code || 'ES')
-        )
+        .then((response: any) => setCountryCode(response?.data?.country_code || 'ES'))
         .catch((error) => console.error(error));
     })();
   }, []);
