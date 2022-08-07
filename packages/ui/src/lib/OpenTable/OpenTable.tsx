@@ -14,6 +14,8 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
+import { debounce, throttle } from 'lodash';
+
 import {
   BiSort,
   BiSortUp,
@@ -26,8 +28,7 @@ import {
 
 import { FilterAsyncSelect } from './FilterAsyncSelect';
 
-import './OpenTable.module.scss';
-import { debounce, throttle } from 'lodash';
+import './OpenTable.module.css';
 
 export interface OpenColumn {
   key: string;

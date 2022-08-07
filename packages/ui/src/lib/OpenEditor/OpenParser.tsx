@@ -2,15 +2,15 @@ import { useEffect } from 'react';
 import { Flex } from '@chakra-ui/react';
 import { textParserMd } from 'utils';
 
-import { lowlight } from 'lowlight';
+import { lowlight } from 'lowlight/lib/all.js';
 import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import StarterKit from '@tiptap/starter-kit';
 import { useEditor, EditorContent } from '@tiptap/react';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 
-import './OpenEditor.scss';
-import './CodeStyles.scss';
+import './OpenEditor.css';
+import './CodeStyles.css';
 
 interface OpenParserProps {
   /** Texto a parsear en html */

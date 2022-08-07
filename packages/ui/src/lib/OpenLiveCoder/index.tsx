@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 
 import { Spinner, useColorMode, Flex } from '@chakra-ui/react';
@@ -7,8 +8,7 @@ import { LenguajeMonacoLang } from 'data';
 import { brillianceDull } from './themes/brilliance-dull';
 import { slushAndPoppies } from './themes/slush-and-poppies';
 
-import './OpenLiveCoder.scss';
-import { useEffect, useState } from 'react';
+import './OpenLiveCoder.css';
 
 type OpenLiveCoderProps = {
   // Value por defecto del editor, también lo usamos como placeholder.

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { Flex } from '@chakra-ui/react';
 import { useEditor, EditorContent, ReactNodeViewRenderer } from '@tiptap/react';
@@ -11,12 +11,12 @@ import CodeBlockLowLight from '@tiptap/extension-code-block-lowlight';
 
 import CodeBlockComponent from './TipTapSyntaxisHighlighter/CodeBlockComponent';
 
-import { lowlight } from 'lowlight/lib/core';
+import { lowlight } from 'lowlight/lib/all.js';
 
 import { EditorMenu } from './EditorMenu';
 
-import './OpenEditor.scss';
-import './CodeStyles.scss';
+import './OpenEditor.css';
+import './CodeStyles.css';
 
 interface OpenEditorProps {
   value: string;
@@ -60,38 +60,22 @@ export const OpenEditor = ({
   useEffect(() => {
     editor?.off('blur');
     editor?.on('blur', ({ editor: updatedEditor }) => {
-      onChange(
-        updatedEditor.getHTML() === '<p></p>' ? '' : updatedEditor.getHTML()
-      );
+      onChange(updatedEditor.getHTML() === '<p></p>' ? '' : updatedEditor.getHTML());
     });
 
     editor?.off('update');
     editor?.on('update', ({ editor: updatedEditor }) => {
-      if (updateDataOnChange)
-        onChange(
-          updatedEditor.getHTML() === '<p></p>' ? '' : updatedEditor.getHTML()
-        );
+      if (updateDataOnChange) onChange(updatedEditor.getHTML() === '<p></p>' ? '' : updatedEditor.getHTML());
     });
   }, [editor, onChange]);
 
   return (
-    <Flex
-      w="100%"
-      minH="195"
-      bg="white"
-      rounded="xl"
-      direction="column"
-      border="1px solid var(--chakra-colors-gray_3)"
-    >
+    <Flex w="100%" minH="195" bg="white" rounded="xl" direction="column" border="1px solid var(--chakra-colors-gray_3)">
       <EditorMenu editor={editor} isDisabled={isDisabled} />
 
       <Flex p="12px" boxSize="100%">
         <div style={{ width: '100%' }}>
-          <EditorContent
-            data-cy="contenido_pregunta_open_editor"
-            editor={editor}
-            disabled={isDisabled}
-          />
+          <EditorContent data-cy="contenido_pregunta_open_editor" editor={editor} disabled={isDisabled} />
         </div>
       </Flex>
     </Flex>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 
 import { ICurso, ILeccion } from 'data';
@@ -7,7 +6,7 @@ import BgUno from './Backgrounds/background_uno.svg';
 import BgDos from './Backgrounds/background_dos.svg';
 import BgTres from './Backgrounds/background_tres.svg';
 
-import './ThumbnailLeccion.scss';
+import './ThumbnailLeccion.css';
 
 export enum ThumbnailSizeEnum {
   MINI = 'mini',

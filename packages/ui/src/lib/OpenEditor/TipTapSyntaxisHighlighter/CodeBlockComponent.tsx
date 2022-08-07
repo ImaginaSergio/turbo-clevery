@@ -1,7 +1,7 @@
 import { NodeViewWrapper, NodeViewContent } from '@tiptap/react';
 import { Select } from '@chakra-ui/react';
 
-import './CodeBlockComponent.scss';
+import './CodeBlockComponent.css';
 
 const CodeBlockComponent = (props: any) => {
   const { node, updateAttributes, extension } = props;

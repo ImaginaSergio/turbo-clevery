@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@chakra-ui/react';
 
-import './App.css';
+import './App.scss';
 import logo from './logo.svg';
 
 function App() {

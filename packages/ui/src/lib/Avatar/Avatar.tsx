@@ -1,7 +1,5 @@
 import { Image } from '@chakra-ui/react';
 
-import './Avatar.module.scss';
-
 interface AvatarProps {
   // Image for avatar
   src?: string;
@@ -33,21 +31,10 @@ export const Avatar = ({
   ...props
 }: AvatarProps) => {
   let boringURL = `https://source.boringavatars.com/${variant}/120/${name}?colors=${
-    colorVariant === 'hot'
-      ? 'BB4275,FBC865,EB915F,D36D56,9C68C6'
-      : '3C558C,65CE99,5BCEBF,33B4BB,2E9EBF'
+    colorVariant === 'hot' ? 'BB4275,FBC865,EB915F,D36D56,9C68C6' : '3C558C,65CE99,5BCEBF,33B4BB,2E9EBF'
   }`;
 
   return (
-    <Image
-      fit="cover"
-      alt={name}
-      src={src || boringURL}
-      {...props}
-      minW={size}
-      minH={size}
-      boxSize={size}
-      rounded="150px"
-    />
+    <Image fit="cover" alt={name} src={src || boringURL} {...props} minW={size} minH={size} boxSize={size} rounded="150px" />
   );
 };

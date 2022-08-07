@@ -1,7 +1,9 @@
+import React from 'react';
+
 import { Field } from 'formik';
 import { FormLabel, FormControl, FormErrorMessage } from '@chakra-ui/react';
 
-import { OpenEditor } from '../../OpenEditor';
+import { OpenEditor } from './OpenEditor';
 
 import 'react-quill/dist/quill.bubble.css';
 
@@ -25,11 +27,7 @@ export const FormTextEditor = ({
   return (
     <Field name={name}>
       {({ field, form }: { field: any; form: any }) => (
-        <FormControl
-          style={controlStyle}
-          isRequired={isRequired}
-          isInvalid={form.errors[name] && form.touched[name]}
-        >
+        <FormControl style={controlStyle} isRequired={isRequired} isInvalid={form.errors[name] && form.touched[name]}>
           <FormLabel className="form-label" htmlFor={name} color="black">
             {label}
           </FormLabel>
