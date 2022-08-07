@@ -3,7 +3,7 @@ import {
   WarningToastComponent,
   SuccessToastComponent,
   SuccessToastComponent_Undo,
-} from './toast';
+} from './toast-components';
 
 const onSuccess = (
   toast: any,

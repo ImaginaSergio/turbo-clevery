@@ -6,6 +6,12 @@
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
-    "target": "es6"
+    "target": "es6",
+
+    "declarationMap": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": false,
+    "noPropertyAccessFromIndexSignature": false
   }
 }

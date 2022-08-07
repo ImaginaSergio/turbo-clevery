@@ -4,9 +4,7 @@ export const fmtMnts = (min = 0, showRes = true) =>
       ? `${min}min`
       : min === 60
       ? '1h'
-      : (min - (min %= 60)) / 60 +
-        (9 < min ? 'h ' : 'h') +
-        (showRes ? min + 'min' : '')
+      : (min - (min %= 60)) / 60 + (9 < min ? 'h ' : 'h') + (showRes ? min + 'min' : '')
     : '-';
 
 export const fmtSnds = (d = 0) => {

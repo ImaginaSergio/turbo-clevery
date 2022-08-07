@@ -4,9 +4,9 @@
   "extends": "./base.json",
   "compilerOptions": {
     "allowJs": true,
-    "declaration": false,
+       "incremental": true,
+ "declaration": false,
     "declarationMap": false,
-    "incremental": true,
 
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
