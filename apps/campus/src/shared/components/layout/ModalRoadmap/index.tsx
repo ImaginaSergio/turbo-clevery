@@ -224,9 +224,9 @@ export const ModalRoadmap = ({ state, rutas = [] }: { state: { isOpen: boolean; 
                 </Box>
 
                 <Flex gap="10px" mb="20px" overflow="auto" pb="10px">
-                  {(process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+                  {(process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
                     ? filtrosOB
-                    : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+                    : process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
                     ? filtrosOM
                     : []
                   ).map((filtro: any, i: number) => (

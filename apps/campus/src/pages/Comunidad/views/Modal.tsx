@@ -172,7 +172,7 @@ export const ProyectoModal = ({ proyecto, onClickNext, onClickPrev, isOpen = fal
                       objectPosition="top"
                       border="2px solid"
                       borderColor="gray_6"
-                      src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.NX_MICROLINK_APIKEY}`}
+                      src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.REACT_APP_MICROLINK_APIKEY}`}
                     />
 
                     <Stack position="absolute" left="20px" bottom="20px" display={{ base: 'none', sm: 'flex' }}>

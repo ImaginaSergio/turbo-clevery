@@ -2,13 +2,12 @@ import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { isMobile as isMobileBrowser } from 'react-device-detect';
-
+import { Icon, Box, Flex, Button, Text, IconButton, useColorMode, useMediaQuery } from '@chakra-ui/react';
 import { BiMenu, BiBell, BiCalendar, BiChevronLeft, BiLeftArrowAlt, BiChevronsRight } from 'react-icons/bi';
 
-import { Icon, Box, Flex, Button, Text, IconButton, useColorMode, useMediaQuery } from '@chakra-ui/react';
-
-import { LoginContext, ThemeContext, LayoutContext, VisibilityContext } from '../../../context';
 import { Searchbar } from '../..';
+import { LoginContext, ThemeContext, LayoutContext, VisibilityContext } from '../../../context';
+
 import { useHover } from 'utils';
 import { updateUser } from 'data';
 import { UserMenu } from './UserMenu';

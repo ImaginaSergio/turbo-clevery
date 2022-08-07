@@ -142,7 +142,7 @@ export const RoadmapWidget = () => {
     >
       <Flex w="100%" gap="10px" direction="column">
         <Text variant="h2_heading" isTruncated>
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 'El método OpenBootcamp' : 'El método OpenMarketers'}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 'El método OpenBootcamp' : 'El método OpenMarketers'}
         </Text>
 
         <Text variant="p_text">

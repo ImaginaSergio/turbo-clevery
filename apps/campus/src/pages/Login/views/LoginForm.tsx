@@ -112,7 +112,7 @@ const LoginForm = () => {
     >
       <Flex w="100%">
         <Box>
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
             colorMode === 'dark' ? (
               <LogoOBFullWhite w={{ base: '138px', sm: '184px' }} h="51px" />
             ) : (
@@ -138,7 +138,7 @@ const LoginForm = () => {
           setIsLoggingIn={setIsLoggingIn}
           onRegister={() => navigate('/register')}
           onPassRecovery={() => navigate('/login/recovery')}
-          showRegister={!(process.env.NX_DISABLED_PAGES || '')?.split(' ')?.includes('register')}
+          showRegister={!(process.env.REACT_APP_DISABLED_PAGES || '')?.split(' ')?.includes('register')}
         />
       </Flex>
 
@@ -152,7 +152,7 @@ const LoginForm = () => {
       >
         <Box w="100%">
           Copyright © {new Date().getFullYear()}
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? ' OpenBootcamp S.L. ' : ' OpenMarketers S.L. '}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? ' OpenBootcamp S.L. ' : ' OpenMarketers S.L. '}
           Todos los derechos reservados.
         </Box>
 
@@ -164,7 +164,7 @@ const LoginForm = () => {
           whiteSpace="nowrap"
           textDecoration="underline"
           href={
-            process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
               ? 'https://open-bootcamp.com/politica-privacidad'
               : 'https://open-marketers.com/politica-privacidad'
           }
@@ -264,7 +264,7 @@ const FormLoginForm = ({
                       opacity: 0.7,
                       color: '#000',
                     }}
-                    color={process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? '#000' : '#fff'}
+                    color={process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? '#000' : '#fff'}
                     bg="primary"
                     w="100%"
                     p="12px 20px"

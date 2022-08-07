@@ -48,7 +48,7 @@ export const TrabajoActualModal = ({
         <OpenRadio
           name="actualmenteTrabajando"
           label={
-            process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
               ? '¿Estás trabajando como marketer actualmente?'
               : '¿Estás trabajando como desarrollador actualmente?'
           }

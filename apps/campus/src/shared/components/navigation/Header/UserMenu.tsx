@@ -19,14 +19,14 @@ import {
   Text,
   Divider,
 } from '@chakra-ui/react';
-
-import { IUser, updateUser } from 'data';
-import { Avatar } from 'ui';
-import { CampusPages, LoginContext, ThemeContext, VisibilityContext } from 'apps/campus/src/shared/context';
-
 import { AiOutlinePoweroff } from 'react-icons/ai';
-import { BiCalendar, BiChevronDown, BiUserCircle, BiBell } from 'react-icons/bi';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
+import { BiCalendar, BiChevronDown, BiUserCircle, BiBell } from 'react-icons/bi';
+
+import { Avatar } from 'ui';
+import { updateUser } from 'data';
+
+import { CampusPages, LoginContext, ThemeContext, VisibilityContext } from '../../../../shared/context';
 
 export const UserMenu = ({ onOpenCalendar, onOpenNotifications }: { onOpenCalendar: any; onOpenNotifications: any }) => {
   const { user, logout, totalPerfil } = useContext(LoginContext);
@@ -213,7 +213,7 @@ const PopoverPerfil = ({
     <Popover isOpen={isPopoverHover}>
       <Flex
         onMouseEnter={() => {
-          if (totalPerfil < 100 && process.env.NX_ORIGEN_CAMPUS !== 'IMAGINA') setIsPopoverHover(true);
+          if (totalPerfil < 100 && process.env.REACT_APP_ORIGEN_CAMPUS !== 'IMAGINA') setIsPopoverHover(true);
         }}
         onMouseLeave={() => {
           setIsPopoverHover(false);

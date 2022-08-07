@@ -16,12 +16,13 @@ import {
   DrawerCloseButton,
 } from '@chakra-ui/react';
 
+import { useHover } from 'utils';
+import { ICurso, IExamen, ILeccion } from 'data';
+
 import TabTests from './TabTests';
 import TabLecciones from './TabLecciones';
 import TabEjercicios from './TabEjercicios';
-import { useHover } from 'utils';
-import { ICurso, IExamen, ILeccion } from 'data';
-import { CampusPages, VisibilityContext } from 'apps/campus/src/shared/context';
+import { CampusPages, VisibilityContext } from '../../../../../shared/context';
 
 const ResponsiveSidebarLeccion = ({
   state,

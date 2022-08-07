@@ -20,7 +20,7 @@ export const YoutubeWidget = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (user?.preferencias?.showYoutube === false || process.env.NX_SHOW_YOUTUBE === 'FALSE') setOpen(false);
+    if (user?.preferencias?.showYoutube === false || process.env.REACT_APP_SHOW_YOUTUBE === 'FALSE') setOpen(false);
     else setOpen(true);
   }, [user]);
 

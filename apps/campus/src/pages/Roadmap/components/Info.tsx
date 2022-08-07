@@ -144,8 +144,8 @@ const RutaInfoPublic = ({ ruta }: { ruta: IRuta }) => {
               rounded="100%"
               transition="all 0.7s ease"
               _hover={{ opacity: 0.7 }}
-              onClick={process.env.NX_EDIT_ROADMAP === 'FALSE' ? undefined : roadmapState.onOpen}
-              cursor={process.env.NX_EDIT_ROADMAP === 'FALSE' ? 'unset' : 'pointer'}
+              onClick={process.env.REACT_APP_EDIT_ROADMAP === 'FALSE' ? undefined : roadmapState.onOpen}
+              cursor={process.env.REACT_APP_EDIT_ROADMAP === 'FALSE' ? 'unset' : 'pointer'}
             >
               <Icon boxSize="32px" color="gray_5" as={MdKeyboardArrowDown} />
             </Center>

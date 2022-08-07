@@ -19,25 +19,14 @@ export const AdminWidget = () => {
       cursor="pointer"
       border="1px solid var(--chakra-colors-gray_3)"
       target="_blank"
-      href={process.env.NX_ADMIN_URL || ''}
+      href={process.env.REACT_APP_ADMIN_URL || ''}
     >
-      <Center
-        position="relative"
-        boxSize="45px"
-        rounded="full"
-        bg="primary_light"
-      >
+      <Center position="relative" boxSize="45px" rounded="full" bg="primary_light">
         <Icon boxSize="20px" color="primary" as={BiLaptop} />
       </Center>
 
       <Flex direction="column" align="center" justify="center">
-        <Box
-          fontSize="14px"
-          fontWeight="bold"
-          color="gray_4"
-          lineHeight="16px"
-          textTransform="uppercase"
-        >
+        <Box fontSize="14px" fontWeight="bold" color="gray_4" lineHeight="16px" textTransform="uppercase">
           Acceder al panel de {user?.rol}
         </Box>
       </Flex>

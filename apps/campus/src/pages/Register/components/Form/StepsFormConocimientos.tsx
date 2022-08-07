@@ -1,43 +1,19 @@
 import { Field } from 'formik';
-import {
-  Text,
-  Image,
-  FormControl,
-  Flex,
-  FormErrorMessage,
-} from '@chakra-ui/react';
+import { Text, Image, FormControl, Flex, FormErrorMessage } from '@chakra-ui/react';
 
 import AvanzadoOB from '../../../../assets/onboarding/openbootcamp/AvanzadoIMG.png';
 import AvanzadoOM from '../../../../assets/onboarding/openmarketers/AvanzadoIMG.png';
 import PrincipianteOB from '../../../../assets/onboarding/openbootcamp/PrincipianteIMG.png';
 import PrincipianteOM from '../../../../assets/onboarding/openmarketers/PrincipianteIMG.png';
 
-export const StepsFormConocimientos = ({
-  name,
-  onSubmit = () => {},
-}: {
-  name: string;
-  onSubmit?: any;
-}) => {
+export const StepsFormConocimientos = ({ name, onSubmit = () => {} }: { name: string; onSubmit?: any }) => {
   return (
     <Field name={name}>
       {({ field, form }: { field: any; form: any }) => (
-        <FormControl
-          className="steps-form--form-control"
-          isInvalid={form.errors[name] && form.touched[name]}
-        >
-          <Flex
-            gap="20px"
-            align="center"
-            justify="center"
-            direction={{ base: 'column', sm: 'row' }}
-          >
+        <FormControl className="steps-form--form-control" isInvalid={form.errors[name] && form.touched[name]}>
+          <Flex gap="20px" align="center" justify="center" direction={{ base: 'column', sm: 'row' }}>
             <Card
-              icon={
-                process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
-                  ? AvanzadoOM
-                  : AvanzadoOB
-              }
+              icon={process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? AvanzadoOM : AvanzadoOB}
               data-cy="conocimientos_avanzado"
               title="Ya cuento con conocimientos"
               isActive={field.value === 'avanzado'}
@@ -45,11 +21,7 @@ export const StepsFormConocimientos = ({
             />
 
             <Card
-              icon={
-                process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
-                  ? PrincipianteOM
-                  : PrincipianteOB
-              }
+              icon={process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? PrincipianteOM : PrincipianteOB}
               data-cy="conocimientos_principiante"
               title="Soy principiante"
               isActive={field.value === 'principiante'}
@@ -120,11 +92,7 @@ const Card = ({
         position={{ base: 'relative', sm: 'absolute' }}
       />
 
-      <Text
-        variant="card_title"
-        position={{ base: 'relative', sm: 'absolute' }}
-        bottom={{ base: '0px', sm: '30px' }}
-      >
+      <Text variant="card_title" position={{ base: 'relative', sm: 'absolute' }} bottom={{ base: '0px', sm: '30px' }}>
         {title}
       </Text>
     </Flex>

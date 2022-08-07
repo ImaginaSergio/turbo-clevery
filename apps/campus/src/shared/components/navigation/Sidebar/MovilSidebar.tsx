@@ -13,26 +13,15 @@ import {
   BiNetworkChart,
   BiNews,
 } from 'react-icons/bi';
-import {
-  Flex,
-  Icon,
-  IconButton,
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-} from '@chakra-ui/react';
+import { Flex, Icon, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent } from '@chakra-ui/react';
 
 import { NavLink } from './NavLink';
 import { CampusPages, LoginContext, ThemeContext } from '../../../context';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOBFullWhite } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullWhite';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoOMFullWhite } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullWhite';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
-import { LogoImaginaFullWhite } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullWhite';
+import { LogoOBFullBlack } from '../../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOBFullWhite } from '../../../../assets/logos/openbootcamp/LogoOBFullWhite';
+import { LogoOMFullBlack } from '../../../../assets/logos/openmarketers/LogoOMFullBlack';
+import { LogoOMFullWhite } from '../../../../assets/logos/openmarketers/LogoOMFullWhite';
 
 type MovilSidebarProps = {
   state: { isOpen: boolean; onClose: () => void };
@@ -45,7 +34,7 @@ const MovilSidebar = ({ state }: MovilSidebarProps) => {
   const { user } = useContext(LoginContext);
   const { themeMode } = useContext(ThemeContext);
 
-  const disabledPages = process.env.NX_DISABLED_PAGES?.split(' ');
+  const disabledPages = process.env.REACT_APP_DISABLED_PAGES?.split(' ');
 
   return (
     <Drawer placement="left" isOpen={state.isOpen} onClose={state.onClose}>
@@ -62,51 +51,31 @@ const MovilSidebar = ({ state }: MovilSidebarProps) => {
               onClick={() => navigate('/')}
               style={{ transition: 'all 0.6s ease-in-out' }}
             >
-              {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+              {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
                 themeMode === 'light' ? (
                   <LogoOBFullBlack h="35" w="128" />
                 ) : (
                   <LogoOBFullWhite h="35" w="128" />
                 )
-              ) : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
-                themeMode === 'light' ? (
-                  <LogoOMFullBlack h="35" w="128" />
-                ) : (
-                  <LogoOMFullWhite h="35" w="128" />
-                )
               ) : themeMode === 'light' ? (
-                <LogoImaginaFullBlack h="35" w="128" />
+                <LogoOMFullBlack h="35" w="128" />
               ) : (
-                <LogoImaginaFullWhite h="35" w="128" />
+                <LogoOMFullWhite h="35" w="128" />
               )}
             </Flex>
 
             <IconButton
-              icon={<Icon as={BiX} boxSize="30px" color="gray_4" />}
               bg="transparent"
               aria-label="Cerrar Sidebar"
               onClick={state.onClose}
+              icon={<Icon as={BiX} boxSize="30px" color="gray_4" />}
             />
           </Flex>
         </DrawerHeader>
 
         <DrawerBody p="0px">
-          <Flex
-            direction="column"
-            h="100%"
-            w="100%"
-            gap="7px"
-            overflow="auto"
-            p="30px 0px 20px 0px"
-            align="flex-start"
-          >
-            <NavLink
-              title="Inicio"
-              to="/"
-              icon={BiHome}
-              isActive={location.pathname === '/'}
-              onClose={state.onClose}
-            />
+          <Flex direction="column" h="100%" w="100%" gap="7px" overflow="auto" p="30px 0px 20px 0px" align="flex-start">
+            <NavLink title="Inicio" to="/" icon={BiHome} isActive={location.pathname === '/'} onClose={state.onClose} />
 
             {!disabledPages?.includes('roadmap') && (
               <NavLink

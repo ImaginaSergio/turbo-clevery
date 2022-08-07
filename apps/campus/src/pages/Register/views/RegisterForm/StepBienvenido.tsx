@@ -7,14 +7,14 @@ import TagManager from 'react-gtm-module';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 import { Button, Flex, Text, Image } from '@chakra-ui/react';
 
-import { IPais, IEstado, getItem, getPaises, getEstados, updateUser, UserOrigenEnum, UserRemotoEnum } from 'data';
 import { capitalizeFirst, useQuery } from 'utils';
-import { LoginContext } from '../../../../shared/context';
-import { USER_ONBOARDING_ID, USER_ONBOARDING_STEP_CONOCIMIENTOS, USER_ONBOARDING_TOKEN } from '.';
-import { Stepper, StepsFormSelect, StepsFormRadio } from '../../components';
+import { IPais, IEstado, getItem, getPaises, getEstados, updateUser, UserOrigenEnum, UserRemotoEnum } from 'data';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
+import { LoginContext } from '../../../../shared/context';
+import { Stepper, StepsFormSelect, StepsFormRadio } from '../../components';
+import { LogoOBFullBlack } from '../../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../../assets/logos/openmarketers/LogoOMFullBlack';
+import { USER_ONBOARDING_ID, USER_ONBOARDING_STEP_CONOCIMIENTOS, USER_ONBOARDING_TOKEN } from '.';
 
 import '../../Register.scss';
 
@@ -150,7 +150,7 @@ const StepBienvenido = ({ totalSteps, currentStep, onPrevStep, cleanStorage }: S
       pt={{ base: '45px', sm: '75px' }}
       gap={{ base: '30px', sm: '60px' }}
     >
-      {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOBFullBlack /> : <LogoOMFullBlack w="184" h="51" />}
+      {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOBFullBlack /> : <LogoOMFullBlack w="184" h="51" />}
 
       <Stepper steps={totalSteps} currentStep={currentStep} />
 

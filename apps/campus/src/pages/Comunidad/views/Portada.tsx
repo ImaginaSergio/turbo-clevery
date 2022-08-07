@@ -123,7 +123,7 @@ const ProyectosCover = () => {
               objectPosition="top"
               border="2px solid"
               borderColor="gray_3"
-              src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.NX_MICROLINK_APIKEY}`}
+              src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.REACT_APP_MICROLINK_APIKEY}`}
             />
           </Flex>
 

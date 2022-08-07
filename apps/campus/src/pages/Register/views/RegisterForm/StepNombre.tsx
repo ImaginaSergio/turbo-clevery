@@ -6,14 +6,15 @@ import { Form, Formik } from 'formik';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
+import { useQuery } from 'utils';
 import { setItem, getItem, createUser, LOGIN_TOKEN, checkIfEmailExists } from 'data';
 import { USER_ONBOARDING_ID, USER_ONBOARDING_TOKEN, USER_ONBOARDING_STEP_NOMBRE } from '.';
-import { useQuery } from 'utils';
+
 import { Stepper, StepsTextInput, StepsFormCheckbox } from '../../components';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
+import { LogoOBFullBlack } from '../../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../../assets/logos/openmarketers/LogoOMFullBlack';
+import { LogoImaginaFullBlack } from '../../../../assets/logos/imagina/LogoImaginaFullBlack';
 
 type StepNombreProps = {
   totalSteps: number;
@@ -186,9 +187,9 @@ const StepNombre = ({ totalSteps, currentStep, onNextStep }: StepNombreProps) =>
       pt={{ base: '45px', sm: '75px' }}
       gap={{ base: '30px', sm: '60px' }}
     >
-      {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+      {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
         <LogoOBFullBlack />
-      ) : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
+      ) : process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
         <LogoOMFullBlack w="184" h="51" />
       ) : (
         <LogoImaginaFullBlack w="184" h="51" />
@@ -237,9 +238,9 @@ const StepNombre = ({ totalSteps, currentStep, onNextStep }: StepNombreProps) =>
                     target="_blank"
                     textDecoration="underline"
                     href={
-                      process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+                      process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
                         ? 'https://open-marketers.com/politica-privacidad'
-                        : process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+                        : process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
                         ? 'https://open-bootcamp.com/politica-privacidad'
                         : ''
                     }

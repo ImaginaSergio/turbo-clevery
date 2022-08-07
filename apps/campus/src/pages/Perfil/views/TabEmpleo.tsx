@@ -80,7 +80,7 @@ export const TabEmpleo = ({
       <OpenRadio
         name="actualmenteTrabajando"
         label={
-          process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+          process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
             ? '¿Estás trabajando como marketer actualmente?'
             : '¿Estás trabajando como desarrollador actualmente?'
         }
@@ -100,7 +100,7 @@ export const TabEmpleo = ({
       <OpenRadio
         name="tieneExperiencia"
         label={
-          process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+          process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
             ? '¿Tienes experiencia en alguna habilidad?'
             : '¿Tienes experiencia en alguna tecnología?'
         }
@@ -119,7 +119,7 @@ export const TabEmpleo = ({
         <OpenHabilidades
           name="habilidades"
           label={`${
-            process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'Habilidades' : 'Tecnologías'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'Habilidades' : 'Tecnologías'
           } que conoces y los años de experiencia en cada una:`}
           defaultValue={habilidades}
           onChange={(e: any) => {

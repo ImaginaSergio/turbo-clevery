@@ -5,12 +5,10 @@ import { Flex, Box, Button, Input, useColorMode } from '@chakra-ui/react';
 
 import { recoverRequest } from 'data';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOBFullWhite } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullWhite';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoOMFullWhite } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullWhite';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
-import { LogoImaginaFullWhite } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullWhite';
+import { LogoOBFullBlack } from '../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOBFullWhite } from '../../../assets/logos/openbootcamp/LogoOBFullWhite';
+import { LogoOMFullBlack } from '../../../assets/logos/openmarketers/LogoOMFullBlack';
+import { LogoOMFullWhite } from '../../../assets/logos/openmarketers/LogoOMFullWhite';
 
 const RecoveryForm = () => {
   const navigate = useNavigate();
@@ -56,7 +54,7 @@ const RecoveryForm = () => {
     >
       <Flex top="0px" p="40px" w="100%" position="absolute" justify="space-between">
         <Box>
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
             colorMode === 'dark' ? (
               <LogoOBFullWhite />
             ) : (
@@ -168,7 +166,7 @@ const RecoveryForm = () => {
       >
         <Box w="100%">
           Copyright © {new Date().getFullYear()}
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? ' OpenBootcamp S.L. ' : ' OpenMarketers S.L. '}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? ' OpenBootcamp S.L. ' : ' OpenMarketers S.L. '}
           Todos los derechos reservados.
         </Box>
 
@@ -180,7 +178,7 @@ const RecoveryForm = () => {
           whiteSpace="nowrap"
           textDecoration="underline"
           href={
-            process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
               ? 'https://open-bootcamp.com/politica-privacidad'
               : 'https://open-marketers.com/politica-privacidad'
           }

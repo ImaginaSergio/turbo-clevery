@@ -32,7 +32,7 @@ export const CardProyectoPropio = (
           objectFit="cover"
           objectPosition="top"
           bgColor={stc(proyecto?.titulo || 'Lorem Ipsum')}
-          src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.NX_MICROLINK_APIKEY}`}
+          src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.REACT_APP_MICROLINK_APIKEY}`}
         />
       </Box>
 
@@ -140,7 +140,7 @@ export const CardProyectoPublico = ({ proyecto, isFavved, onClick, onFav, style 
           objectFit="cover"
           objectPosition="top"
           bgColor={stc(proyecto?.titulo || 'Lorem Ipsum')}
-          src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.NX_MICROLINK_APIKEY}`}
+          src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.REACT_APP_MICROLINK_APIKEY}`}
         />
       </Box>
 

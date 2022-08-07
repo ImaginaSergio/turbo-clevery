@@ -12,9 +12,9 @@ import { USER_ONBOARDING_ID, USER_ONBOARDING_STEP_CREDENCIALES } from '.';
 
 import { Stepper, StepsTextInput } from '../../components';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
+import { LogoOBFullBlack } from '../../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../../assets/logos/openmarketers/LogoOMFullBlack';
+import { LogoImaginaFullBlack } from '../../../../assets/logos/imagina/LogoImaginaFullBlack';
 
 import '../../Register.scss';
 
@@ -140,9 +140,9 @@ const StepCredenciales = ({ totalSteps, currentStep, onNextStep, onPrevStep }: S
       pt={{ base: '45px', sm: '75px' }}
       gap={{ base: '30px', sm: '60px' }}
     >
-      {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+      {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
         <LogoOBFullBlack />
-      ) : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
+      ) : process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
         <LogoOMFullBlack w="184" h="51" />
       ) : (
         <LogoImaginaFullBlack w="184" h="51" />
@@ -176,7 +176,7 @@ const StepCredenciales = ({ totalSteps, currentStep, onNextStep, onPrevStep }: S
                   data-cy="username"
                   autoComplete="off"
                   label="Nombre de usuario:"
-                  placeholder={process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'marketer14' : 'desarrolladorpro14'}
+                  placeholder={process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'marketer14' : 'desarrolladorpro14'}
                 />
 
                 <StepsTextInput

@@ -223,7 +223,7 @@ export const PortadaBase = ({ examen, certificacion }: { examen?: IExamen; certi
           loadingText="Generando diploma..."
           data-cy="empezar_button_portada_base"
           isDisabled={
-            (certificacion?.meta?.isCompleted && process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS') ||
+            (certificacion?.meta?.isCompleted && process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS') ||
             (intentosRestantes === 0 && !certificacion?.meta?.isCompleted)
           }
           _hover={{ bg: 'gray_2', color: '#bdbdbd' }}
@@ -269,7 +269,7 @@ export const PortadaBase = ({ examen, certificacion }: { examen?: IExamen; certi
           loadingText="Generando diploma..."
           data-cy="empezar_button_portada_base"
           isDisabled={
-            (certificacion?.meta?.isCompleted && process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS') ||
+            (certificacion?.meta?.isCompleted && process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS') ||
             (intentosRestantes === 0 && !certificacion?.meta?.isCompleted)
           }
           rightIcon={

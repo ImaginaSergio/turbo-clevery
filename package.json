@@ -18,8 +18,5 @@
     "eslint": "^8.4.1",
     "prettier": "^2.5.1",
     "turbo": "latest"
-  },
-  "dependencies": {
-    "esbuild": "^0.14.53"
   }
 }

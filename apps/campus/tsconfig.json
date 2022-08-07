@@ -1,4 +1,7 @@
 {
   "extends": "tsconfig/react-app.json",
-  "include": ["src"]
+  "include": ["src"],
+  "compilerOptions": {
+    "isolatedModules": false
+  }
 }

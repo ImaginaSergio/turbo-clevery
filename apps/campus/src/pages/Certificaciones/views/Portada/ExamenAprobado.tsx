@@ -168,7 +168,7 @@ export const ExamenAprobado = ({
           Explorar otras certificaciones
         </Button>
 
-        {process.env.NX_ORIGEN_CAMPUS !== 'OPENMARKETERS' && (
+        {process.env.REACT_APP_ORIGEN_CAMPUS !== 'OPENMARKETERS' && (
           <Button bg="gray_3" onClick={onDowload} isLoading={loadingDowload} loadingText="Generando diploma...">
             Descargar diploma
           </Button>

@@ -9,14 +9,14 @@ export const PusherController = ({ children, ...props }: any) => {
   const [pusher, setPusher] = useState<Pusher.default>();
 
   useEffect(() => {
-    if (process.env.NX_PUSHER_APP_KEY)
+    if (process.env.REACT_APP_PUSHER_APP_KEY)
       setPusher(
-        new Pusher.default(process.env.NX_PUSHER_APP_KEY, {
-          authEndpoint: process.env.NX_API_URL + '/openAPI/authenticatePusher',
+        new Pusher.default(process.env.REACT_APP_PUSHER_APP_KEY, {
+          authEndpoint: process.env.REACT_APP_API_URL + '/openAPI/authenticatePusher',
           auth: {
             headers: { Authorization: `Bearer ${getItem('loginToken')}` },
           },
-          cluster: process.env.NX_PUSHER_CLUSTER,
+          cluster: process.env.REACT_APP_PUSHER_CLUSTER,
         })
       );
   }, []);

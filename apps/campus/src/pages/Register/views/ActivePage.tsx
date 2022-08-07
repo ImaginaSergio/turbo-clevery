@@ -1,13 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { BsDiscord } from 'react-icons/bs';
 import {
   Button,
   Flex,
   Box,
   Text,
-  Image,
   useDisclosure,
   Modal,
   ModalContent,
@@ -16,13 +14,12 @@ import {
   ModalOverlay,
   ModalBody,
 } from '@chakra-ui/react';
+import { BsDiscord } from 'react-icons/bs';
 
 import { ActiveVector } from '../components';
-import { LayoutContext } from 'apps/campus/src/shared/context';
-
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
+import { LayoutContext } from '../../../shared/context';
+import { LogoOBFullBlack } from '../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../assets/logos/openmarketers/LogoOMFullBlack';
 
 export const ActivePage = () => {
   const navigate = useNavigate();
@@ -35,67 +32,24 @@ export const ActivePage = () => {
   }, [isMobile]);
 
   return (
-    <Flex
-      p="75px"
-      gap="60px"
-      boxSize="100%"
-      align="center"
-      justify="start"
-      direction="column"
-    >
-      {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
-        <LogoOBFullBlack />
-      ) : (
-        <LogoOMFullBlack w="184" h="51" />
-      )}
+    <Flex p="75px" gap="60px" boxSize="100%" align="center" justify="start" direction="column">
+      {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOBFullBlack /> : <LogoOMFullBlack w="184" h="51" />}
 
-      <Flex
-        h="100%"
-        gap="60px"
-        align="center"
-        justify="center"
-        direction="column"
-      >
-        <Flex
-          h="100%"
-          gap="28px"
-          align="center"
-          justify="center"
-          direction="column"
-        >
+      <Flex h="100%" gap="60px" align="center" justify="center" direction="column">
+        <Flex h="100%" gap="28px" align="center" justify="center" direction="column">
           <Text variant="h1_heading">¡Bienvenido a OpenBootcamp!</Text>
 
           <ActiveVector />
 
-          <Text
-            maxW="750px"
-            color="gray_6"
-            fontSize="21px"
-            lineHeight="32px"
-            textAlign="center"
-            variant="card_title"
-          >
-            Gran parte del éxito de OpenBootcamp lo tiene su Comunidad. Entra y
-            aprende junto a nuestro equipo y a tus nuev@s compañer@s.
+          <Text maxW="750px" color="gray_6" fontSize="21px" lineHeight="32px" textAlign="center" variant="card_title">
+            Gran parte del éxito de OpenBootcamp lo tiene su Comunidad. Entra y aprende junto a nuestro equipo y a tus nuev@s
+            compañer@s.
           </Text>
         </Flex>
 
-        <Flex
-          w="100%"
-          gap="20px"
-          maxW="380px"
-          align="center"
-          justify="center"
-          direction="column"
-        >
-          {process.env.NX_SHOW_DISCORD !== 'FALSE' && (
-            <Box
-              as="a"
-              w="100%"
-              target="_blank"
-              rel="noreferrer"
-              href="https://discord.gg/tzDGcwkn4R"
-            >
+        <Flex w="100%" gap="20px" maxW="380px" align="center" justify="center" direction="column">
+          {process.env.REACT_APP_SHOW_DISCORD !== 'FALSE' && (
+            <Box as="a" w="100%" target="_blank" rel="noreferrer" href="https://discord.gg/tzDGcwkn4R">
               <Button
                 w="100%"
                 h="auto"
@@ -146,8 +100,8 @@ const RedirectToPCModal = ({ isOpen, onClose }: any) => {
         <ModalHeader>¡Estás desde el móvil!</ModalHeader>
 
         <ModalBody>
-          La experiencia en móvil es limitada, te recomendamos usar nuestro
-          campus virtual desde un ordenador de sobremesa o portátil.
+          La experiencia en móvil es limitada, te recomendamos usar nuestro campus virtual desde un ordenador de sobremesa o
+          portátil.
         </ModalBody>
 
         <ModalFooter>

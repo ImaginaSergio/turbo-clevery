@@ -3,12 +3,14 @@ import { useContext, useRef } from 'react';
 import { BiChevronsLeft, BiMenu } from 'react-icons/bi';
 import { Flex, Icon, Tab, Tabs, TabList, TabPanel, TabPanels, IconButton } from '@chakra-ui/react';
 
+import { useHover } from 'utils';
+import { ICurso, IExamen, ILeccion } from 'data';
+
 import TabTests from './TabTests';
 import TabLecciones from './TabLecciones';
 import TabEjercicios from './TabEjercicios';
-import { useHover } from 'utils';
-import { ICurso, IExamen, ILeccion } from 'data';
-import { VisibilityContext, CampusPages } from 'apps/campus/src/shared/context';
+
+import { VisibilityContext, CampusPages } from '../../../../../shared/context';
 
 const SidebarLeccion = ({
   state,

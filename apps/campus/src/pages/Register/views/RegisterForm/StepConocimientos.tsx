@@ -6,13 +6,12 @@ import TagManager from 'react-gtm-module';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 import { Flex, Text, Button, Image } from '@chakra-ui/react';
 
-import { getCurso, getItem, getRutaByID, setItem, updateProgresoGlobal, updateUser } from 'data';
 import { Stepper, StepsFormConocimientos } from '../../components';
 import { USER_ONBOARDING_ID, USER_ONBOARDING_STEP_CONOCIMIENTOS } from '.';
+import { getCurso, getItem, getRutaByID, setItem, updateProgresoGlobal, updateUser } from 'data';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
+import { LogoOBFullBlack } from '../../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../../assets/logos/openmarketers/LogoOMFullBlack';
 
 import '../../Register.scss';
 import { useQuery } from 'utils';
@@ -90,7 +89,7 @@ const StepConocimientos = ({ totalSteps, currentStep, onNextStep, onPrevStep }: 
           updateProgresoGlobal({
             id: progresoGlobalId,
             progresoGlobal: {
-              rutaId: process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 1 : 14,
+              rutaId: process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 1 : 14,
             },
           });
         } else if (progresoGlobalId && storeRutaDestacada) {
@@ -133,13 +132,13 @@ const StepConocimientos = ({ totalSteps, currentStep, onNextStep, onPrevStep }: 
       pt={{ base: '45px', sm: '75px' }}
       gap={{ base: '30px', sm: '60px' }}
     >
-      {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOBFullBlack /> : <LogoOMFullBlack w="184" h="51" />}
+      {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOBFullBlack /> : <LogoOMFullBlack w="184" h="51" />}
 
       <Stepper steps={totalSteps} currentStep={currentStep} />
 
       <Flex p="30px" gap="10px" direction="column" align={{ base: 'start', sm: 'center' }}>
         <Text variant="h1_heading" data-cy="third_step__title">
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? '¿Ya sabes de marketing?' : '¿Sabes programar?'}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? '¿Ya sabes de marketing?' : '¿Sabes programar?'}
         </Text>
 
         <Text color="gray_4" fontSize="16px" variant="card_title" data-cy="third_step__description">

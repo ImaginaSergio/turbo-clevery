@@ -45,7 +45,7 @@ export const ExamenSuspendido = ({
             certificación ${proyecto?.titulo}. Aprovecha y mejora tus
             conocimientos antes de reintentarlo.`
               : `Has gastado todos tus intentos para conseguir la certificación de SpringBoot Avanzado. No te rindas, en ${
-                  process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 'OpenBootcamp' : 'OpenMarketers'
+                  process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 'OpenBootcamp' : 'OpenMarketers'
                 } tenemos muchas más certificaciones con las que puedes probar tu destreza.`}
           </Text>
         </Flex>

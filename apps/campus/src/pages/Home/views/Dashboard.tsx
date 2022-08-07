@@ -222,8 +222,8 @@ export const HomeDashboard = () => {
               </Text>
 
               <Text fontWeight="bold" display={{ base: 'none', sm: 'flex' }} fontSize={{ base: '16px', sm: '18px' }}>
-                {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' && ' de OpenBootcamp'}
-                {process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' && ' de OpenMarketers'}
+                {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' && ' de OpenBootcamp'}
+                {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' && ' de OpenMarketers'}
               </Text>
             </Flex>
 
@@ -278,7 +278,7 @@ export const HomeDashboard = () => {
         </Flex>
 
         {/* CÓMO FUNCIONA OB */}
-        {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' && (
+        {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' && (
           <Flex h="100%" gap="20px" direction="column" order={{ base: 1, md: 0 }} px={{ base: '12px', sm: '0px' }}>
             <Flex direction="column" gap="10px">
               <Text fontWeight="bold" fontSize={{ base: '16px', sm: '18px' }}>
@@ -340,7 +340,9 @@ const GreetingsTitle = ({
       <span role="img" aria-label="Hola">
         👋 ¡Hola {<span className={gradientStyle.nameGradient}>{nombre}</span>},{' '}
         {type === 'greetings'
-          ? `empieza a aprender con ${process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 'OpenBootcamp' : 'OpenMarketers'}!`
+          ? `empieza a aprender con ${
+              process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 'OpenBootcamp' : 'OpenMarketers'
+            }!`
           : type === 'continue'
           ? 'continúa por donde lo habías dejado!'
           : 'continúa tu hoja de ruta!'}

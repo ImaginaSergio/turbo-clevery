@@ -50,7 +50,7 @@ export const TabCuenta = ({ updateValue }: { updateValue: (e?: any) => any }) =>
             fontWeight="bold"
             textDecoration="underline"
             href={
-              process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+              process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
                 ? 'mailto:hola@open-bootcamp.com'
                 : 'mailto:hola@open-marketers.com'
             }

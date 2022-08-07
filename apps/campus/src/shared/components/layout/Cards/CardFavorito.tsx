@@ -59,7 +59,7 @@ const ContentProyecto = (proyecto: IProyecto) => {
             size="60px"
             name="Avatar"
             fontSize="50px"
-            src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.NX_MICROLINK_APIKEY}`}
+            src={`https://api.microlink.io/?url=${proyecto?.enlaceDemo}&screenshot&embed=screenshot.url&apiKey=${process.env.REACT_APP_MICROLINK_APIKEY}`}
           />
         </Flex>
 

@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { Field } from 'formik';
-import {
-  Box,
-  Checkbox,
-  FormLabel,
-  FormControl,
-  FormErrorMessage,
-} from '@chakra-ui/react';
+import { Box, Checkbox, FormLabel, FormControl, FormErrorMessage } from '@chakra-ui/react';
 
 type FormCheckboxProps = {
   inputRef?: any;
@@ -37,16 +31,9 @@ export const StepsFormCheckbox = ({
   return (
     <Field name={name}>
       {({ field, form }: { field: any; form: any }) => (
-        <FormControl
-          style={controlStyle}
-          isInvalid={form.errors[name] && form.touched[name]}
-        >
+        <FormControl style={controlStyle} isInvalid={form.errors[name] && form.touched[name]}>
           {label && (
-            <FormLabel
-              htmlFor={name}
-              className="form-label"
-              color={labelColor || 'black'}
-            >
+            <FormLabel htmlFor={name} className="form-label" color={labelColor || 'black'}>
               {label}
               {props.isRequired && <Box color="cancel"> *</Box>}
             </FormLabel>
@@ -64,9 +51,9 @@ export const StepsFormCheckbox = ({
               target="_blank"
               textDecoration="underline"
               href={
-                process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+                process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
                   ? 'https://open-marketers.com/terminos-condiciones'
-                  : process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+                  : process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
                   ? 'https://open-bootcamp.com/terminos-condiciones'
                   : ''
               }

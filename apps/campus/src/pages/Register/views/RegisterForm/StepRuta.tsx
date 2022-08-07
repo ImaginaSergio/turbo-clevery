@@ -4,16 +4,16 @@ import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import TagManager from 'react-gtm-module';
 import { BiLeftArrowAlt } from 'react-icons/bi';
-import { Button, Flex, Text, Image } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 
+import { useQuery } from 'utils';
 import { getItem, setItem, updateUser, updateProgresoGlobal } from 'data';
 import { USER_ONBOARDING_ID, USER_ONBOARDING_STEP_RUTA, USER_ONBOARDING_STEP_CONOCIMIENTOS } from '.';
-import { useQuery } from 'utils';
-import { Stepper, StepsFormRuta } from '../../components';
 
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
+import { Stepper, StepsFormRuta } from '../../components';
+import { LogoOBFullBlack } from '../../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../../assets/logos/openmarketers/LogoOMFullBlack';
+import { LogoImaginaFullBlack } from '../../../../assets/logos/imagina/LogoImaginaFullBlack';
 
 import '../../Register.scss';
 
@@ -126,9 +126,9 @@ const StepRuta = ({ totalSteps, currentStep, onNextStep, onPrevStep }: StepRutaP
       pt={{ base: '45px', sm: '75px' }}
       gap={{ base: '30px', sm: '60px' }}
     >
-      {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+      {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
         <LogoOBFullBlack />
-      ) : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
+      ) : process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
         <LogoOMFullBlack w="184" h="51" />
       ) : (
         <LogoImaginaFullBlack w="184" h="51" />
@@ -148,7 +148,7 @@ const StepRuta = ({ totalSteps, currentStep, onNextStep, onPrevStep }: StepRutaP
           fontSize="16px"
           data-cy="fourth_step__description"
         >
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
             ? 'Necesitemos que nos indiques el tipo de marketer que eres para ofrecerte diferentes especializaciones.'
             : 'Necesitemos que nos indiques el tipo de desarrollador que eres para ofrecerte diferentes especializaciones.'}
         </Text>

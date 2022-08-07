@@ -46,7 +46,7 @@ function App() {
     console.log('#############################');
 
     // Inicializamos el GTM
-    TagManager.initialize({ gtmId: process.env.NX_GTM_ID || '' });
+    TagManager.initialize({ gtmId: process.env.REACT_APP_GTM_ID || '' });
 
     const storageUser = getItem(LOGIN_USER);
     const storageToken = getItem(LOGIN_TOKEN);
@@ -81,7 +81,7 @@ function App() {
   const checkDisabledPages = () => {
     let _disabledPages: CampusPages[] = [];
 
-    (process.env.NX_DISABLED_PAGES?.split(' ') || []).forEach((page: any) => {
+    (process.env.REACT_APP_DISABLED_PAGES?.split(' ') || []).forEach((page: any) => {
       if (Object.values(CampusPages).includes(page)) _disabledPages.push(page);
     });
 

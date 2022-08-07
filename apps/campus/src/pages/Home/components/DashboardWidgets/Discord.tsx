@@ -17,7 +17,7 @@ export const DiscordWidget = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (user?.preferencias?.showDiscord === false || process.env.NX_SHOW_DISCORD === 'FALSE') setOpen(false);
+    if (user?.preferencias?.showDiscord === false || process.env.REACT_APP_SHOW_DISCORD === 'FALSE') setOpen(false);
     else setOpen(true);
   }, [user]);
 
@@ -66,7 +66,7 @@ export const DiscordWidget = () => {
       >
         <Flex w={{ base: 'fit-content', md: '100%' }} justify={{ base: 'center', md: 'space-between' }}>
           <Text color="#fff" fontSize="14px" decoration="none" display={{ base: 'none', md: 'flex' }}>
-            {process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'OpenMarketers' : 'OpenBootcamp'} Discord
+            {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'OpenMarketers' : 'OpenBootcamp'} Discord
           </Text>
 
           <CloseButton
@@ -84,7 +84,7 @@ export const DiscordWidget = () => {
           Aprende y Comparte en <strong>Comunidad</strong>
         </Text>
 
-        <a target="_blank" rel="noreferrer" style={{ width: 'fit-content' }} href={process.env.NX_DISCORD_INVITATION}>
+        <a target="_blank" rel="noreferrer" style={{ width: 'fit-content' }} href={process.env.REACT_APP_DISCORD_INVITATION}>
           <Button
             bg="#475AE1"
             w="fit-content"

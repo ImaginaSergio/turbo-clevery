@@ -15,14 +15,14 @@ navigator?.serviceWorker?.getRegistrations()?.then(function (registrations) {
 });
 
 /** Inicialización de Smartlook
-if (process.env.NX_SMARTLOOK_ID)
-  smartlookClient.init(process.env.NX_SMARTLOOK_ID);
+if (process.env.REACT_APP_SMARTLOOK_ID)
+  smartlookClient.init(process.env.REACT_APP_SMARTLOOK_ID);
 */
 
 /** Inicialización de Sentry */
-if (process.env.NX_SENTRY_ID)
+if (process.env.REACT_APP_SENTRY_ID)
   Sentry.init({
-    dsn: process.env.NX_SENTRY_ID,
+    dsn: process.env.REACT_APP_SENTRY_ID,
     environment: process.env.NODE_ENV,
     release: `clevery@${process.env.npm_package_version}`, // 😅 process.env.npm_package_version is 'undefined'
 

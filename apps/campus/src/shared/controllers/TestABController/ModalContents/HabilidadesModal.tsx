@@ -71,7 +71,7 @@ export const HabilidadesModal = ({
         <OpenRadio
           name="tieneExperiencia"
           label={
-            process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
               ? '¿Tienes experiencia en alguna habilidad?'
               : '¿Tienes experiencia en alguna tecnología?'
           }
@@ -89,7 +89,7 @@ export const HabilidadesModal = ({
           <OpenHabilidades
             name="habilidades"
             label={`${
-              process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'Habilidades' : 'Tecnologías'
+              process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? 'Habilidades' : 'Tecnologías'
             } que conoces y los años de experiencia en cada una:`}
             defaultValue={habilidades}
             onChange={(e: any) => {

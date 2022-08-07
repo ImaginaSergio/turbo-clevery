@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import {
@@ -17,18 +17,12 @@ import { Flex } from '@chakra-ui/react';
 import { NavLinkNoMobile } from './NavLinkNoMobile';
 import { CampusPages, LoginContext, ThemeContext, VisibilityContext } from '../../../context';
 
-import { LogoOB } from 'apps/campus/src/assets/logos/openbootcamp/LogoOB';
-import { LogoOM } from 'apps/campus/src/assets/logos/openmarketers/LogoOM';
-import { LogoImagina } from 'apps/campus/src/assets/logos/imagina/LogoImagina';
-
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOBFullWhite } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullWhite';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoOMFullWhite } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullWhite';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
-import { LogoImaginaFullWhite } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullWhite';
-import { UserRolEnum } from 'data';
-import { isRoleAllowed } from 'utils';
+import { LogoOB } from '../../../../../src/assets/logos/openbootcamp/LogoOB';
+import { LogoOM } from '../../../../../src/assets/logos/openmarketers/LogoOM';
+import { LogoOBFullBlack } from '../../../../../src/assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOBFullWhite } from '../../../../../src/assets/logos/openbootcamp/LogoOBFullWhite';
+import { LogoOMFullBlack } from '../../../../../src/assets/logos/openmarketers/LogoOMFullBlack';
+import { LogoOMFullWhite } from '../../../../../src/assets/logos/openmarketers/LogoOMFullWhite';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -69,7 +63,7 @@ const Sidebar = () => {
         onClick={() => navigate('/')}
         pl={{ base: isHover ? '24px' : '0px', '2xl': '24px' }}
       >
-        {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+        {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
           themeMode === 'light' ? (
             <LogoOBFullBlack
               h="35"
@@ -87,26 +81,8 @@ const Sidebar = () => {
               display={{ base: isHover ? 'flex' : 'none', '2xl': 'flex' }}
             />
           )
-        ) : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
-          themeMode === 'light' ? (
-            <LogoOMFullBlack
-              h="35"
-              w="128"
-              minH="35px"
-              minW="128px"
-              display={{ base: isHover ? 'flex' : 'none', '2xl': 'flex' }}
-            />
-          ) : (
-            <LogoOMFullWhite
-              h="35"
-              w="128"
-              minH="35px"
-              minW="128px"
-              display={{ base: isHover ? 'flex' : 'none', '2xl': 'flex' }}
-            />
-          )
         ) : themeMode === 'light' ? (
-          <LogoImaginaFullBlack
+          <LogoOMFullBlack
             h="35"
             w="128"
             minH="35px"
@@ -114,7 +90,7 @@ const Sidebar = () => {
             display={{ base: isHover ? 'flex' : 'none', '2xl': 'flex' }}
           />
         ) : (
-          <LogoImaginaFullWhite
+          <LogoOMFullWhite
             h="35"
             w="128"
             minH="35px"
@@ -124,13 +100,7 @@ const Sidebar = () => {
         )}
 
         <Flex pl="25px" display={{ base: isHover ? 'none' : 'flex', '2xl': 'none' }}>
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
-            <LogoOB w="30" h="35" />
-          ) : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
-            <LogoOM w="30" h="35" />
-          ) : (
-            <LogoImagina w="30" h="26px" />
-          )}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOB w="30" h="35" /> : <LogoOM w="30" h="35" />}
         </Flex>
       </Flex>
 

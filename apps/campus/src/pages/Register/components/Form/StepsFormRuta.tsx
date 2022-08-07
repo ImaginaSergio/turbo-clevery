@@ -1,10 +1,4 @@
-import {
-  Text,
-  Image,
-  FormControl,
-  Flex,
-  FormErrorMessage,
-} from '@chakra-ui/react';
+import { Text, Image, FormControl, Flex, FormErrorMessage } from '@chakra-ui/react';
 import { Field } from 'formik';
 
 import Backend from '../../../../assets/onboarding/openbootcamp/Backend.png';
@@ -22,28 +16,17 @@ export const StepsFormRuta = ({ name }: any) => {
   return (
     <Field name={name}>
       {({ field, form }: { field: any; form: any }) => (
-        <FormControl
-          className="steps-form--form-control"
-          isInvalid={form.errors[name] && form.touched[name]}
-        >
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
+        <FormControl className="steps-form--form-control" isInvalid={form.errors[name] && form.touched[name]}>
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS' ? (
             <>
-              <Flex
-                mb="20px"
-                gap="20px"
-                wrap="wrap"
-                align="start"
-                justify="center"
-              >
+              <Flex mb="20px" gap="20px" wrap="wrap" align="start" justify="center">
                 <Card
                   icon={Estrategia}
                   title="Estrategia y Organización Marketing"
                   data-cy="ruta_estrategia_organizacion"
                   description="Un trabajo de éxito comienza con una buena base organizativa."
                   isActive={field.value === 'estrategia_organizacion'}
-                  onClick={() =>
-                    form.setFieldValue(name, 'estrategia_organizacion')
-                  }
+                  onClick={() => form.setFieldValue(name, 'estrategia_organizacion')}
                 />
 
                 <Card
@@ -52,9 +35,7 @@ export const StepsFormRuta = ({ name }: any) => {
                   data-cy="ruta_branding_comunicacion"
                   description="Encuentra las palabras adecuadas para conectar con tu público."
                   isActive={field.value === 'branding_comunicacion'}
-                  onClick={() =>
-                    form.setFieldValue(name, 'branding_comunicacion')
-                  }
+                  onClick={() => form.setFieldValue(name, 'branding_comunicacion')}
                 />
                 <Card
                   icon={Principiantes}
@@ -62,9 +43,7 @@ export const StepsFormRuta = ({ name }: any) => {
                   data-cy="ruta_principiantes_programacion"
                   description="Aprende los lenguajes de programación más utilizados en marketing digital."
                   isActive={field.value === 'principiantes_programacion'}
-                  onClick={() =>
-                    form.setFieldValue(name, 'principiantes_programacion')
-                  }
+                  onClick={() => form.setFieldValue(name, 'principiantes_programacion')}
                 />
               </Flex>
 

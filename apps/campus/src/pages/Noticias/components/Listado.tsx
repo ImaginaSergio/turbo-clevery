@@ -1,10 +1,11 @@
-import { Box, Center, Divider, Flex, Skeleton } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { Box, Divider, Flex, Skeleton } from '@chakra-ui/react';
 
 import { INoticia } from 'data';
 import { OpenParser } from 'ui';
-import { LayoutContext } from 'apps/campus/src/shared/context';
-import { useContext } from 'react';
+
 import { NoticiaBadge } from './Badge';
+import { LayoutContext } from '../../../shared/context';
 
 function Listado({
   noticias = [],

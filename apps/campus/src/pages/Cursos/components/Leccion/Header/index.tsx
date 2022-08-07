@@ -1,8 +1,6 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { BiChevronsRight, BiCodeBlock, BiDotsHorizontalRounded, BiExit, BiMenu, BiNote } from 'react-icons/bi';
-import { BsArrowBarRight } from 'react-icons/bs';
 import {
   Flex,
   Button,
@@ -18,10 +16,12 @@ import {
   MenuList,
   UseDisclosureReturn,
 } from '@chakra-ui/react';
+import { BsArrowBarRight } from 'react-icons/bs';
+import { BiChevronsRight, BiCodeBlock, BiDotsHorizontalRounded, BiExit, BiMenu, BiNote } from 'react-icons/bi';
 
 import { ICurso } from 'data';
 import { useHover } from 'utils';
-import { Searchbar } from 'apps/campus/src/shared/components';
+import { Searchbar } from '../../../../../shared/components';
 
 export const LeccionHeader = ({
   curso,

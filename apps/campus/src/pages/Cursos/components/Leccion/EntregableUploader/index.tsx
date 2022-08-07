@@ -25,7 +25,7 @@ export const EntregableUploader = ({ name, putEP, onLoad, onUpdateFiles }: Infor
         name={name}
         labelIdle={`Sube tus archivos<br /><span class="filepond--label-action">O búscalos</span>`}
         server={{
-          url: process.env.NX_API_URL,
+          url: process.env.REACT_APP_API_URL,
           process: {
             url: putEP,
             method: 'PUT',

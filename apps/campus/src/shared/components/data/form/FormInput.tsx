@@ -62,18 +62,13 @@ export const FormInput = ({
   const treatValue = (value: any) => {
     if (!value) return '';
 
-    return type === 'date'
-      ? new Date(value).toISOString().substring(0, 10)
-      : value;
+    return type === 'date' ? new Date(value).toISOString().substring(0, 10) : value;
   };
 
   return (
     <Field name={name}>
       {({ field, form }: { field: any; form: any }) => (
-        <FormControl
-          style={controlStyle}
-          isInvalid={form.errors[name] && form.touched[name]}
-        >
+        <FormControl style={controlStyle} isInvalid={form.errors[name] && form.touched[name]}>
           <FormLabel htmlFor={name} className="form-label" color={labelColor}>
             {label}
             {isRequired && <Box color="cancel"> *</Box>}
@@ -82,11 +77,7 @@ export const FormInput = ({
           <InputGroup style={groupStyle}>
             <Input
               {...field}
-              focusBorderColor={
-                process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
-                  ? '#09C598'
-                  : '#7D55F1'
-              }
+              focusBorderColor={process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? '#09C598' : '#7D55F1'}
               data-cy={props['data-cy']}
               ref={inputRef}
               id={name}
