@@ -13,7 +13,7 @@ import {
   LocalizacionModal,
 } from './ModalContents';
 import { ModalProps } from './types';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { LoginContext } from '../../context';
 import { addCookie, getUserByID, updateUser } from 'data';
 

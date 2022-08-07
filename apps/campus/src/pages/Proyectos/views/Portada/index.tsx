@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useToast } from '@chakra-ui/react';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { useProyectoBoost } from 'data';
 
 import { PortadaBase } from './PortadaBase';

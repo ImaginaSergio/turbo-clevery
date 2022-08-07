@@ -19,7 +19,8 @@ import { BiChat, BiBook, BiBadgeCheck, BiSearchAlt, BiNavigation, BiBookBookmark
 import parse from 'html-react-parser';
 
 import { get } from 'data';
-import { onFailure, textParserMd } from 'utils';
+import { onFailure } from 'ui';
+import { textParserMd } from 'utils';
 
 enum SearchbarObjectType {
   CURSO = 'Curso',

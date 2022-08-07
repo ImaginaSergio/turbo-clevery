@@ -6,7 +6,7 @@ import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 
 import { FormInput, FormSelect, FormAsyncSelect } from '../../../shared/components';
 import { ICurso } from 'data';
-import { onFailure, onSuccess } from 'utils';
+import { onFailure, onSuccess } from 'ui';
 import { addForoTema, getCursos, getModulos } from 'data';
 
 const NuevoTema = () => {

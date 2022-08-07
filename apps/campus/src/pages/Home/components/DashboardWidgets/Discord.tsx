@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Icon, Flex, Text, Image, Button, useToast, CloseButton, IconButton } from '@chakra-ui/react';
 
 import { BsDiscord } from 'react-icons/bs';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { getUserByID, updateUser } from 'data';
 import { LoginContext } from '../../../../shared/context';
 

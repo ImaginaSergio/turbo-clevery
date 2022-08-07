@@ -8,8 +8,8 @@ import { BiCheckboxChecked, BiDownload, BiRightArrowAlt, BiStar } from 'react-ic
 
 import { IExamen, IFavorito, ICertificacion, generateDiploma, FavoritoTipoEnum } from 'data';
 import { FavoritosContext, LoginContext, LayoutContext } from '../../../../shared/context';
-import { Avatar, OpenParser } from 'ui';
-import { fmtMnts, onFailure } from 'utils';
+import { Avatar, OpenParser, onFailure  } from 'ui';
+import { fmtMnts} from 'utils';
 
 export const PortadaBase = ({ examen, certificacion }: { examen?: IExamen; certificacion?: ICertificacion }) => {
   const navigate = useNavigate();

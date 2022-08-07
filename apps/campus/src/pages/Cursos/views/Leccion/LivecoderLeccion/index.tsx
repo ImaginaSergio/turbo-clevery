@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import { ILeccion, ILivecoder, IEntregable, addEntregable, getLivecoders, getEntregables, EntregableEstadoEnum } from 'data';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { Flex, useToast } from '@chakra-ui/react';
 
 import { EntregableHeader } from './Header';

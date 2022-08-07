@@ -5,7 +5,7 @@ import { BiCog, BiUser, BiIdCard, BiBriefcase, BiShieldQuarter } from 'react-ico
 import { Box, CircularProgress, Flex, toast } from '@chakra-ui/react';
 
 import { Avatar } from 'ui';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { LoginContext } from '../../../shared/context';
 import { getUserByID, updateUser, UserRolEnum } from 'data';
 

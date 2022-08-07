@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Flex, Box, Stack, HStack, Button, Spinner, useToast, PinInput, PinInputField, useColorMode } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
+import { Flex, Box, Stack, HStack, Button, Spinner, useToast, PinInput, PinInputField, useColorMode } from '@chakra-ui/react';
 
-import { errorHandler, onFailure } from 'utils';
+import { onFailure } from 'ui';
+import { errorHandler } from 'utils';
 import { checkHashOnboarding, login } from 'data';
 
 import { LoginContext } from '../../../shared/context';

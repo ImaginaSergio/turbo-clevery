@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { BiPlus, BiBook, BiTrash, BiSearch, BiGridAlt, BiDotsVerticalRounded } from 'react-icons/bi';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { ILeccion, INota } from 'data';
 import { OpenDnDModal, OpenParser } from 'ui';
 import { addNota, deleteNota, getNotas, updateNota } from 'data';

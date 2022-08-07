@@ -4,7 +4,7 @@ import { BiCodeBlock } from 'react-icons/bi';
 import { Flex, useToast } from '@chakra-ui/react';
 
 import { OpenDnDModal } from 'ui';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { executeCode } from 'data';
 import { LoginContext, PusherContext } from '../../../../../shared/context';
 

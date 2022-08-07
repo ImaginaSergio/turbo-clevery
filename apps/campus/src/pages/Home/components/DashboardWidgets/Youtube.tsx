@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import { Flex, Image, useToast, CloseButton, Button, Icon, Box } from '@chakra-ui/react';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { getUserByID, updateUser } from 'data';
 import { LoginContext } from '../../../../shared/context';
 import { useNavigate } from 'react-router-dom';

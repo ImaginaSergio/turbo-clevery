@@ -14,7 +14,7 @@ import {
   PusherController,
 } from './shared/controllers';
 import { theme } from 'ui';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { OpenSidebar } from './shared/components';
 import { IUser, UserRolEnum } from 'data';
 import { CampusPages, LoginContext, ThemeContext, VisibilityContext } from './shared/context';

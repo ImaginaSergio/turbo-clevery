@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Flex, useToast } from '@chakra-ui/react';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { ICurso, IExamen } from 'data';
 import { LayoutContext, LoginContext } from '../../../../shared/context';
 import { getCurso, getExamenByID, getUserByID, hacerExamen } from 'data';

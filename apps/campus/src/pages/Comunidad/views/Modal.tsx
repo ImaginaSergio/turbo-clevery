@@ -28,7 +28,7 @@ import {
 import { LoginContext, LayoutContext, FavoritosContext } from '../../../shared/context';
 import { OpenParser, Avatar } from 'ui';
 import { removeProyecto } from 'data';
-import { onFailure, onSuccess } from 'utils';
+import { onFailure, onSuccess } from 'ui';
 import { DeleteModal } from '../../../shared/components';
 import { FavoritoTipoEnum, IFavorito, IProyecto } from 'data';
 

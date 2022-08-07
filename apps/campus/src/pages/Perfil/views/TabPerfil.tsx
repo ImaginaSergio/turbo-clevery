@@ -13,7 +13,7 @@ import {
   uploadAvatar,
   checkIfUsernameExists,
 } from 'data';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { LoginContext } from '../../../shared/context';
 import { OpenAvatarUploader } from '../../../shared/components';
 import { OpenInput, OpenPhoneInput, OpenSelect } from 'ui';

@@ -5,9 +5,8 @@ import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { useToast, Flex, Button, Box, Text } from '@chakra-ui/react';
 
+import { onSuccess, onFailure, FormTextEditor } from 'ui';
 import { IProyecto, getProyecto, addProyecto, updateProyecto, getHabilidades } from 'data';
-import { FormTextEditor } from 'ui';
-import { onSuccess, onFailure } from 'utils';
 
 import { FormInput, FormSelect, FormAsyncSelect } from '../../../shared/components';
 import { LoginContext } from '../../../shared/context';

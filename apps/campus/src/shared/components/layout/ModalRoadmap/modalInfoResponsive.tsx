@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { BiArrowBack } from 'react-icons/bi';
 import {
   Box,
   Flex,
@@ -16,14 +15,14 @@ import {
   Progress,
   useMediaQuery,
 } from '@chakra-ui/react';
-
+import { BiArrowBack } from 'react-icons/bi';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 import { OpenParser } from 'ui';
-import { INoticia, IRuta } from 'data';
+import { fmtMnts } from 'utils';
+import { sortByRoadmap, IRuta } from 'data';
+
 import { LayoutContext, LoginContext } from '../../../context';
-import { fmtMnts, sortByRoadmap } from 'utils';
-import { RoadmapItem } from './RoadmapItem';
 
 interface ProyectoModalProps {
   isOpen: boolean;

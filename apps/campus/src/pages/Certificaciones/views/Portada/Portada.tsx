@@ -7,7 +7,7 @@ import { PortadaBase } from './PortadaBase';
 import { ExamenAprobado } from './ExamenAprobado';
 import { ExamenSuspendido } from './ExamenSuspendido';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { IExamen, useCertificacion } from 'data';
 
 import { LoginContext, LayoutContext } from '../../../../shared/context';

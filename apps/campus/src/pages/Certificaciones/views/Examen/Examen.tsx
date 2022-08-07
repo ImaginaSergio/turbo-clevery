@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Spinner, useToast } from '@chakra-ui/react';
 
 import { IExamen, hacerExamen, getUserByID, getExamenByID, useCertificacion, empezarCertificacion } from 'data';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { LayoutContext, LoginContext } from '../../../../shared/context';
 
 import { PortadaExamen } from './PortadaExamen';

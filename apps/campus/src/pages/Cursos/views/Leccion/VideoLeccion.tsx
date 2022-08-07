@@ -6,8 +6,8 @@ import { Text, Flex, Box, Icon, Tooltip, useToast } from '@chakra-ui/react';
 
 import { LoginContext, LayoutContext, FavoritosContext } from '../../../../shared/context';
 import { ILeccion, IFavorito, IPuntoClave, getUserByID, FavoritoTipoEnum, updateProgresoGlobal } from 'data';
-import { OpenParser, OpenPlayer } from 'ui';
-import { fmtMnts, fmtSnds, onFailure } from 'utils';
+import { OpenParser, OpenPlayer, onFailure } from 'ui';
+import { fmtMnts, fmtSnds } from 'utils';
 
 import { MODALS_EVENT, EVENTO_VIDEO_PLAY, EVENTO_VIDEO_PAUSE } from '../../../../shared/controllers';
 

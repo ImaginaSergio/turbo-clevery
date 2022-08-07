@@ -18,16 +18,22 @@ import {
   Skeleton,
   CloseButton,
 } from '@chakra-ui/react';
-import { GrClose } from 'react-icons/gr';
 import { FiServer } from 'react-icons/fi';
 import { CgScreen } from 'react-icons/cg';
 import { AiOutlineBook } from 'react-icons/ai';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { BiBookBookmark, BiLayer, BiCodeBlock, BiBox } from 'react-icons/bi';
 
-import { IRuta, useCursos, getUserByID, useProyectosBoosts, updateProgresoGlobal, RutaItinerarioTipoEnum } from 'data';
-import { OpenParser } from 'ui';
-import { fmtMnts, onFailure, sortByRoadmap } from 'utils';
+import {
+  IRuta,
+  useCursos,
+  getUserByID,
+  sortByRoadmap,
+  useProyectosBoosts,
+  updateProgresoGlobal,
+  RutaItinerarioTipoEnum,
+} from 'data';
+import { OpenParser, onFailure } from 'ui';
 
 import { LoginContext } from '../../../context';
 import { RoadmapItem } from './RoadmapItem';

@@ -1,11 +1,11 @@
-import { useEffect, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { BiCheckboxChecked } from 'react-icons/bi';
 import { Flex, Box, Icon, Button, Grid, Text, useToast } from '@chakra-ui/react';
 
-import { Avatar } from 'ui';
-import { fmtTiempoTotal, onFailure } from 'utils';
+import { Avatar, onFailure } from 'ui';
+import { fmtTiempoTotal } from 'utils';
 import { IExamen, ICertificacion, generateDiploma } from 'data';
 
 import { Confetti } from './Confetti';

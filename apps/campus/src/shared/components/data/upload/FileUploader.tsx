@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 
 import { BiFile, BiPlus, BiTrash } from 'react-icons/bi';
 import { Box, Button, Flex, Icon, Progress, useToast } from '@chakra-ui/react';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 
 interface FileUploaderProps {
   files: File[];

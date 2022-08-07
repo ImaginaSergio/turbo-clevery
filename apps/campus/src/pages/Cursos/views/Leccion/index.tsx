@@ -30,7 +30,7 @@ import {
   ProgresoTipoEnum,
   EntregableEstadoEnum,
 } from 'data';
-import { onFailure, onSuccess } from 'utils';
+import { onFailure, onSuccess } from 'ui';
 
 import { SesionController } from '../../../../shared/controllers';
 import { LayoutContext, LoginContext } from '../../../../shared/context';

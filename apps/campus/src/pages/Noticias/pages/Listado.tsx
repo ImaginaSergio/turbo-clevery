@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Flex, useMediaQuery, useToast } from '@chakra-ui/react';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { INoticia, useNoticias } from 'data';
 import { LayoutContext } from '../../../shared/context';
 

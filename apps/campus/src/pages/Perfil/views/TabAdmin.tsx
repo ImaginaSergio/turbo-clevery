@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast, Flex, Box, Button } from '@chakra-ui/react';
 
 import { getUsers, loginViaId, getUserByID, removeFromBoost } from 'data';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { OpenAsyncSelect } from 'ui';
 import { LoginContext } from '../../../shared/context';
 

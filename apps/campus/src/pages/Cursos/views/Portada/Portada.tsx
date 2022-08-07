@@ -22,10 +22,12 @@ import stc from 'string-to-color';
 import { AiFillStar } from 'react-icons/ai';
 import { FaRegEyeSlash } from 'react-icons/fa';
 
-import { ICurso, ILeccion, IUser, LeccionTipoEnum, useCurso, useExamenes, useLeccion } from 'data';
-import { FavoritosContext, LayoutContext, LoginContext } from '../../../../shared/context';
-import { fmtMnts, onFailure } from 'utils';
+import { onFailure } from 'ui';
+import { fmtMnts } from 'utils';
 import { FavoritoTipoEnum, IFavorito } from 'data';
+import { ICurso, ILeccion, IUser, LeccionTipoEnum, useCurso, useExamenes, useLeccion } from 'data';
+
+import { FavoritosContext, LayoutContext, LoginContext } from '../../../../shared/context';
 
 import { HeaderCurso } from './HeaderCurso';
 import { TabPruebas } from './Tabs/TabPruebas';

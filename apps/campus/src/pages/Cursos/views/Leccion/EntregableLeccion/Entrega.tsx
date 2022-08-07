@@ -18,7 +18,7 @@ import { BsGithub } from 'react-icons/bs';
 import { BiFile, BiPencil, BiPlus, BiFolder, BiTrash } from 'react-icons/bi';
 
 import { updateEntregable, uploadAdjuntoEntregable, removeEntregableAdjunto, removeEntregableGithub } from 'data';
-import { onFailure, onSuccess } from 'utils';
+import { onFailure, onSuccess } from 'ui';
 import { EntregableEstadoEnum, IEntregable } from 'data';
 import { FileUploader } from '../../../../../shared/components';
 

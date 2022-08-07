@@ -5,7 +5,7 @@ import { BiRadioCircle, BiRadioCircleMarked } from 'react-icons/bi';
 import { Box, Button, Flex, Icon, Text, useToast } from '@chakra-ui/react';
 
 import { Avatar } from 'ui';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { getUsers, updateLeccion } from 'data';
 import { ApiFile, IGrupo, ILeccion } from 'data';
 import { LoginContext } from '../../../../../shared/context';

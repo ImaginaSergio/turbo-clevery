@@ -5,7 +5,7 @@ import { FaCommentSlash } from 'react-icons/fa';
 import { Flex, Icon, toast } from '@chakra-ui/react';
 
 import { ICurso, IForoTema, getCursos, useForoTemas, filterCursosByRuta, filterCursosOutsideRuta } from 'data';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 
 import { PageHeader } from '../components/PageHeader';
 import { PageSidebar } from '../components/PageSidebar';

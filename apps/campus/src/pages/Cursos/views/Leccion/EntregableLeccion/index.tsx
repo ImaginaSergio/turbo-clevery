@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 
 import { Flex, useToast } from '@chakra-ui/react';
 
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { addEntregable, getEntregables } from 'data';
 import { FavoritosContext, LoginContext } from '../../../../../shared/context';
 import { ILeccion, IFavorito, IEntregable, FavoritoTipoEnum, EntregableEstadoEnum } from 'data';

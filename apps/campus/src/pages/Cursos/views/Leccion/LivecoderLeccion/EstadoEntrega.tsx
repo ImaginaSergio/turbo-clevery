@@ -5,7 +5,7 @@ import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { Badge, Box, Button, Flex, Icon, useToast } from '@chakra-ui/react';
 
 import { ILeccion, ILivecoder, executeCode, IEntregable, entregarLivecoder, EntregableEstadoEnum } from 'data';
-import { onFailure } from 'utils';
+import { onFailure } from 'ui';
 import { OpenLiveCoder, OpenParser } from 'ui';
 import { LoginContext, PusherContext } from '../../../../../shared/context';
 
