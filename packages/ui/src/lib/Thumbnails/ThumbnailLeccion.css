@@ -1,0 +1,95 @@
+@media all and (min-width: 100px) {
+  #thumbnail_leccion {
+    font-size: 0.2em;
+ }
+}
+@media all and (min-width: 200px) {
+  #thumbnail_leccion {
+    font-size: 0.4em;
+ }
+}
+@media all and (min-width: 300px) {
+  #thumbnail_leccion {
+    font-size: 0.6em;
+ }
+}
+@media all and (min-width: 400px) {
+  #thumbnail_leccion {
+    font-size: 0.8em;
+ }
+}
+@media all and (min-width: 500px) {
+  #thumbnail_leccion {
+    font-size: 1em;
+ }
+}
+@media all and (min-width: 600px) {
+  #thumbnail_leccion {
+    font-size: 1.2em;
+ }
+}
+@media all and (min-width: 700px) {
+  #thumbnail_leccion {
+    font-size: 1.4em;
+ }
+}
+@media all and (min-width: 800px) {
+  #thumbnail_leccion {
+    font-size: 1.6em;
+ }
+}
+@media all and (min-width: 900px) {
+  #thumbnail_leccion {
+    font-size: 1.8em;
+ }
+}
+@media all and (min-width: 1000px) {
+  #thumbnail_leccion {
+    font-size: 2em;
+ }
+}
+@media all and (min-width: 1100px) {
+  #thumbnail_leccion {
+    font-size: 2.2em;
+ }
+}
+@media all and (min-width: 1200px) {
+  #thumbnail_leccion {
+    font-size: 2.4em;
+ }
+}
+@media all and (min-width: 1300px) {
+  #thumbnail_leccion {
+    font-size: 2.6em;
+ }
+}
+@media all and (min-width: 1400px) {
+  #thumbnail_leccion {
+    font-size: 2.8em;
+ }
+}
+@media all and (min-width: 1500px) {
+  #thumbnail_leccion {
+    font-size: 3em;
+ }
+}
+@media all and (min-width: 1600px) {
+  #thumbnail_leccion {
+    font-size: 3.2em;
+ }
+}
+@media all and (min-width: 1700px) {
+  #thumbnail_leccion {
+    font-size: 3.4em;
+ }
+}
+@media all and (min-width: 1800px) {
+  #thumbnail_leccion {
+    font-size: 3.6em;
+ }
+}
+@media all and (min-width: 1900px) {
+  #thumbnail_leccion {
+    font-size: 3.8em;
+ }
+}

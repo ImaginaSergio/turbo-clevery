@@ -7,11 +7,20 @@
     "declaration": false,
     "declarationMap": false,
     "incremental": true,
+
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "importHelpers": true,
+
+
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "noEmit": true,
     "resolveJsonModule": true,
-    "target": "es5"
+    "target": "es2021"
   }
 }
