@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BiBookContent } from 'react-icons/bi';
 import { Flex, useToast, Spinner, Center } from '@chakra-ui/react';
 
-import { onFailure } from '@clevery/utils';
-import { getHabilidadByID, IHabilidad, updateHabilidad } from '@clevery/data';
+import { onFailure } from 'ui';
+import { getHabilidadByID, IHabilidad, updateHabilidad } from 'data';
 
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
@@ -76,9 +76,7 @@ export default function HabilidadesInformation() {
             isActive: tab === Tab.INFORMACION,
             onClick: () => {
               setTab(Tab.INFORMACION);
-              navigate(
-                `/contenidos/habilidades/${habilidadID}#${Tab.INFORMACION}`
-              );
+              navigate(`/contenidos/habilidades/${habilidadID}#${Tab.INFORMACION}`);
             },
           },
         ]}

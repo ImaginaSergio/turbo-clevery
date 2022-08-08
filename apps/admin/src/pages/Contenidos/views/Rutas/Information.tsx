@@ -14,8 +14,8 @@ import {
   InformationMde,
   InformationTextEditor,
 } from '../../../../shared/components';
-import { onFailure } from '@clevery/utils';
-import { getRutaByID, IRuta, updateRuta } from '@clevery/data';
+import { onFailure } from 'ui';
+import { getRutaByID, IRuta, updateRuta } from 'data';
 
 export default function RutasInformation() {
   const { rutaID } = useParams<any>();
@@ -103,9 +103,7 @@ export default function RutasInformation() {
     },
     /** Itinerario panel */
     {
-      rows: [
-        { blocks: [<ItinerarioList ruta={ruta} updateRuta={updateValue} />] },
-      ],
+      rows: [{ blocks: [<ItinerarioList ruta={ruta} updateRuta={updateValue} />] }],
     },
   ];
 
@@ -117,13 +115,8 @@ export default function RutasInformation() {
       nameTitle="nombre"
       updateValueTitle={updateValue}
     />,
-    <InformationLastupdate
-      created={ruta?.createdAt}
-      updated={ruta?.updatedAt}
-    />,
+    <InformationLastupdate created={ruta?.createdAt} updated={ruta?.updatedAt} />,
   ];
 
-  return (
-    <Information header={header} tabList={tabList} tabPanels={tabPanels} />
-  );
+  return <Information header={header} tabList={tabList} tabPanels={tabPanels} />;
 }

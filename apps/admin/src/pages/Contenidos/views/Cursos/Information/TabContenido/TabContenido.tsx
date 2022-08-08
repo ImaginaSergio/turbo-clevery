@@ -1,30 +1,13 @@
 import { useState } from 'react';
 
-import {
-  BiBookOpen,
-  BiCodeBlock,
-  BiFolder,
-  BiNews,
-  BiPlayCircle,
-  BiWebcam,
-} from 'react-icons/bi';
+import { BiBookOpen, BiCodeBlock, BiFolder, BiNews, BiPlayCircle, BiWebcam } from 'react-icons/bi';
 import { Box, Flex, Icon, useDisclosure } from '@chakra-ui/react';
 
-import {
-  addLeccion,
-  addModulo,
-  removeLeccion,
-  removeModulo,
-  updateLeccion,
-  updateModulo,
-} from '@clevery/data';
-import {
-  ListItemProps,
-  InformationDragDropList,
-} from '../../../../../../shared/components';
-import { fmtMnts } from '@clevery/utils';
+import { addLeccion, addModulo, removeLeccion, removeModulo, updateLeccion, updateModulo } from 'data';
+import { ListItemProps, InformationDragDropList } from '../../../../../../shared/components';
+import { fmtMnts } from 'utils';
 import ModuloModalForm from '../../../../components/ModuloModalForm';
-import { ICurso, ILeccion, IModulo, LeccionTipoEnum } from '@clevery/data';
+import { ICurso, ILeccion, IModulo, LeccionTipoEnum } from 'data';
 
 import { LeccionZoom } from './LeccionZoom';
 import { LeccionVideo } from './LeccionVideo';
@@ -105,8 +88,7 @@ export const TabContenido = ({ curso, refreshState }: TabContenidoProps) => {
 
   const onDeleteModulo = (mod: IModulo) => {
     if (!mod.id) return Promise.reject('Módulo ID es indefinida');
-    if (mod.lecciones && mod.lecciones?.length > 0)
-      return Promise.reject('¡El módulo tiene lecciones asociadas!');
+    if (mod.lecciones && mod.lecciones?.length > 0) return Promise.reject('¡El módulo tiene lecciones asociadas!');
 
     removeModulo({ id: mod.id, client: 'admin' }).then(() => refreshState());
   };
@@ -124,10 +106,7 @@ export const TabContenido = ({ curso, refreshState }: TabContenidoProps) => {
     onOpen();
   };
 
-  const transformModulosToDnDItems = (
-    leccionId?: number,
-    modulos: IModulo[] = []
-  ): ListItemProps[] =>
+  const transformModulosToDnDItems = (leccionId?: number, modulos: IModulo[] = []): ListItemProps[] =>
     modulos
       ?.sort((a, b) => a.orden - b.orden)
       ?.map((mod: IModulo) => ({
@@ -173,13 +152,7 @@ export const TabContenido = ({ curso, refreshState }: TabContenidoProps) => {
 
   return (
     <>
-      <Flex
-        p="30px"
-        gap="30px"
-        boxSize="100%"
-        overflow="auto"
-        direction={{ base: 'column', lg: 'row' }}
-      >
+      <Flex p="30px" gap="30px" boxSize="100%" overflow="auto" direction={{ base: 'column', lg: 'row' }}>
         <Flex direction="column" minW="400px" gap="30px">
           <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
             <Box fontSize="18px" fontWeight="semibold">
@@ -187,8 +160,7 @@ export const TabContenido = ({ curso, refreshState }: TabContenidoProps) => {
             </Box>
 
             <Box fontSize="14px" fontWeight="medium" color="#84889A">
-              Desde aquí se añade todo el contenido del curso, tanto los módulos
-              como las lecciones.
+              Desde aquí se añade todo el contenido del curso, tanto los módulos como las lecciones.
             </Box>
           </Flex>
 
@@ -204,14 +176,11 @@ export const TabContenido = ({ curso, refreshState }: TabContenidoProps) => {
         <Flex direction="column" w="100%" gap="30px">
           <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
             <Box fontSize="18px" fontWeight="semibold">
-              {leccion
-                ? `Contenido de la lección - ${leccion.titulo}`
-                : 'Sin lección seleccionada'}
+              {leccion ? `Contenido de la lección - ${leccion.titulo}` : 'Sin lección seleccionada'}
             </Box>
 
             <Box fontSize="14px" fontWeight="medium" color="#84889A">
-              Aquí se añaden los contenidos de las lecciones, como el material,
-              documentos, el temario, etc...
+              Aquí se añaden los contenidos de las lecciones, como el material, documentos, el temario, etc...
             </Box>
           </Flex>
 
@@ -220,34 +189,19 @@ export const TabContenido = ({ curso, refreshState }: TabContenidoProps) => {
           ) : leccion?.tipo === LeccionTipoEnum.VIDEO ? (
             <LeccionVideo leccion={leccion} updateValue={updateLeccionValue} />
           ) : leccion?.tipo === LeccionTipoEnum.ENTREGABLE ? (
-            <LeccionEntregable
-              leccion={leccion}
-              updateValue={updateLeccionValue}
-            />
+            <LeccionEntregable leccion={leccion} updateValue={updateLeccionValue} />
           ) : leccion?.tipo === LeccionTipoEnum.ZOOM ? (
             <LeccionZoom leccion={leccion} updateValue={updateLeccionValue} />
           ) : leccion?.tipo === LeccionTipoEnum.DIAPOSITIVA ? (
             <LeccionSlides leccion={leccion} updateValue={updateLeccionValue} />
           ) : leccion?.tipo === LeccionTipoEnum.MARKDOWN ? (
-            <LeccionMarkdown
-              leccion={leccion}
-              updateValue={updateLeccionValue}
-            />
+            <LeccionMarkdown leccion={leccion} updateValue={updateLeccionValue} />
           ) : leccion?.tipo === LeccionTipoEnum.AUTOCORREGIBLE ? (
-            <LeccionAutocorrecion
-              leccion={leccion}
-              updateValue={updateLeccionValue}
-            />
+            <LeccionAutocorrecion leccion={leccion} updateValue={updateLeccionValue} />
           ) : leccion?.tipo === LeccionTipoEnum.LIVECODER ? (
-            <LeccionLivecoder
-              leccion={leccion}
-              updateValue={updateLeccionValue}
-            />
+            <LeccionLivecoder leccion={leccion} updateValue={updateLeccionValue} />
           ) : (
-            <LeccionRecurso
-              leccion={leccion}
-              updateValue={updateLeccionValue}
-            />
+            <LeccionRecurso leccion={leccion} updateValue={updateLeccionValue} />
           )}
         </Flex>
       </Flex>

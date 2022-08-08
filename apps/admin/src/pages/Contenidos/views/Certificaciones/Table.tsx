@@ -1,37 +1,13 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  BiBookContent,
-  BiPlus,
-  BiBadgeCheck,
-  BiBrain,
-  BiDirections,
-} from 'react-icons/bi';
 import { format } from 'date-fns/esm';
-import {
-  useToast,
-  useDisclosure,
-  Image,
-  Flex,
-  Icon,
-  Box,
-  Badge,
-} from '@chakra-ui/react';
+import { BiBookContent, BiPlus, BiBadgeCheck, BiBrain, BiDirections } from 'react-icons/bi';
+import { useToast, useDisclosure, Image, Flex, Icon, Box, Badge } from '@chakra-ui/react';
 
-import {
-  PageHeader,
-  DeleteModal,
-  PageSidebar,
-  badgeRowTemplate,
-} from '../../../../shared/components';
-import {
-  getHabilidades,
-  useCertificaciones,
-  removeCertificacion,
-} from '@clevery/data';
-import { OpenColumn, OpenTable } from '@clevery/ui';
-import { onFailure, onSuccess_Undo } from '@clevery/utils';
+import { OpenColumn, OpenTable, onFailure, onSuccess_Undo } from 'ui';
+import { getHabilidades, useCertificaciones, removeCertificacion } from 'data';
+import { PageHeader, DeleteModal, PageSidebar, badgeRowTemplate } from '../../../../shared/components';
 
 export default function CertificacionesTable() {
   const [elementSelected] = useState<any>(undefined);
@@ -43,9 +19,7 @@ export default function CertificacionesTable() {
   const { isOpen, onClose } = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { certificaciones, isLoading, isError } = useCertificaciones({
     client: 'admin',
@@ -65,8 +39,7 @@ export default function CertificacionesTable() {
       res?.data?.map((hab: any) => ({ value: hab.id, label: hab.nombre }))
     );
 
-  const onRowClick = async (e: any) =>
-    navigate('/contenidos/certificaciones/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/contenidos/certificaciones/' + e?.id || '');
 
   //?Columnas
   const columns: OpenColumn[] = [
@@ -78,11 +51,7 @@ export default function CertificacionesTable() {
       filterable: true,
       render: (rowData) => (
         <Flex align="center" gap="15px">
-          <Image
-            minW="50px"
-            boxSize="50px"
-            src={`data:image/svg+xml;utf8,${rowData.icono}`}
-          />
+          <Image minW="50px" boxSize="50px" src={`data:image/svg+xml;utf8,${rowData.icono}`} />
 
           <Box as="a" href={'/contenidos/certificaciones/' + rowData?.id || ''}>
             {rowData.nombre}
@@ -167,11 +136,7 @@ export default function CertificacionesTable() {
         { label: 'No publicada', value: 'false' },
       ],
       render: (rowData) => (
-        <Badge
-          rounded="7px"
-          color={rowData.publicado ? 'white' : 'black'}
-          bg={rowData.publicado ? 'primary' : '#D9DBE3'}
-        >
+        <Badge rounded="7px" color={rowData.publicado ? 'white' : 'black'} bg={rowData.publicado ? 'primary' : '#D9DBE3'}>
           {rowData.publicado ? 'Publicada' : 'No publicada'}
         </Badge>
       ),
@@ -208,9 +173,7 @@ export default function CertificacionesTable() {
       field: 'createdAt',
       header: 'Fecha creación',
       sortable: true,
-      render: (rowData) => (
-        <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>
-      ),
+      render: (rowData) => <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>,
     },
   ];
 
@@ -270,8 +233,7 @@ export default function CertificacionesTable() {
       <DeleteModal
         title={
           <div>
-            ¿Estás seguro de que quieres eliminar la certificación{' '}
-            <strong>{elementSelected?.nombre}</strong>?
+            ¿Estás seguro de que quieres eliminar la certificación <strong>{elementSelected?.nombre}</strong>?
           </div>
         }
         isOpen={isOpen}
@@ -282,17 +244,11 @@ export default function CertificacionesTable() {
             () =>
               removeCertificacion({ id: elementSelected?.id })
                 .then(() => tableRef?.current?.refreshData())
-                .catch((error: any) =>
-                  onFailure(toast, error.title, error.message)
-                ),
+                .catch((error: any) => onFailure(toast, error.title, error.message)),
             5000
           );
 
-          onSuccess_Undo(
-            toast,
-            `Se va a eliminar la certificación ${elementSelected?.nombre}`,
-            timeout
-          );
+          onSuccess_Undo(toast, `Se va a eliminar la certificación ${elementSelected?.nombre}`, timeout);
 
           onClose();
         }}

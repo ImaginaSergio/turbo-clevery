@@ -4,8 +4,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
 import { BiBookContent, BiDownload, BiListUl, BiTask } from 'react-icons/bi';
 
-import { onFailure } from '@clevery/utils';
-import { ICurso, getCurso, updateCurso, getCursos } from '@clevery/data';
+import { onFailure } from 'ui';
+import { ICurso, getCurso, updateCurso, getCursos } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 import { descargarTemarioCurso } from '../../../../../shared/utils/temaryGenerator';
 

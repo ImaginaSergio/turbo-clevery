@@ -4,9 +4,9 @@ import { BiClipboard } from 'react-icons/bi';
 import { Spinner, Icon, useToast, Flex } from '@chakra-ui/react';
 import { AiOutlineFileSync, AiOutlineCloudSync } from 'react-icons/ai';
 
-import { OpenLiveCoder } from '@clevery/ui';
-import { LenguajeMonacoLang } from '@clevery/data';
-import { onFailure, onSuccess } from '@clevery/utils';
+import { OpenLiveCoder } from 'ui';
+import { LenguajeMonacoLang } from 'data';
+import { onFailure, onSuccess } from 'ui';
 
 type InformationMonacoProps = {
   name: string;
@@ -72,11 +72,7 @@ export const InformationMonaco = ({
 
   const syncData = () => {
     if (value) {
-      onFailure(
-        toast,
-        'Error al sincronizar',
-        '¡Borra toda la información actual para sincronizar!'
-      );
+      onFailure(toast, 'Error al sincronizar', '¡Borra toda la información actual para sincronizar!');
     } else {
       setUpdate('loading');
 
@@ -88,24 +84,14 @@ export const InformationMonaco = ({
   };
 
   return (
-    <Flex
-      h="100%"
-      maxH="360px"
-      fontSize="14px"
-      direction="column"
-      style={style}
-    >
+    <Flex h="100%" maxH="360px" fontSize="14px" direction="column" style={style}>
       {label && (
         <label className="information-block-label">
           {label}
 
           <Flex w="fit-content" align="center" gap="4px">
             {update === 'editing' ? (
-              <Icon
-                ml="2"
-                as={AiOutlineCloudSync}
-                color={value === defaultValue ? 'gray_5' : 'primary'}
-              />
+              <Icon ml="2" as={AiOutlineCloudSync} color={value === defaultValue ? 'gray_5' : 'primary'} />
             ) : update === 'loading' ? (
               <Spinner ml="2" boxSize="14px" />
             ) : null}
@@ -134,20 +120,8 @@ export const InformationMonaco = ({
         </label>
       )}
 
-      <Flex
-        rounded="8px"
-        boxSize="100%"
-        border="1px solid"
-        borderColor="gray_2"
-        onBlur={onBlur}
-        onFocus={onFocus}
-      >
-        <OpenLiveCoder
-          defaultValue={value}
-          language={language}
-          onChange={onChange}
-          readOnly={isDisabled}
-        />
+      <Flex rounded="8px" boxSize="100%" border="1px solid" borderColor="gray_2" onBlur={onBlur} onFocus={onFocus}>
+        <OpenLiveCoder defaultValue={value} language={language} onChange={onChange} readOnly={isDisabled} />
       </Flex>
     </Flex>
   );

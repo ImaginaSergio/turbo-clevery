@@ -1,28 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { BiPlus, BiImages, BiEnvelope, BiNews } from 'react-icons/bi';
+import { BiPlus, BiEnvelope, BiNews } from 'react-icons/bi';
 import { Flex, Icon, toast, useDisclosure } from '@chakra-ui/react';
 
-import {
-  DeleteModal,
-  PageHeader,
-  PageSidebar,
-  rowQuickActions,
-  textRowTemplate,
-} from '../../../../shared/components';
-import { onFailure, onSuccess_Undo } from '@clevery/utils';
-import { Avatar, OpenColumn, OpenTable } from '@clevery/ui';
-import { INoticia, useNoticias, removeNoticia } from '@clevery/data';
+import { DeleteModal, PageHeader, PageSidebar, rowQuickActions, textRowTemplate } from '../../../../shared/components';
+import { onFailure, onSuccess_Undo } from 'ui';
+import { Avatar, OpenColumn, OpenTable } from 'ui';
+import { INoticia, useNoticias, removeNoticia } from 'data';
 
 export default function NoticiasTable() {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
   const [elementSelected, setElementSelected] = useState<any>(undefined);
 
   const { noticias, isLoading } = useNoticias({
@@ -38,8 +30,7 @@ export default function NoticiasTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/miscelanea/noticias/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/miscelanea/noticias/' + e?.id || '');
 
   //?Columnas
   const columns: OpenColumn[] = [
@@ -52,13 +43,7 @@ export default function NoticiasTable() {
       render: (rowData: INoticia) =>
         textRowTemplate({
           prefix: {
-            content: (
-              <Avatar
-                size="40px"
-                name={rowData?.titulo}
-                src={rowData?.imagen?.url}
-              />
-            ),
+            content: <Avatar size="40px" name={rowData?.titulo} src={rowData?.imagen?.url} />,
           },
           content: { text: rowData?.titulo || '' },
         }),
@@ -69,8 +54,7 @@ export default function NoticiasTable() {
       header: 'Curso',
       sortable: true,
       filterable: true,
-      render: (rowData: INoticia) =>
-        textRowTemplate({ content: { text: rowData?.curso?.titulo || '' } }),
+      render: (rowData: INoticia) => textRowTemplate({ content: { text: rowData?.curso?.titulo || '' } }),
     },
     {
       key: '',
@@ -137,8 +121,7 @@ export default function NoticiasTable() {
       <DeleteModal
         title={
           <div>
-            ¿Estás seguro de que quieres eliminar la noticia{' '}
-            <strong>{elementSelected?.titulo}</strong>?
+            ¿Estás seguro de que quieres eliminar la noticia <strong>{elementSelected?.titulo}</strong>?
           </div>
         }
         isOpen={isOpen}
@@ -151,17 +134,11 @@ export default function NoticiasTable() {
                 .then((e) => {
                   window.location.reload();
                 })
-                .catch((error: any) =>
-                  onFailure(toast, error.title, error.message)
-                ),
+                .catch((error: any) => onFailure(toast, error.title, error.message)),
             5000
           );
 
-          onSuccess_Undo(
-            toast,
-            `Se va a eliminar la noticia ${elementSelected?.titulo}`,
-            timeout
-          );
+          onSuccess_Undo(toast, `Se va a eliminar la noticia ${elementSelected?.titulo}`, timeout);
 
           onClose();
         }}

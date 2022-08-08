@@ -2,24 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 
 import { Box, Flex } from '@chakra-ui/react';
 
-import { isRoleAllowed } from '@clevery/utils';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../../../../shared/context';
-import {
-  IGrupo,
-  IUser,
-  UserRolEnum,
-  getGrupos,
-  getEstados,
-  getPaises,
-  IEstado,
-  IPais,
-  UserRemotoEnum,
-} from '@clevery/data';
-import {
-  InformationMultiSelect,
-  InformationInput,
-  InformationSelect,
-} from '../../../../../shared/components';
+import { IGrupo, IUser, UserRolEnum, getGrupos, getEstados, getPaises, IEstado, IPais, UserRemotoEnum } from 'data';
+import { InformationMultiSelect, InformationInput, InformationSelect } from '../../../../../shared/components';
 
 type TabInformacionProps = {
   user: IUser;
@@ -27,11 +13,7 @@ type TabInformacionProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  user: alumno,
-  updateValue,
-  refreshState,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ user: alumno, updateValue, refreshState }: TabInformacionProps) => {
   const { user } = useContext(LoginContext);
 
   const [estados, setEstados] = useState([]);
@@ -83,21 +65,14 @@ export const TabInformacion = ({
   };
 
   return (
-    <Flex
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-      direction="column"
-    >
+    <Flex p="30px" boxSize="100%" rowGap="30px" overflow="auto" direction="column">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el alumno como su nombre, datos de contacto,
-          ajustes...
+          Información sobre el alumno como su nombre, datos de contacto, ajustes...
         </Box>
       </Flex>
 
@@ -153,9 +128,7 @@ export const TabInformacion = ({
                   : undefined
               }
               options={countries}
-              updateValue={(v: any) =>
-                updateValue({ paisId: v.pais.value?.id })
-              }
+              updateValue={(v: any) => updateValue({ paisId: v.pais.value?.id })}
               isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol)}
               style={{ width: '100%' }}
             />
@@ -165,17 +138,9 @@ export const TabInformacion = ({
               name="estado"
               options={estados}
               placeholder="Selecciona una opción"
-              updateValue={(v: any) =>
-                updateValue({ estadoId: v.estado.value?.id })
-              }
-              isDisabled={
-                !isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || !alumno.pais
-              }
-              defaultValue={
-                alumno?.estado
-                  ? { label: alumno?.estado?.nombre, value: alumno?.estado }
-                  : undefined
-              }
+              updateValue={(v: any) => updateValue({ estadoId: v.estado.value?.id })}
+              isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || !alumno.pais}
+              defaultValue={alumno?.estado ? { label: alumno?.estado?.nombre, value: alumno?.estado } : undefined}
               style={{ width: '100%' }}
             />
           </Flex>

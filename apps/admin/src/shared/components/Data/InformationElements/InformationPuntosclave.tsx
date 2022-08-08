@@ -4,23 +4,15 @@ import { BiPlus, BiTrash } from 'react-icons/bi';
 import { Flex, Box, Icon, IconButton } from '@chakra-ui/react';
 
 import { InformationInput } from '.';
-import { IPuntoClave } from '@clevery/data';
-import {
-  addPuntoClave,
-  getPuntosClave,
-  removePuntoClave,
-  updatePuntoClave,
-} from '@clevery/data';
+import { IPuntoClave } from 'data';
+import { addPuntoClave, getPuntosClave, removePuntoClave, updatePuntoClave } from 'data';
 
 export interface InformationPuntosclaveProps {
   leccionId?: number;
   isDisabled?: boolean;
 }
 
-export const InformationPuntosclave = ({
-  leccionId,
-  isDisabled,
-}: InformationPuntosclaveProps) => {
+export const InformationPuntosclave = ({ leccionId, isDisabled }: InformationPuntosclaveProps) => {
   const [puntosClave, setPuntosClave] = useState<IPuntoClave[]>([]);
 
   useEffect(() => {
@@ -40,21 +32,17 @@ export const InformationPuntosclave = ({
     if (!id || !leccionId)
       return Promise.reject({
         title: 'Error inesperado',
-        message:
-          'El ID de la entidad es indefinido. Por favor, contacte con soporte.',
+        message: 'El ID de la entidad es indefinido. Por favor, contacte con soporte.',
       });
 
-    return updatePuntoClave({ id, puntoClave: value, client: 'admin' }).then(
-      () => refreshState()
-    );
+    return updatePuntoClave({ id, puntoClave: value, client: 'admin' }).then(() => refreshState());
   };
 
   const onNewPuntoclave = () => {
     if (!leccionId)
       return Promise.reject({
         title: 'Error inesperado',
-        message:
-          'El ID de la entidad es indefinido. Por favor, contacte con soporte.',
+        message: 'El ID de la entidad es indefinido. Por favor, contacte con soporte.',
       });
 
     addPuntoClave({
@@ -73,8 +61,7 @@ export const InformationPuntosclave = ({
     if (!leccionId || !id)
       return Promise.reject({
         title: 'Error inesperado',
-        message:
-          'El ID de la entidad es indefinido. Por favor, contacte con soporte.',
+        message: 'El ID de la entidad es indefinido. Por favor, contacte con soporte.',
       });
 
     removePuntoClave({ id, client: 'admin' })
@@ -95,12 +82,7 @@ export const InformationPuntosclave = ({
               Título
             </Box>
 
-            <Box
-              as="label"
-              minW="30px"
-              w="fit-content"
-              className="information-block-label"
-            />
+            <Box as="label" minW="30px" w="fit-content" className="information-block-label" />
           </Flex>
         )}
 

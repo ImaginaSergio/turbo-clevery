@@ -1,12 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-import {
-  ICurso,
-  getCursos,
-  IHabilidad,
-  ICertificacion,
-  getHabilidades,
-} from '@clevery/data';
+import { ICurso, getCursos, IHabilidad, ICertificacion, getHabilidades } from 'data';
 
 import {
   InformationMde,
@@ -22,10 +16,7 @@ type TabInformacionProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  certificacion,
-  updateValue,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ certificacion, updateValue }: TabInformacionProps) => {
   const loadCursos = async (value: string) => {
     const _cursos = await getCursos({
       client: 'admin',
@@ -52,32 +43,20 @@ export const TabInformacion = ({
   };
 
   return (
-    <Flex
-      p="30px"
-      rowGap="30px"
-      boxSize="100%"
-      overflow="auto"
-      direction="column"
-    >
+    <Flex p="30px" rowGap="30px" boxSize="100%" overflow="auto" direction="column">
       <Flex w="100%" rowGap="8px" direction="column" minH="fit-content">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre la certificación, como el título del mismo,
-          descripción, logotipo, etc...
+          Información sobre la certificación, como el título del mismo, descripción, logotipo, etc...
         </Box>
       </Flex>
 
       <Flex direction={{ base: 'column', lg: 'row' }} gap="30px" w="100%">
         <Flex w="100%" gap="30px" direction="column">
-          <InformationInput
-            name="nombre"
-            label="Nombre"
-            updateValue={updateValue}
-            defaultValue={certificacion.nombre}
-          />
+          <InformationInput name="nombre" label="Nombre" updateValue={updateValue} defaultValue={certificacion.nombre} />
 
           <Flex w="100%" gap="20px" direction={{ base: 'column', md: 'row' }}>
             <InformationSelect
@@ -121,9 +100,7 @@ export const TabInformacion = ({
               isDisabled={(certificacion?.examenes?.length || 0) === 0}
               style={{ width: '100%' }}
               defaultValue={{
-                label: certificacion.disponible
-                  ? 'Disponible'
-                  : 'No disponible',
+                label: certificacion.disponible ? 'Disponible' : 'No disponible',
                 value: certificacion.disponible,
               }}
               options={[

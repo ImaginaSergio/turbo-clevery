@@ -3,23 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import {
-  BiBookContent,
-  BiPlus,
-  BiGroup,
-  BiUserVoice,
-  BiPieChartAlt2,
-  BiTask,
-  BiPieChartAlt,
-} from 'react-icons/bi';
-import {
-  Box,
-  Flex,
-  Icon,
-  Image,
-  Progress,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { BiBookContent, BiPlus, BiGroup, BiUserVoice, BiPieChartAlt2, BiTask, BiPieChartAlt } from 'react-icons/bi';
+import { Box, Flex, Icon, Image, Progress, useDisclosure } from '@chakra-ui/react';
 
 import {
   LineChart,
@@ -30,9 +15,9 @@ import {
   dateRowTemplate,
 } from '../../../../shared/components';
 import { LoginContext } from '../../../../shared/context';
-import { Avatar, OpenColumn, OpenTable } from '@clevery/ui';
-import { fmtTiempoTotal, isRoleAllowed } from '@clevery/utils';
-import { UserRolEnum, getRutas, useUsersStats, IUser } from '@clevery/data';
+import { Avatar, OpenColumn, OpenTable } from 'ui';
+import { fmtTiempoTotal, isRoleAllowed } from 'utils';
+import { UserRolEnum, getRutas, useUsersStats, IUser } from 'data';
 
 import UsuariosModalForm from '../../components/UsuariosModalForm';
 import UsuariosInactivosModal from '../../components/UsuariosInactivosModal';
@@ -45,9 +30,7 @@ export default function UsuariosTable() {
   const inactiveState = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + (currentPage || 1)
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + (currentPage || 1));
 
   const { data, isLoading } = useUsersStats({
     client: 'admin',
@@ -62,8 +45,7 @@ export default function UsuariosTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/alumnado/usuarios/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/alumnado/usuarios/' + e?.id || '');
 
   const loadRutas = async (search: string) => {
     const _rutas = await getRutas({ query: [{ nombre: search }] });
@@ -109,10 +91,7 @@ export default function UsuariosTable() {
       render: (rowData: any) =>
         progressRowTemplate({
           content: {
-            value: Math.min(
-              100,
-              (rowData?.porcentajeCompletadoRuta || 0) * 100
-            ),
+            value: Math.min(100, (rowData?.porcentajeCompletadoRuta || 0) * 100),
             label: rowData?.progresoGlobal?.ruta?.nombre || '-',
           },
         }),
@@ -190,10 +169,7 @@ export default function UsuariosTable() {
               text: 'Alumnos inactivos',
               leftIcon: <Icon as={BiUserVoice} boxSize="21px" />,
               onClick: inactiveState.onOpen,
-              isDisabled: !isRoleAllowed(
-                [UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR],
-                user?.rol
-              ),
+              isDisabled: !isRoleAllowed([UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR], user?.rol),
             },
             {
               text: 'Agregar alumnos',
@@ -230,12 +206,7 @@ const rowExpansionTemplate = (rowData: any) => {
     <Flex direction={{ base: 'column', lg: 'row' }} py="15px" gap="15px">
       <Flex direction="column" gap="5px" w="100%">
         <Flex p="10px 15px" bg="white" rounded="8px">
-          <Box
-            minW="190px"
-            color="#84889A"
-            fontSize="15px"
-            fontWeight="semibold"
-          >
+          <Box minW="190px" color="#84889A" fontSize="15px" fontWeight="semibold">
             Tiempo total dedicado
           </Box>
 
@@ -245,12 +216,7 @@ const rowExpansionTemplate = (rowData: any) => {
         </Flex>
 
         <Flex p="10px 15px" bg="white" rounded="8px">
-          <Box
-            minW="190px"
-            color="#84889A"
-            fontSize="15px"
-            fontWeight="semibold"
-          >
+          <Box minW="190px" color="#84889A" fontSize="15px" fontWeight="semibold">
             Proyectos subidos
           </Box>
 
@@ -270,45 +236,20 @@ const rowExpansionTemplate = (rowData: any) => {
         </Flex> */}
 
         <Flex p="10px 15px" bg="white" rounded="8px">
-          <Box
-            minW="190px"
-            color="#84889A"
-            fontSize="15px"
-            fontWeight="semibold"
-          >
+          <Box minW="190px" color="#84889A" fontSize="15px" fontWeight="semibold">
             Cursos actuales
           </Box>
 
-          <Flex
-            w="100%"
-            gap="10px"
-            fontSize="15px"
-            direction="column"
-            fontWeight="medium"
-          >
+          <Flex w="100%" gap="10px" fontSize="15px" direction="column" fontWeight="medium">
             {rowData?.meta?.cursosIniciados?.map((c: any) => {
               const progressValue =
                 c.meta?.progresos_count && c.meta?.total_lecciones
-                  ? Math.floor(
-                      ((c.meta?.progresos_count || 0) /
-                        (c.meta?.total_lecciones || 0)) *
-                        100
-                    )
+                  ? Math.floor(((c.meta?.progresos_count || 0) / (c.meta?.total_lecciones || 0)) * 100)
                   : 0;
 
               return (
-                <Flex
-                  gap="12px"
-                  rounded="12px"
-                  align="center"
-                  p="10px 15px 10px"
-                  border="1px solid #E6E8EE"
-                >
-                  <Image
-                    minW="40px"
-                    boxSize="40px"
-                    src={`data:image/svg+xml;utf8,${c.icono}`}
-                  />
+                <Flex gap="12px" rounded="12px" align="center" p="10px 15px 10px" border="1px solid #E6E8EE">
+                  <Image minW="40px" boxSize="40px" src={`data:image/svg+xml;utf8,${c.icono}`} />
 
                   <Flex direction="column" w="100%" gap="4px">
                     <Box fontSize="15px" lineHeight="18px" fontWeight="medium">
@@ -322,22 +263,15 @@ const rowExpansionTemplate = (rowData: any) => {
                       value={100}
                       sx={{
                         '& > div': {
-                          background: `linear-gradient(90deg, #25CBAB 0%, #0FFFA9 ${
+                          background: `linear-gradient(90deg, #25CBAB 0%, #0FFFA9 ${progressValue + '%'}, #E6E8EE ${
                             progressValue + '%'
-                          }, #E6E8EE ${progressValue + '%'}, #E6E8EE 100%)`,
+                          }, #E6E8EE 100%)`,
                         },
                       }}
                     />
                   </Flex>
 
-                  <Box
-                    alignSelf="end"
-                    color="#12BE94"
-                    fontSize="15px"
-                    lineHeight="15px"
-                    fontWeight="bold"
-                    minW="fit-content"
-                  >
+                  <Box alignSelf="end" color="#12BE94" fontSize="15px" lineHeight="15px" fontWeight="bold" minW="fit-content">
                     {progressValue}%
                   </Box>
                 </Flex>
@@ -348,26 +282,13 @@ const rowExpansionTemplate = (rowData: any) => {
       </Flex>
 
       <Flex direction="column" gap="5px" w="100%">
-        <Flex
-          p="10px 15px"
-          bg="white"
-          rounded="8px"
-          direction="column"
-          h="100%"
-        >
-          <Box
-            minW="190px"
-            color="#84889A"
-            fontSize="15px"
-            fontWeight="semibold"
-          >
+        <Flex p="10px 15px" bg="white" rounded="8px" direction="column" h="100%">
+          <Box minW="190px" color="#84889A" fontSize="15px" fontWeight="semibold">
             Actividad del último mes
           </Box>
 
           <LineChart
-            labels={rowData?.sesiones?.map((s: any) =>
-              format(new Date(s.dia), 'dd LLL', { locale: es })
-            )}
+            labels={rowData?.sesiones?.map((s: any) => format(new Date(s.dia), 'dd LLL', { locale: es }))}
             dataset={{
               label: 'Total de sesiones',
               data: rowData?.sesiones?.map((s: any) => s.count),

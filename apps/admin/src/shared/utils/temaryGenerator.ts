@@ -1,4 +1,4 @@
-import { getItem, LOGIN_TOKEN } from '@clevery/data';
+import { getItem, LOGIN_TOKEN } from 'data';
 
 const pdfshift = require('pdfshift')(process.env.REACT_APP_PDFSHIFT_APIKEY);
 

@@ -1,22 +1,11 @@
 import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { BiX } from 'react-icons/bi';
-import {
-  useToast,
-  Icon,
-  Flex,
-  Modal,
-  Button,
-  ModalBody,
-  ModalHeader,
-  ModalContent,
-  ModalOverlay,
-  Box,
-} from '@chakra-ui/react';
+import { useToast, Icon, Flex, Modal, Button, ModalBody, ModalHeader, ModalContent, ModalOverlay, Box } from '@chakra-ui/react';
 
-import { IGrupo } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
-import { getCursos, updateGrupo } from '@clevery/data';
+import { IGrupo } from 'data';
+import { onFailure } from 'ui';
+import { getCursos, updateGrupo } from 'data';
 import { FormAsyncSelect, FormDateInput } from '../../../shared/components';
 
 export function CursosGruposModal({
@@ -44,11 +33,7 @@ export function CursosGruposModal({
 
   const submitForm = async (values: any) => {
     if (!grupo.id) {
-      onFailure(
-        toast,
-        'Error inesperado',
-        'No se detecta el ID del grupo que tratas de modificar.'
-      );
+      onFailure(toast, 'Error inesperado', 'No se detecta el ID del grupo que tratas de modificar.');
       return;
     }
 
@@ -79,8 +64,7 @@ export function CursosGruposModal({
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   const loadCursosByTitulo = async (value: any) => {
@@ -105,21 +89,11 @@ export function CursosGruposModal({
           <Flex justify="space-between" align="center">
             <Box fontSize="19px">Añadir cursos</Box>
 
-            <Icon
-              as={BiX}
-              boxSize="32px"
-              cursor="pointer"
-              onClick={state.onClose}
-            />
+            <Icon as={BiX} boxSize="32px" cursor="pointer" onClick={state.onClose} />
           </Flex>
         </ModalHeader>
 
-        <Formik
-          enableReinitialize
-          onSubmit={submitForm}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
+        <Formik enableReinitialize onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
           {(formik) => {
             const { handleSubmit } = formik;
 
@@ -157,13 +131,7 @@ export function CursosGruposModal({
                       showYearDropdown={true}
                     />
 
-                    <Button
-                      w="100%"
-                      bg="primary"
-                      rounded="12px"
-                      color="white"
-                      type="submit"
-                    >
+                    <Button w="100%" bg="primary" rounded="12px" color="white" type="submit">
                       Subir
                     </Button>
                   </Flex>

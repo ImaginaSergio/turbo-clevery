@@ -2,16 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
-import {
-  BiBookContent,
-  BiBookReader,
-  BiDirections,
-  BiShow,
-} from 'react-icons/bi';
+import { BiBookContent, BiBookReader, BiDirections, BiShow } from 'react-icons/bi';
 
-import { IProceso } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
-import { getProceso, updateProceso } from '@clevery/data';
+import { IProceso } from 'data';
+import { onFailure } from 'ui';
+import { getProceso, updateProceso } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
 import { TabRuta } from './TabRuta';

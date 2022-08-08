@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Flex } from '@chakra-ui/react';
 import { BiBook, BiBrain, BiListUl } from 'react-icons/bi';
 
-import { getStatsByCurso } from '@clevery/data';
+import { getStatsByCurso } from 'data';
 import { PageHeader, PageSidebar } from '../../../../shared/components';
 import { PieChart } from '../../../../shared/components/Data/Charts/PieChart/PieChart';
 
@@ -24,9 +24,7 @@ export default function CursosCover() {
         if (stats?.length > 0) {
           const s = stats[0];
 
-          const totalUsers =
-            (s.meta?.usersNoEmpezados?.length || 0) +
-            (s.meta?.progresosUsers?.length || 0);
+          const totalUsers = (s.meta?.usersNoEmpezados?.length || 0) + (s.meta?.progresosUsers?.length || 0);
           const totalNoEmpezados = s.meta?.usersNoEmpezados?.length || 0;
           const totalCompletos = +(s.meta?.totalUsers || 0);
           const totalEnCurso = totalUsers - totalCompletos - totalNoEmpezados;
@@ -36,11 +34,7 @@ export default function CursosCover() {
           setCursosStats({
             title: s.titulo,
             image: s.imagen?.url,
-            data: [
-              getPercent(totalCompletos),
-              getPercent(totalEnCurso),
-              getPercent(totalNoEmpezados),
-            ],
+            data: [getPercent(totalCompletos), getPercent(totalEnCurso), getPercent(totalNoEmpezados)],
             ...s,
           });
         }
@@ -156,14 +150,7 @@ export default function CursosCover() {
             border="1px solid"
             borderColor="gray_5"
           >
-            <Flex
-              direction="column"
-              gap="15px"
-              w="100%"
-              fontWeight="semibold"
-              fontSize="16px"
-              lineHeight="19px"
-            >
+            <Flex direction="column" gap="15px" w="100%" fontWeight="semibold" fontSize="16px" lineHeight="19px">
               Progreso general
               <Box h="1px" w="100%" bg="gray_5" />
             </Flex>

@@ -5,9 +5,9 @@ import { Form as FormikForm, Formik } from 'formik';
 import { Button, useToast, Flex } from '@chakra-ui/react';
 
 import Step1 from './Step1';
-import { addEmpresa } from '@clevery/data';
-import { CampusConfig } from '@clevery/data';
-import { onFailure, onSuccess } from '@clevery/utils';
+import { addEmpresa } from 'data';
+import { CampusConfig } from 'data';
+import { onFailure, onSuccess } from 'ui';
 
 const EmpresasForm = () => {
   const toast = useToast();
@@ -67,18 +67,12 @@ const EmpresasForm = () => {
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   return (
     <Flex boxSize="100%">
-      <Formik
-        enableReinitialize
-        onSubmit={submitForm}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-      >
+      <Formik enableReinitialize onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
         {(formik) => {
           const { values, handleSubmit, setFieldValue } = formik;
 
@@ -96,43 +90,18 @@ const EmpresasForm = () => {
             >
               {formSteps[values.step - 1].body}
 
-              <Flex
-                h="90px"
-                bg="#f4f5f6"
-                p="15px 30px"
-                align="center"
-                justify="space-between"
-              >
+              <Flex h="90px" bg="#f4f5f6" p="15px 30px" align="center" justify="space-between">
                 <div />
 
                 <Flex gap="16px" fontSize="16px" fontWeight="semibold">
                   {formSteps.map(({ step }) => (
-                    <Flex
-                      key={'form-step-' + step}
-                      align="center"
-                      cursor="pointer"
-                      onClick={() => setFieldValue('step', step)}
-                    >
+                    <Flex key={'form-step-' + step} align="center" cursor="pointer" onClick={() => setFieldValue('step', step)}>
                       {values.step === step ? (
-                        <Flex
-                          bg="#3182FC"
-                          color="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex bg="#3182FC" color="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       ) : (
-                        <Flex
-                          color="#3182FC"
-                          bg="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex color="#3182FC" bg="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       )}

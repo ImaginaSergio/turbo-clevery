@@ -14,9 +14,9 @@ import {
 import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 
-import { IProyectoBoost } from '@clevery/data';
+import { IProyectoBoost } from 'data';
 import { FormInput, FormTextarea } from '../../FormElements';
-import { FormTextEditor } from '@clevery/ui';
+import { FormTextEditor } from 'ui';
 
 type ProyectoModalProps = {
   onCreate: (e?: any) => void;
@@ -25,16 +25,9 @@ type ProyectoModalProps = {
   state: { isOpen: boolean; onOpen: () => void; onClose: () => void };
 };
 
-const ProyectoModal = ({
-  state,
-  onUpdate,
-  onCreate,
-  defaultValue,
-}: ProyectoModalProps) => {
+const ProyectoModal = ({ state, onUpdate, onCreate, defaultValue }: ProyectoModalProps) => {
   const validationSchema = Yup.object().shape({
-    titulo: Yup.string()
-      .required('El titulo es obligatorio')
-      .typeError('Introduce un titulo.'),
+    titulo: Yup.string().required('El titulo es obligatorio').typeError('Introduce un titulo.'),
   });
 
   const initialValues: any = {
@@ -56,45 +49,22 @@ const ProyectoModal = ({
   };
 
   return (
-    <Modal
-      isCentered
-      isOpen={state.isOpen}
-      onClose={state.onClose}
-      scrollBehavior="inside"
-      closeOnOverlayClick={false}
-    >
+    <Modal isCentered isOpen={state.isOpen} onClose={state.onClose} scrollBehavior="inside" closeOnOverlayClick={false}>
       <ModalOverlay />
 
       <ModalContent maxW="56em" overflow="auto">
-        <ModalHeader>
-          {defaultValue?.id ? 'Actualizar proyecto' : 'Nuevo proyecto'}
-        </ModalHeader>
+        <ModalHeader>{defaultValue?.id ? 'Actualizar proyecto' : 'Nuevo proyecto'}</ModalHeader>
 
         <ModalCloseButton />
 
-        <Formik
-          enableReinitialize
-          onSubmit={submitForm}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
+        <Formik enableReinitialize onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
           {(formik) => {
             const { handleSubmit } = formik;
 
             return (
               <FormikForm onSubmit={handleSubmit}>
-                <ModalBody
-                  w="100%"
-                  gap="20px"
-                  display="flex"
-                  flexDirection="column"
-                >
-                  <FormInput
-                    isRequired
-                    name="titulo"
-                    label="Título del proyecto"
-                    placeholder="Introducir texto"
-                  />
+                <ModalBody w="100%" gap="20px" display="flex" flexDirection="column">
+                  <FormInput isRequired name="titulo" label="Título del proyecto" placeholder="Introducir texto" />
 
                   <Flex w="100%" gap="20px" align="center">
                     <FormInput
@@ -116,30 +86,14 @@ const ProyectoModal = ({
 
                   <FormTextarea isRequired name="icono" label="Icono" />
 
-                  <FormTextEditor
-                    isRequired
-                    name="descripcionCorta"
-                    label="Descripción corta"
-                  />
+                  <FormTextEditor isRequired name="descripcionCorta" label="Descripción corta" />
 
-                  <FormTextEditor
-                    isRequired
-                    name="descripcionLarga"
-                    label="Descripción larga"
-                  />
+                  <FormTextEditor isRequired name="descripcionLarga" label="Descripción larga" />
                 </ModalBody>
 
                 <ModalFooter className="form-footer">
-                  <Button
-                    py="6"
-                    w="100%"
-                    color="white"
-                    type="submit"
-                    bgColor="#3182FC"
-                  >
-                    {defaultValue?.id
-                      ? 'Actualizar información'
-                      : 'Crear nuevo curso'}
+                  <Button py="6" w="100%" color="white" type="submit" bgColor="#3182FC">
+                    {defaultValue?.id ? 'Actualizar información' : 'Crear nuevo curso'}
                   </Button>
                 </ModalFooter>
               </FormikForm>

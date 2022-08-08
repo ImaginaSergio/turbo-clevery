@@ -1,6 +1,6 @@
 import { Box, Flex, Progress, Text } from '@chakra-ui/react';
 
-import { Avatar } from '@clevery/ui';
+import { Avatar } from 'ui';
 
 // TODO: HAY QUE JUNTARLO EN UN UNICO COMPONENTE HBARCHART
 // TODO: ESTO LO HE HECHO PARA LA PÁGINA DE METRICAS, SUBPAGINA CURSOS
@@ -31,34 +31,11 @@ export const HBarChart = ({
           const dataLength: number = data.length || 0;
 
           return (
-            <Flex
-              align="center"
-              gap="20px"
-              key={`hbar-item-${index}`}
-              onClick={() => onItemClick({ id })}
-            >
-              <Flex
-                align="center"
-                border="1px solid"
-                borderColor="gray_5"
-                p="10px"
-                gap="15px"
-                minW="250px"
-                w="300px"
-              >
-                <Avatar
-                  name=" "
-                  size="24px"
-                  src={image}
-                  colorVariant={'cold'}
-                />
+            <Flex align="center" gap="20px" key={`hbar-item-${index}`} onClick={() => onItemClick({ id })}>
+              <Flex align="center" border="1px solid" borderColor="gray_5" p="10px" gap="15px" minW="250px" w="300px">
+                <Avatar name=" " size="24px" src={image} colorVariant={'cold'} />
 
-                <Text
-                  fontSize="15px"
-                  fontWeight="medium"
-                  lineHeight="18px"
-                  isTruncated
-                >
+                <Text fontSize="15px" fontWeight="medium" lineHeight="18px" isTruncated>
                   {title}
                 </Text>
               </Flex>
@@ -73,13 +50,9 @@ export const HBarChart = ({
                     background:
                       dataLength === 0
                         ? '#E6E8EE'
-                        : `linear-gradient(90deg, #31E0A1 0%, #31E0A1 ${
-                            data[0] + '%'
-                          }, #3767E3 ${data[0] + '%'}, #3767E3 ${
+                        : `linear-gradient(90deg, #31E0A1 0%, #31E0A1 ${data[0] + '%'}, #3767E3 ${data[0] + '%'}, #3767E3 ${
                             data[1] + '%'
-                          }, #E6E8EE ${data[1] + '%'}, #E6E8EE ${
-                            data[2] + '%'
-                          })`,
+                          }, #E6E8EE ${data[1] + '%'}, #E6E8EE ${data[2] + '%'})`,
                   },
                 }}
               />

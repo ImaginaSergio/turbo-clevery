@@ -6,15 +6,9 @@ import {
   InformationTextEditor,
   InformationPuntosclave,
 } from '../../../../../../shared/components';
-import { ILeccion, LeccionTipoEnum } from '@clevery/data';
+import { ILeccion, LeccionTipoEnum } from 'data';
 
-export const LeccionVideo = ({
-  leccion,
-  updateValue,
-}: {
-  leccion: ILeccion;
-  updateValue: any;
-}) => (
+export const LeccionVideo = ({ leccion, updateValue }: { leccion: ILeccion; updateValue: any }) => (
   <Flex direction="column" w="100%" gap="30px">
     <Flex w="100%" gap="30px" direction={{ lg: 'column', xl: 'row' }}>
       <InformationInput
@@ -98,10 +92,7 @@ export const LeccionVideo = ({
         style={{ width: '100%' }}
       />
 
-      <InformationPuntosclave
-        leccionId={leccion?.id}
-        isDisabled={!leccion?.id}
-      />
+      <InformationPuntosclave leccionId={leccion?.id} isDisabled={!leccion?.id} />
     </Flex>
   </Flex>
 );

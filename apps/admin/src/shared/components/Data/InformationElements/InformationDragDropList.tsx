@@ -1,24 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Box,
-  Center,
-  Flex,
-  Icon,
-  IconButton,
-  useToast,
-} from '@chakra-ui/react';
-import {
-  BiChevronDown,
-  BiChevronUp,
-  BiPencil,
-  BiPlusCircle,
-  BiTrash,
-} from 'react-icons/bi';
+import { Box, Center, Flex, Icon, IconButton, useToast } from '@chakra-ui/react';
+import { BiChevronDown, BiChevronUp, BiPencil, BiPlusCircle, BiTrash } from 'react-icons/bi';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-import { onFailure } from '@clevery/utils';
-import { updateModulo } from '@clevery/data';
+import { onFailure } from 'ui';
+import { updateModulo } from 'data';
 
 export type InformationDragDropListProps = {
   label?: string;
@@ -129,12 +116,7 @@ export const InformationDragDropList = ({
           //       {...provided.draggableProps}
           //       {...provided.dragHandleProps}
           //     >
-          <ListItem
-            key={item.id}
-            props={{ ...item }}
-            allowOpen={allowOpen}
-            index={item?.orden || 0}
-          />
+          <ListItem key={item.id} props={{ ...item }} allowOpen={allowOpen} index={item?.orden || 0} />
           //     </Box>
           //   )}
           // </Draggable>
@@ -175,15 +157,7 @@ export const InformationDragDropList = ({
   );
 };
 
-const ListItem = ({
-  allowOpen = true,
-  index,
-  props,
-}: {
-  allowOpen?: boolean;
-  index: number;
-  props: ListItemProps;
-}) => {
+const ListItem = ({ allowOpen = true, index, props }: { allowOpen?: boolean; index: number; props: ListItemProps }) => {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
@@ -203,24 +177,12 @@ const ListItem = ({
       >
         <Flex align="center" columnGap="12px">
           {props.showIndex && (
-            <Center
-              bg="#E6E8EE"
-              rounded="6px"
-              boxSize="24px"
-              fontSize="13px"
-              lineHeight="15px"
-              fontWeight="semibold"
-            >
+            <Center bg="#E6E8EE" rounded="6px" boxSize="24px" fontSize="13px" lineHeight="15px" fontWeight="semibold">
               {index}
             </Center>
           )}
 
-          <Box
-            fontSize="14px"
-            fontWeight="medium"
-            lineHeight="16px"
-            textAlign="start"
-          >
+          <Box fontSize="14px" fontWeight="medium" lineHeight="16px" textAlign="start">
             {props.title}
           </Box>
 
@@ -270,13 +232,7 @@ const ListItem = ({
             {props.foot}
           </Box>
 
-          {allowOpen && (
-            <Icon
-              boxSize="24px"
-              color="#878EA0"
-              as={open ? BiChevronUp : BiChevronDown}
-            />
-          )}
+          {allowOpen && <Icon boxSize="24px" color="#878EA0" as={open ? BiChevronUp : BiChevronDown} />}
         </Flex>
       </Flex>
 
@@ -286,10 +242,7 @@ const ListItem = ({
 
           <Flex w="100%" direction="column" rowGap="7px">
             {props.subitems?.map((subitem, _index) => (
-              <ListSubItem
-                key={`list-item-${index}-subitem-${_index}`}
-                {...subitem}
-              />
+              <ListSubItem key={`list-item-${index}-subitem-${_index}`} {...subitem} />
             ))}
           </Flex>
 
@@ -314,11 +267,7 @@ const ListItem = ({
           >
             <Icon as={BiPlusCircle} boxSize="21px" />
 
-            <Box
-              fontSize="12px"
-              fontWeight="semibold"
-              textTransform="uppercase"
-            >
+            <Box fontSize="12px" fontWeight="semibold" textTransform="uppercase">
               {props.createTitle}
             </Box>
           </Flex>

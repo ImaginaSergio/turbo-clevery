@@ -3,24 +3,10 @@ import { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { BiX, BiRightArrowAlt } from 'react-icons/bi';
-import {
-  Icon,
-  Flex,
-  Modal,
-  Button,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalContent,
-  ModalOverlay,
-} from '@chakra-ui/react';
+import { Icon, Flex, Modal, Button, ModalBody, ModalHeader, ModalFooter, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
-import { LeccionTipoEnum } from '@clevery/data';
-import {
-  FormInput,
-  FormSelect,
-  FormTextarea,
-} from '../../../shared/components';
+import { LeccionTipoEnum } from 'data';
+import { FormInput, FormSelect, FormTextarea } from '../../../shared/components';
 
 const LeccionesModalForm = ({
   isOpen,
@@ -42,18 +28,10 @@ const LeccionesModalForm = ({
   }, [defaultValue]);
 
   const validationSchema = Yup.object().shape({
-    titulo: Yup.string()
-      .required('¡El título es obligatorio!')
-      .typeError('El título es obligatorio.'),
-    duracion: Yup.number()
-      .required('La duración es obligatoria')
-      .typeError('La duración es obligatoria'),
-    descripcion: Yup.string()
-      .required('La descripción es obligatoria')
-      .typeError('La descripción es obligatoria'),
-    contenido: Yup.string()
-      .required('El contenido es obligatorio')
-      .typeError('El contenido es obligatorio'),
+    titulo: Yup.string().required('¡El título es obligatorio!').typeError('El título es obligatorio.'),
+    duracion: Yup.number().required('La duración es obligatoria').typeError('La duración es obligatoria'),
+    descripcion: Yup.string().required('La descripción es obligatoria').typeError('La descripción es obligatoria'),
+    contenido: Yup.string().required('El contenido es obligatorio').typeError('El contenido es obligatorio'),
     tipo: Yup.string()
       .oneOf(Object.values(LeccionTipoEnum))
       .required('El tipo es obligatorio')
@@ -76,8 +54,7 @@ const LeccionesModalForm = ({
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   return (
@@ -87,42 +64,23 @@ const LeccionesModalForm = ({
       <ModalContent maxW="56em" maxH="56em">
         <ModalHeader bg="#011434" p="20px 30px" color="#fff">
           <Flex justify="space-between" align="center">
-            <div>
-              {currentValue
-                ? `Matrícula - ${currentValue.participante?.nombre}`
-                : 'Nueva matrícula'}
-            </div>
+            <div>{currentValue ? `Matrícula - ${currentValue.participante?.nombre}` : 'Nueva matrícula'}</div>
 
             <Icon as={BiX} w="20px" opacity="0.4" onClick={onClose} />
           </Flex>
         </ModalHeader>
 
-        <Formik
-          enableReinitialize
-          onSubmit={submitForm}
-          validationSchema={validationSchema}
-          initialValues={initialValues}
-        >
+        <Formik enableReinitialize onSubmit={submitForm} validationSchema={validationSchema} initialValues={initialValues}>
           {(formik) => {
             const { handleSubmit } = formik;
 
             return (
               <FormikForm onSubmit={handleSubmit} onKeyDown={onKeyDown}>
-                <ModalBody
-                  p="30px"
-                  display="flex"
-                  rowGap="20px"
-                  flexDirection="column"
-                >
+                <ModalBody p="30px" display="flex" rowGap="20px" flexDirection="column">
                   <Flex columnGap="30px">
                     <FormInput name="titulo" label="Título" isRequired />
 
-                    <FormInput
-                      type="number"
-                      label="Duración"
-                      isRequired
-                      name="duracion"
-                    />
+                    <FormInput type="number" label="Duración" isRequired name="duracion" />
 
                     <FormSelect
                       label="Tipo"
@@ -136,17 +94,9 @@ const LeccionesModalForm = ({
                     />
                   </Flex>
 
-                  <FormTextarea
-                    label="Descripción"
-                    isRequired
-                    name={`descripcion`}
-                  />
+                  <FormTextarea label="Descripción" isRequired name={`descripcion`} />
 
-                  <FormTextarea
-                    label="Contenido"
-                    isRequired
-                    name={`contenido`}
-                  />
+                  <FormTextarea label="Contenido" isRequired name={`contenido`} />
                 </ModalBody>
 
                 <ModalFooter bg="#F4F6F9">
@@ -157,9 +107,7 @@ const LeccionesModalForm = ({
                     bg="#3182FC"
                     color="#fff"
                     type="submit"
-                    rightIcon={
-                      <Icon as={BiRightArrowAlt} boxSize="17px" color="#fff" />
-                    }
+                    rightIcon={<Icon as={BiRightArrowAlt} boxSize="17px" color="#fff" />}
                   >
                     {defaultValue ? 'Actualizar lección' : 'Crear lección'}
                   </Button>

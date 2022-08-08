@@ -6,17 +6,15 @@ import { format } from 'date-fns';
 import { Flex, Icon, Badge } from '@chakra-ui/react';
 import { BiBookContent, BiPlus, BiBuildings, BiRocket } from 'react-icons/bi';
 
-import { ProcesoRemotoEnum, useProcesos } from '@clevery/data';
-import { OpenColumn, OpenTable } from '@clevery/ui';
+import { ProcesoRemotoEnum, useProcesos } from 'data';
+import { OpenColumn, OpenTable } from 'ui';
 import { PageHeader, PageSidebar } from '../../../../shared/components';
 
 export default function VacantesTable() {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { procesos, isLoading } = useProcesos({
     client: 'admin',
@@ -31,8 +29,7 @@ export default function VacantesTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/clientes/vacantes/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/clientes/vacantes/' + e?.id || '');
 
   //?Columnas
   const columns: OpenColumn[] = [
@@ -56,11 +53,7 @@ export default function VacantesTable() {
         { label: 'Indiferente', value: ProcesoRemotoEnum.INDIFERENTE },
       ],
       render: (rowData) => (
-        <Badge
-          rounded="7px"
-          color={rowData.remoto ? 'white' : 'black'}
-          bg={stc(rowData.remoto)}
-        >
+        <Badge rounded="7px" color={rowData.remoto ? 'white' : 'black'} bg={stc(rowData.remoto)}>
           {rowData.remoto}
         </Badge>
       ),
@@ -70,9 +63,7 @@ export default function VacantesTable() {
       field: 'createdAt',
       header: 'Fecha creación',
       sortable: true,
-      render: (rowData) => (
-        <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyyy')}</Flex>
-      ),
+      render: (rowData) => <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyyy')}</Flex>,
     },
   ];
 

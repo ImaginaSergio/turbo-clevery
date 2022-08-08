@@ -5,17 +5,15 @@ import { format } from 'date-fns/esm';
 import { Box, Flex, Icon, Image } from '@chakra-ui/react';
 import { BiBookContent, BiPlus, BiBuildings, BiRocket } from 'react-icons/bi';
 
-import { useEmpresas } from '@clevery/data';
-import { OpenColumn, OpenTable } from '@clevery/ui';
+import { useEmpresas } from 'data';
+import { OpenColumn, OpenTable } from 'ui';
 import { PageSidebar, PageHeader } from '../../../../shared/components';
 
 export default function EmpresasTable() {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { empresas, isLoading, isError } = useEmpresas({
     query: queryString
@@ -30,8 +28,7 @@ export default function EmpresasTable() {
     client: 'admin',
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/clientes/empresas/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/clientes/empresas/' + e?.id || '');
 
   //?Columnas
   const columns: OpenColumn[] = [
@@ -43,11 +40,7 @@ export default function EmpresasTable() {
       filterable: true,
       render: (rowData) => (
         <Flex align="center" gap="15px">
-          <Image
-            minW="50px"
-            boxSize="50px"
-            src={`data:image/svg+xml;utf8,${rowData.icono}`}
-          />
+          <Image minW="50px" boxSize="50px" src={`data:image/svg+xml;utf8,${rowData.icono}`} />
 
           <Box>{rowData.nombre}</Box>
         </Flex>
@@ -72,9 +65,7 @@ export default function EmpresasTable() {
       field: 'createdAt',
       header: 'Fecha creación',
       sortable: true,
-      render: (rowData) => (
-        <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>
-      ),
+      render: (rowData) => <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>,
     },
   ];
 

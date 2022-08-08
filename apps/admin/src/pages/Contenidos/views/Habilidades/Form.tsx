@@ -4,14 +4,9 @@ import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { Button, useToast, Flex } from '@chakra-ui/react';
 
-import { addHabilidad, getHabilidades } from '@clevery/data';
-import { onFailure, onSuccess } from '@clevery/utils';
-import {
-  FormAsyncSelect,
-  FormInput,
-  FormSelect,
-  FormTextarea,
-} from '../../../../shared/components';
+import { addHabilidad, getHabilidades } from 'data';
+import { onFailure, onSuccess } from 'ui';
+import { FormAsyncSelect, FormInput, FormSelect, FormTextarea } from '../../../../shared/components';
 
 const HabilidadesForm = () => {
   const toast = useToast();
@@ -29,9 +24,7 @@ const HabilidadesForm = () => {
 
   const validationSchema = Yup.object().shape({
     step: Yup.number().oneOf([1, 2, 3]).required(),
-    nombre: Yup.string()
-      .required('¡El nombre es obligatorio!')
-      .typeError('El nombre es obligatorio.'),
+    nombre: Yup.string().required('¡El nombre es obligatorio!').typeError('El nombre es obligatorio.'),
     publicado: Yup.boolean().notRequired().nullable(),
     superiorId: Yup.number().notRequired().nullable(),
     icono: Yup.string().notRequired().nullable(),
@@ -57,18 +50,12 @@ const HabilidadesForm = () => {
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   return (
     <Flex boxSize="100%">
-      <Formik
-        enableReinitialize
-        onSubmit={submitForm}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-      >
+      <Formik enableReinitialize onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
         {(formik) => {
           const { values, handleSubmit, setFieldValue } = formik;
 
@@ -86,43 +73,18 @@ const HabilidadesForm = () => {
             >
               {formSteps[values.step - 1].body}
 
-              <Flex
-                bg="#f4f5f6"
-                align="center"
-                justify="space-between"
-                p="15px 30px"
-                h="90px"
-              >
+              <Flex bg="#f4f5f6" align="center" justify="space-between" p="15px 30px" h="90px">
                 <div />
 
                 <Flex gap="16px" fontSize="16px" fontWeight="semibold">
                   {formSteps.map(({ step }) => (
-                    <Flex
-                      key={'form-step-' + step}
-                      align="center"
-                      cursor="pointer"
-                      onClick={() => setFieldValue('step', step)}
-                    >
+                    <Flex key={'form-step-' + step} align="center" cursor="pointer" onClick={() => setFieldValue('step', step)}>
                       {values.step === step ? (
-                        <Flex
-                          bg="#3182FC"
-                          color="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex bg="#3182FC" color="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       ) : (
-                        <Flex
-                          color="#3182FC"
-                          bg="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex color="#3182FC" bg="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       )}
@@ -186,12 +148,7 @@ const Step1 = () => {
           loadOptions={loadHabilidadesByNombre}
         />
 
-        <FormTextarea
-          name="icono"
-          label="Icono de la habilidad"
-          isRequired
-          placeholder="Introduce un icono como svg"
-        />
+        <FormTextarea name="icono" label="Icono de la habilidad" isRequired placeholder="Introduce un icono como svg" />
       </Flex>
     </Flex>
   );

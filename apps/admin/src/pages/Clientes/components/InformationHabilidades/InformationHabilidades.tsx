@@ -6,7 +6,7 @@ import AsyncSelect from 'react-select/async';
 import { AiOutlineCloudSync } from 'react-icons/ai';
 import { Flex, Badge, Icon, Spinner, Box, Center } from '@chakra-ui/react';
 
-import { IHabilidad } from '@clevery/data';
+import { IHabilidad } from 'data';
 
 import './InformationHabilidades.scss';
 
@@ -55,80 +55,65 @@ export const InformationHabilidades = ({
     setUpdate('loading');
 
     const habilidadesResponse: any = {};
-    const newHabilidades = [...event]?.map(
-      (habilidad: IHabilidad, i: number) => {
-        if (!habilidad.id) return undefined;
+    const newHabilidades = [...event]?.map((habilidad: IHabilidad, i: number) => {
+      if (!habilidad.id) return undefined;
 
-        habilidadesResponse[habilidad.id + ''] = {
-          nivel: habilidad?.meta?.pivot_nivel || 1,
-        };
+      habilidadesResponse[habilidad.id + ''] = {
+        nivel: habilidad?.meta?.pivot_nivel || 1,
+      };
 
-        return habilidad;
-      }
-    );
+      return habilidad;
+    });
 
     setHabilidades(newHabilidades?.filter((i: any) => i));
-    updateValue({ habilidades: habilidadesResponse }).then((res: any) =>
-      setUpdate('idle')
-    );
+    updateValue({ habilidades: habilidadesResponse }).then((res: any) => setUpdate('idle'));
   };
 
   const removeTag = (index: number) => {
     setUpdate('loading');
 
     const habilidadesResponse: any = {};
-    const newHabilidades = [..._habilidades]?.map(
-      (habilidad: IHabilidad, i: number) => {
-        if (!habilidad.id) return habilidad;
-        if (i === index) return undefined;
+    const newHabilidades = [..._habilidades]?.map((habilidad: IHabilidad, i: number) => {
+      if (!habilidad.id) return habilidad;
+      if (i === index) return undefined;
 
-        habilidadesResponse[habilidad.id + ''] = {
-          nivel: habilidad.meta.pivot_nivel,
-        };
+      habilidadesResponse[habilidad.id + ''] = {
+        nivel: habilidad.meta.pivot_nivel,
+      };
 
-        return habilidad;
-      }
-    );
+      return habilidad;
+    });
 
     setHabilidades(newHabilidades.filter((t) => t));
-    updateValue({ habilidades: habilidadesResponse }).then((res: any) =>
-      setUpdate('idle')
-    );
+    updateValue({ habilidades: habilidadesResponse }).then((res: any) => setUpdate('idle'));
   };
 
   const updateLevel = (index: number) => {
     setUpdate('loading');
 
     const habilidadesResponse: any = {};
-    const newHabilidades = [..._habilidades]?.map(
-      (habilidad: IHabilidad, i: number) => {
-        if (!habilidad.id) return undefined;
+    const newHabilidades = [..._habilidades]?.map((habilidad: IHabilidad, i: number) => {
+      if (!habilidad.id) return undefined;
 
-        if (i === index) {
-          const newLevel =
-            habilidad.meta.pivot_nivel === 3
-              ? 1
-              : habilidad.meta.pivot_nivel + 1;
+      if (i === index) {
+        const newLevel = habilidad.meta.pivot_nivel === 3 ? 1 : habilidad.meta.pivot_nivel + 1;
 
-          habilidadesResponse[habilidad.id + ''] = { nivel: newLevel };
-          habilidad.meta.pivot_nivel = newLevel;
+        habilidadesResponse[habilidad.id + ''] = { nivel: newLevel };
+        habilidad.meta.pivot_nivel = newLevel;
 
-          return habilidad;
-        } else {
-          habilidadesResponse[habilidad.id + ''] = {
-            nivel: habilidad.meta.pivot_nivel,
-          };
+        return habilidad;
+      } else {
+        habilidadesResponse[habilidad.id + ''] = {
+          nivel: habilidad.meta.pivot_nivel,
+        };
 
-          return habilidad;
-        }
+        return habilidad;
       }
-    );
+    });
 
     setHabilidades(newHabilidades?.filter((t) => t));
 
-    updateValue({ habilidades: habilidadesResponse }).then((res: any) =>
-      setUpdate('idle')
-    );
+    updateValue({ habilidades: habilidadesResponse }).then((res: any) => setUpdate('idle'));
   };
 
   const _loadOptions = useCallback(
@@ -168,60 +153,50 @@ export const InformationHabilidades = ({
       />
 
       <Flex wrap="wrap" pt="10px" gap="10px">
-        {_habilidades?.map(
-          (
-            habilidad: { label: string; value: any; meta: any },
-            index: number
-          ) => (
-            <Badge
-              display="flex"
-              p="7px 12px"
-              gap="8px"
-              rounded="10px"
-              key={`info-habilidades-${index}`}
-              bg={habilidad.meta.pivot_nivel ? '#D3FDF8' : '#e8e8e8'}
-              color={habilidad.meta.pivot_nivel ? '#31B9A9' : '#a5a5a5'}
-            >
-              <Box fontSize="14px" fontWeight="medium">
-                {habilidad.label}
-              </Box>
+        {_habilidades?.map((habilidad: { label: string; value: any; meta: any }, index: number) => (
+          <Badge
+            display="flex"
+            p="7px 12px"
+            gap="8px"
+            rounded="10px"
+            key={`info-habilidades-${index}`}
+            bg={habilidad.meta.pivot_nivel ? '#D3FDF8' : '#e8e8e8'}
+            color={habilidad.meta.pivot_nivel ? '#31B9A9' : '#a5a5a5'}
+          >
+            <Box fontSize="14px" fontWeight="medium">
+              {habilidad.label}
+            </Box>
 
-              <Flex w="fit-content" gap="4px" align="center">
-                <Icon
-                  as={BiX}
-                  boxSize="21px"
-                  cursor="pointer"
-                  onClick={(e) => removeTag(index)}
-                />
+            <Flex w="fit-content" gap="4px" align="center">
+              <Icon as={BiX} boxSize="21px" cursor="pointer" onClick={(e) => removeTag(index)} />
 
-                <Center
-                  w="fit-content"
-                  h="21px"
-                  rounded="50%"
-                  cursor="pointer"
-                  onClick={(e) => updateLevel(index)}
-                  title={
-                    habilidad.meta.pivot_nivel === 1
-                      ? 'Nivel Inicial'
-                      : habilidad.meta.pivot_nivel === 2
-                      ? 'Nivel Intermedio'
-                      : habilidad.meta.pivot_nivel === 3
-                      ? 'Nivel avanzado'
-                      : 'Sin definir'
-                  }
-                >
-                  {habilidad.meta.pivot_nivel === 1
-                    ? 'Ini.'
+              <Center
+                w="fit-content"
+                h="21px"
+                rounded="50%"
+                cursor="pointer"
+                onClick={(e) => updateLevel(index)}
+                title={
+                  habilidad.meta.pivot_nivel === 1
+                    ? 'Nivel Inicial'
                     : habilidad.meta.pivot_nivel === 2
-                    ? 'Inter.'
+                    ? 'Nivel Intermedio'
                     : habilidad.meta.pivot_nivel === 3
-                    ? 'Av.'
-                    : 'Sin definir'}
-                </Center>
-              </Flex>
-            </Badge>
-          )
-        )}
+                    ? 'Nivel avanzado'
+                    : 'Sin definir'
+                }
+              >
+                {habilidad.meta.pivot_nivel === 1
+                  ? 'Ini.'
+                  : habilidad.meta.pivot_nivel === 2
+                  ? 'Inter.'
+                  : habilidad.meta.pivot_nivel === 3
+                  ? 'Av.'
+                  : 'Sin definir'}
+              </Center>
+            </Flex>
+          </Badge>
+        ))}
       </Flex>
     </Flex>
   );

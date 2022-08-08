@@ -2,12 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { Box, Flex, useToast } from '@chakra-ui/react';
 
-import {
-  ItinerarioList,
-  InformationInput,
-} from '../../../../../shared/components';
-import { onFailure } from '@clevery/utils';
-import { IBoost, IRuta, getRutaByID, updateRuta } from '@clevery/data';
+import { ItinerarioList, InformationInput } from '../../../../../shared/components';
+import { onFailure } from 'ui';
+import { IBoost, IRuta, getRutaByID, updateRuta } from 'data';
 
 type TabRutaProps = {
   boost: IBoost;
@@ -55,8 +52,7 @@ export const TabRuta = ({ boost }: TabRutaProps) => {
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Hoja de ruta asociada al Boost, que los alumnos inscritos tendrán que
-          completar antes de optar a la oferta laboral.
+          Hoja de ruta asociada al Boost, que los alumnos inscritos tendrán que completar antes de optar a la oferta laboral.
         </Box>
       </Flex>
 

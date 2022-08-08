@@ -10,18 +10,9 @@ import {
   InformationAsyncSelect,
   InformationMultiSelect,
 } from '../../../../../shared/components';
-import {
-  BoostJornadaEnum,
-  getEmpresas,
-  getEstados,
-  getHabilidades,
-  getPaises,
-  IEstado,
-  IPais,
-  UserRolEnum,
-} from '@clevery/data';
-import { IBoost, BoostRemotoEnum } from '@clevery/data';
-import { capitalizeFirst, isRoleAllowed } from '@clevery/utils';
+import { BoostJornadaEnum, getEmpresas, getEstados, getHabilidades, getPaises, IEstado, IPais, UserRolEnum } from 'data';
+import { IBoost, BoostRemotoEnum } from 'data';
+import { capitalizeFirst, isRoleAllowed } from 'utils';
 import { LoginContext } from 'apps/admin/src/shared/context';
 
 type TabInformacionProps = {
@@ -101,8 +92,7 @@ export const TabInformacion = ({ boost, updateValue }: TabInformacionProps) => {
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el Boost, como el título del mismo, descripción,
-          logotipo, etc...
+          Información sobre el Boost, como el título del mismo, descripción, logotipo, etc...
         </Box>
       </Flex>
 
@@ -145,10 +135,7 @@ export const TabInformacion = ({ boost, updateValue }: TabInformacionProps) => {
               value: boost?.publicado,
             }}
             updateValue={updateValue}
-            isDisabled={
-              !isRoleAllowed([UserRolEnum.ADMIN], user?.rol) ||
-              boost?.ruta?.itinerario === '[]'
-            }
+            isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || boost?.ruta?.itinerario === '[]'}
             style={{ width: '100%' }}
           />
 
@@ -166,9 +153,7 @@ export const TabInformacion = ({ boost, updateValue }: TabInformacionProps) => {
                   : undefined
               }
               options={paises}
-              updateValue={(v: any) =>
-                updateValue({ paisId: v.pais.value?.id })
-              }
+              updateValue={(v: any) => updateValue({ paisId: v.pais.value?.id })}
               isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol)}
               style={{ width: '100%' }}
             />
@@ -178,17 +163,9 @@ export const TabInformacion = ({ boost, updateValue }: TabInformacionProps) => {
               name="estado"
               options={estados}
               placeholder="Selecciona una opción"
-              updateValue={(v: any) =>
-                updateValue({ estadoId: v.estado.value?.id })
-              }
-              isDisabled={
-                !isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || !boost.pais
-              }
-              defaultValue={
-                boost?.estado
-                  ? { label: boost?.estado?.nombre, value: boost?.estado }
-                  : undefined
-              }
+              updateValue={(v: any) => updateValue({ estadoId: v.estado.value?.id })}
+              isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || !boost.pais}
+              defaultValue={boost?.estado ? { label: boost?.estado?.nombre, value: boost?.estado } : undefined}
               style={{ width: '100%' }}
             />
           </Flex>

@@ -2,19 +2,12 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { format } from 'date-fns/esm';
-import {
-  BiBookContent,
-  BiPlus,
-  BiGroup,
-  BiPieChartAlt2,
-  BiTask,
-  BiPieChartAlt,
-} from 'react-icons/bi';
+import { BiBookContent, BiPlus, BiGroup, BiPieChartAlt2, BiTask, BiPieChartAlt } from 'react-icons/bi';
 import { useDisclosure, Flex, Icon } from '@chakra-ui/react';
 
-import { isRoleAllowed } from '@clevery/utils';
-import { OpenColumn, OpenTable } from '@clevery/ui';
-import { useGrupos, UserRolEnum } from '@clevery/data';
+import { isRoleAllowed } from 'utils';
+import { OpenColumn, OpenTable } from 'ui';
+import { useGrupos, UserRolEnum } from 'data';
 import { LoginContext } from '../../../../shared/context';
 import GruposModalForm from '../../components/GruposModalForm';
 import { PageSidebar, PageHeader } from '../../../../shared/components';
@@ -27,9 +20,7 @@ export default function GruposTable() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { grupos, isLoading } = useGrupos({
     query: queryString
@@ -44,8 +35,7 @@ export default function GruposTable() {
     client: 'admin',
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/alumnado/grupos/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/alumnado/grupos/' + e?.id || '');
 
   //?Columnas
   const columns: OpenColumn[] = [
@@ -67,9 +57,7 @@ export default function GruposTable() {
       field: 'createdAt',
       header: 'Fecha creación',
       sortable: true,
-      render: (rowData) => (
-        <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>
-      ),
+      render: (rowData) => <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>,
     },
   ];
 

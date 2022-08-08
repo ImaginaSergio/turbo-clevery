@@ -4,15 +4,11 @@ import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { Button, useToast, Flex } from '@chakra-ui/react';
 
-import { FormTextEditor } from '@clevery/ui';
-import { addPlantilla } from '@clevery/data';
-import { onFailure, onSuccess } from '@clevery/utils';
+import { FormTextEditor } from 'ui';
+import { addPlantilla } from 'data';
+import { onFailure, onSuccess } from 'ui';
 
-import {
-  FormInput,
-  FormSelect,
-  FormTextarea,
-} from '../../../../shared/components';
+import { FormInput, FormSelect, FormTextarea } from '../../../../shared/components';
 
 const PlantillasForm = () => {
   const toast = useToast();
@@ -30,13 +26,9 @@ const PlantillasForm = () => {
 
   const validationSchema = Yup.object().shape({
     step: Yup.number().oneOf([1, 2, 3]).required(),
-    titulo: Yup.string()
-      .required('¡El titulo es obligatorio!')
-      .typeError('El titulo es obligatorio.'),
+    titulo: Yup.string().required('¡El titulo es obligatorio!').typeError('El titulo es obligatorio.'),
     publicado: Yup.boolean().notRequired(),
-    contenido: Yup.string()
-      .required('¡El contenido es obligatorio!')
-      .typeError('El contenido es obligatorio.'),
+    contenido: Yup.string().required('¡El contenido es obligatorio!').typeError('El contenido es obligatorio.'),
     icono: Yup.string().notRequired().nullable(),
   });
 
@@ -60,18 +52,12 @@ const PlantillasForm = () => {
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   return (
     <Flex boxSize="100%">
-      <Formik
-        onSubmit={submitForm}
-        enableReinitialize
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-      >
+      <Formik onSubmit={submitForm} enableReinitialize initialValues={initialValues} validationSchema={validationSchema}>
         {(formik) => {
           const { values, handleSubmit, setFieldValue } = formik;
 
@@ -89,43 +75,18 @@ const PlantillasForm = () => {
             >
               {formSteps[values.step - 1].body}
 
-              <Flex
-                bg="#f4f5f6"
-                align="center"
-                justify="space-between"
-                p="15px 30px"
-                h="90px"
-              >
+              <Flex bg="#f4f5f6" align="center" justify="space-between" p="15px 30px" h="90px">
                 <div />
 
                 <Flex gap="16px" fontSize="16px" fontWeight="semibold">
                   {formSteps.map(({ step }) => (
-                    <Flex
-                      key={'form-step-' + step}
-                      align="center"
-                      cursor="pointer"
-                      onClick={() => setFieldValue('step', step)}
-                    >
+                    <Flex key={'form-step-' + step} align="center" cursor="pointer" onClick={() => setFieldValue('step', step)}>
                       {values.step === step ? (
-                        <Flex
-                          bg="#3182FC"
-                          color="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex bg="#3182FC" color="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       ) : (
-                        <Flex
-                          color="#3182FC"
-                          bg="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex color="#3182FC" bg="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       )}
@@ -172,11 +133,7 @@ const Step1 = () => {
       </Flex>
 
       <Flex direction="column" h="100%" w="80%" rowGap="20px">
-        <FormTextarea
-          isRequired
-          name="contenido"
-          label="Contenido de la plantilla"
-        />
+        <FormTextarea isRequired name="contenido" label="Contenido de la plantilla" />
 
         <FormTextarea name="icono" label="Icono de la plantilla" />
       </Flex>

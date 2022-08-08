@@ -11,18 +11,15 @@ import {
 } from '../../../../../shared/components';
 import { LoginContext } from '../../../../../shared/context';
 
-import { isRoleAllowed } from '@clevery/utils';
-import { INoticia, getUsers, UserRolEnum } from '@clevery/data';
+import { isRoleAllowed } from 'utils';
+import { INoticia, getUsers, UserRolEnum } from 'data';
 
 type TabInformacionProps = {
   noticia: INoticia;
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  noticia,
-  updateValue,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ noticia, updateValue }: TabInformacionProps) => {
   const { user } = useContext(LoginContext);
 
   const loadAutores = async (value: string) => {
@@ -57,8 +54,7 @@ export const TabInformacion = ({
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre la noticia, como el título de la misma, descripción,
-          logotipo, etc...
+          Información sobre la noticia, como el título de la misma, descripción, logotipo, etc...
         </Box>
       </Flex>
 

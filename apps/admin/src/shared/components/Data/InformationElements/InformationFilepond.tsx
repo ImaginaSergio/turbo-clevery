@@ -3,7 +3,7 @@ import { FilePond, registerPlugin } from 'react-filepond';
 
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 
-import { getItem } from '@clevery/data';
+import { getItem } from 'data';
 
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import 'filepond/dist/filepond.min.css';

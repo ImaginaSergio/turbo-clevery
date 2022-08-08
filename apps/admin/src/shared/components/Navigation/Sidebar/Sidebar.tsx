@@ -6,8 +6,8 @@ import { FiUsers } from 'react-icons/fi';
 import { BiCog, BiBox, BiBriefcase, BiBookBookmark } from 'react-icons/bi';
 
 import { NavLink } from './NavLink';
-import { UserRolEnum } from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
+import { UserRolEnum } from 'data';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../../context';
 
 import { LogoOB } from 'apps/campus/src/assets/logos/openbootcamp/LogoOB';

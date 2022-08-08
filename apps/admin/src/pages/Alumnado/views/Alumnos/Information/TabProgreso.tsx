@@ -12,9 +12,9 @@ import {
   progressRowTemplate,
   textRowTemplate,
 } from '../../../../../shared/components';
-import { IUser, UserRolEnum, useUserStats } from '@clevery/data';
-import { fmtTiempoTotal, isRoleAllowed } from '@clevery/utils';
-import { OpenColumn } from '@clevery/ui';
+import { IUser, UserRolEnum, useUserStats } from 'data';
+import { fmtTiempoTotal, isRoleAllowed } from 'utils';
+import { OpenColumn } from 'ui';
 
 type TabProgresoProps = {
   user: IUser;
@@ -22,11 +22,7 @@ type TabProgresoProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabProgreso = ({
-  user,
-  updateValue,
-  refreshState,
-}: TabProgresoProps) => {
+export const TabProgreso = ({ user, updateValue, refreshState }: TabProgresoProps) => {
   const [queryId, setQueryId] = useState(user?.id || 0);
 
   const { data: stats, isLoading } = useUserStats({
@@ -46,21 +42,11 @@ export const TabProgreso = ({
       let certiToStore;
 
       // 1. Si hay una certificación con un intento mayor, NO guardamos.
-      if (
-        certificaciones.find(
-          (c2) =>
-            c2.id === c1.id && c2.meta.pivot_intento > c1.meta.pivot_intento
-        )
-      )
+      if (certificaciones.find((c2) => c2.id === c1.id && c2.meta.pivot_intento > c1.meta.pivot_intento))
         certiToStore = undefined;
       // 2. Si este intento está suspendido y hay un intento igual que este pero aprobado, NO guardamos
       else if (
-        certificaciones.find(
-          (c2) =>
-            c2.id === c1.id &&
-            c1.meta.pivot_aprobada === false &&
-            c2.meta.pivot_aprobada === true
-        )
+        certificaciones.find((c2) => c2.id === c1.id && c1.meta.pivot_aprobada === false && c2.meta.pivot_aprobada === true)
       )
         certiToStore = undefined;
       // 3. En cualquier otro caso, SI nos interesa guardar.
@@ -80,27 +66,13 @@ export const TabProgreso = ({
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el alumno como su nombre, datos de contacto,
-          ajustes...
+          Información sobre el alumno como su nombre, datos de contacto, ajustes...
         </Box>
       </Flex>
 
       <Flex align="center" gap="27px">
-        <Flex
-          w="100%"
-          gap="3px"
-          bg="#FAFAFC"
-          p="10px 20px"
-          rounded="8px"
-          direction="column"
-          border="1px solid #E6E8EE"
-        >
-          <Box
-            fontSize="15px"
-            lineHeight="18px"
-            fontWeight="semibold"
-            textTransform="uppercase"
-          >
+        <Flex w="100%" gap="3px" bg="#FAFAFC" p="10px 20px" rounded="8px" direction="column" border="1px solid #E6E8EE">
+          <Box fontSize="15px" lineHeight="18px" fontWeight="semibold" textTransform="uppercase">
             Cursos superados
           </Box>
 
@@ -109,21 +81,8 @@ export const TabProgreso = ({
           </Box>
         </Flex>
 
-        <Flex
-          w="100%"
-          gap="3px"
-          bg="#FAFAFC"
-          p="10px 20px"
-          rounded="8px"
-          direction="column"
-          border="1px solid #E6E8EE"
-        >
-          <Box
-            fontSize="15px"
-            lineHeight="18px"
-            fontWeight="semibold"
-            textTransform="uppercase"
-          >
+        <Flex w="100%" gap="3px" bg="#FAFAFC" p="10px 20px" rounded="8px" direction="column" border="1px solid #E6E8EE">
+          <Box fontSize="15px" lineHeight="18px" fontWeight="semibold" textTransform="uppercase">
             Certificaciones aprobadas
           </Box>
 
@@ -142,21 +101,8 @@ export const TabProgreso = ({
           </Box>
         </Flex> */}
 
-        <Flex
-          w="100%"
-          gap="3px"
-          rounded="8px"
-          direction="column"
-          p="10px 20px"
-          border="1px solid #E6E8EE"
-          bg="#FAFAFC"
-        >
-          <Box
-            fontSize="15px"
-            lineHeight="18px"
-            fontWeight="semibold"
-            textTransform="uppercase"
-          >
+        <Flex w="100%" gap="3px" rounded="8px" direction="column" p="10px 20px" border="1px solid #E6E8EE" bg="#FAFAFC">
+          <Box fontSize="15px" lineHeight="18px" fontWeight="semibold" textTransform="uppercase">
             Tiempo total
           </Box>
 
@@ -170,13 +116,9 @@ export const TabProgreso = ({
         isLoading={isLoading}
         label={`Hoja de ruta - ${stats?.progresoGlobal?.ruta?.nombre}`}
         data={[
-          ...(stats?.meta?.cursosIniciados || [])?.filter((c: any) =>
-            stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id)
-          ),
+          ...(stats?.meta?.cursosIniciados || [])?.filter((c: any) => stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id)),
           ...(stats?.meta?.cursosCompletados || [])
-            ?.filter((c: any) =>
-              stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id)
-            )
+            ?.filter((c: any) => stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id))
             ?.map((c: any) => ({
               ...c,
               meta: { ...c.meta, progresos_count: c.meta.total_lecciones || 0 },
@@ -185,9 +127,7 @@ export const TabProgreso = ({
         style={{
           width: '100%',
           minHeight: '400px',
-          cursor: isRoleAllowed([UserRolEnum.ADMIN], user?.rol)
-            ? undefined
-            : 'default',
+          cursor: isRoleAllowed([UserRolEnum.ADMIN], user?.rol) ? undefined : 'default',
         }}
         columns={[
           {
@@ -209,19 +149,11 @@ export const TabProgreso = ({
                 content: {
                   value: Math.min(
                     100,
-                    Math.floor(
-                      ((rowData.meta?.progresos_count || 0) /
-                        (rowData.meta?.total_lecciones || 0)) *
-                        100
-                    )
+                    Math.floor(((rowData.meta?.progresos_count || 0) / (rowData.meta?.total_lecciones || 0)) * 100)
                   ),
                   label: `${Math.min(
                     100,
-                    Math.floor(
-                      ((rowData.meta?.progresos_count || 0) /
-                        (rowData.meta?.total_lecciones || 0)) *
-                        100
-                    )
+                    Math.floor(((rowData.meta?.progresos_count || 0) / (rowData.meta?.total_lecciones || 0)) * 100)
                   )}% completo`,
                 },
               }),
@@ -234,9 +166,7 @@ export const TabProgreso = ({
               textRowTemplate({
                 content: {
                   text: rowData.meta?.total_entregables
-                    ? `${rowData.meta?.entregables_count || 0} / ${
-                        rowData.meta?.total_entregables
-                      }`
+                    ? `${rowData.meta?.entregables_count || 0} / ${rowData.meta?.total_entregables}`
                     : '-',
                 },
               }),
@@ -250,10 +180,7 @@ export const TabProgreso = ({
                 badges: [
                   {
                     content: {
-                      text: Math.min(
-                        100,
-                        Math.floor(rowData?.meta?.puntuacion_avg || 0)
-                      ),
+                      text: Math.min(100, Math.floor(rowData?.meta?.puntuacion_avg || 0)),
                     },
                     style: {
                       height: '40px',
@@ -264,10 +191,7 @@ export const TabProgreso = ({
                       fontSize: '16px',
                       lineHeight: '19px',
                       borderRadius: '56px',
-                      background:
-                        (rowData?.meta?.puntuacion_avg || 0) > 50
-                          ? '#2EDDBE'
-                          : '#D8335B',
+                      background: (rowData?.meta?.puntuacion_avg || 0) > 50 ? '#2EDDBE' : '#D8335B',
                     },
                   },
                 ],
@@ -280,14 +204,9 @@ export const TabProgreso = ({
         isLoading={isLoading}
         label="Otros cursos"
         data={[
-          ...(stats?.meta?.cursosIniciados || [])?.filter(
-            (c: any) => !stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id)
-          ),
+          ...(stats?.meta?.cursosIniciados || [])?.filter((c: any) => !stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id)),
           ...(stats?.meta?.cursosCompletados || [])
-            ?.filter(
-              (c: any) =>
-                !stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id)
-            )
+            ?.filter((c: any) => !stats?.progresoGlobal?.ruta?.itinerario?.includes(c.id))
             ?.map((c: any) => ({
               ...c,
               meta: { ...c.meta, progresos_count: c.meta.total_lecciones || 0 },
@@ -296,9 +215,7 @@ export const TabProgreso = ({
         style={{
           width: '100%',
           minHeight: '400px',
-          cursor: isRoleAllowed([UserRolEnum.ADMIN], user?.rol)
-            ? undefined
-            : 'default',
+          cursor: isRoleAllowed([UserRolEnum.ADMIN], user?.rol) ? undefined : 'default',
         }}
         columns={[
           {
@@ -320,19 +237,11 @@ export const TabProgreso = ({
                 content: {
                   value: Math.min(
                     100,
-                    Math.floor(
-                      ((rowData.meta?.progresos_count || 0) /
-                        (rowData.meta?.total_lecciones || 0)) *
-                        100
-                    )
+                    Math.floor(((rowData.meta?.progresos_count || 0) / (rowData.meta?.total_lecciones || 0)) * 100)
                   ),
                   label: `${Math.min(
                     100,
-                    Math.floor(
-                      ((rowData.meta?.progresos_count || 0) /
-                        (rowData.meta?.total_lecciones || 0)) *
-                        100
-                    )
+                    Math.floor(((rowData.meta?.progresos_count || 0) / (rowData.meta?.total_lecciones || 0)) * 100)
                   )}% completo`,
                 },
               }),
@@ -345,9 +254,7 @@ export const TabProgreso = ({
               textRowTemplate({
                 content: {
                   text: rowData.meta?.total_entregables
-                    ? `${rowData.meta?.entregables_count || 0} / ${
-                        rowData.meta?.total_entregables
-                      }`
+                    ? `${rowData.meta?.entregables_count || 0} / ${rowData.meta?.total_entregables}`
                     : '-',
                 },
               }),
@@ -361,10 +268,7 @@ export const TabProgreso = ({
                 badges: [
                   {
                     content: {
-                      text: Math.min(
-                        100,
-                        Math.floor(rowData?.meta?.puntuacion_avg || 0)
-                      ),
+                      text: Math.min(100, Math.floor(rowData?.meta?.puntuacion_avg || 0)),
                     },
                     style: {
                       height: '40px',
@@ -375,10 +279,7 @@ export const TabProgreso = ({
                       fontSize: '16px',
                       lineHeight: '19px',
                       borderRadius: '56px',
-                      background:
-                        (rowData?.meta?.puntuacion_avg || 0) > 50
-                          ? '#2EDDBE'
-                          : '#D8335B',
+                      background: (rowData?.meta?.puntuacion_avg || 0) > 50 ? '#2EDDBE' : '#D8335B',
                     },
                   },
                 ],
@@ -393,9 +294,7 @@ export const TabProgreso = ({
         style={{
           width: '100%',
           minHeight: '400px',
-          cursor: isRoleAllowed([UserRolEnum.ADMIN], user?.rol)
-            ? undefined
-            : 'default',
+          cursor: isRoleAllowed([UserRolEnum.ADMIN], user?.rol) ? undefined : 'default',
         }}
         columns={[
           {
@@ -422,14 +321,9 @@ export const TabProgreso = ({
                     content: {
                       text: (
                         <Flex align="center" gap="5px">
-                          <Icon
-                            as={rowData?.meta.pivot_aprobada ? BiBadge : BiX}
-                            boxSize="21px"
-                          />
+                          <Icon as={rowData?.meta.pivot_aprobada ? BiBadge : BiX} boxSize="21px" />
 
-                          {rowData?.meta.pivot_aprobada
-                            ? 'Superada'
-                            : 'Suspendida'}
+                          {rowData?.meta.pivot_aprobada ? 'Superada' : 'Suspendida'}
                         </Flex>
                       ),
                     },
@@ -438,9 +332,7 @@ export const TabProgreso = ({
                       lineHeight: '16px',
                       borderRadius: '7px',
                       padding: '2px 10px 2px 7px',
-                      background: rowData?.meta?.pivot_aprobada
-                        ? '#2EDDBE'
-                        : '#D8335B',
+                      background: rowData?.meta?.pivot_aprobada ? '#2EDDBE' : '#D8335B',
                     },
                   },
                 ],
@@ -458,14 +350,7 @@ export const TabProgreso = ({
         ]}
       />
 
-      <Flex
-        p="10px"
-        bg="#FAFAFC"
-        rounded="12px"
-        direction="column"
-        w="100%"
-        gap="10px"
-      >
+      <Flex p="10px" bg="#FAFAFC" rounded="12px" direction="column" w="100%" gap="10px">
         <Flex p="10px" align="center" gap="14px">
           <Icon as={BiUser} boxSize="21px" />
 
@@ -475,9 +360,7 @@ export const TabProgreso = ({
         </Flex>
 
         <LineChart
-          labels={stats?.sesiones?.map((s: any) =>
-            format(new Date(s.dia), 'dd LLL', { locale: es })
-          )}
+          labels={stats?.sesiones?.map((s: any) => format(new Date(s.dia), 'dd LLL', { locale: es }))}
           dataset={{
             label: 'Total de sesiones',
             data: stats?.sesiones?.map((s: any) => s.count),

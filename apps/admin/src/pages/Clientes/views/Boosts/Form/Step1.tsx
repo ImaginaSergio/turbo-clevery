@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 
-import {
-  FormInput,
-  FormSelect,
-  FormAsyncSelect,
-  FormTextarea,
-} from '../../../../../shared/components';
-import { FormTextEditor } from '@clevery/ui';
+import { FormInput, FormSelect, FormAsyncSelect, FormTextarea } from '../../../../../shared/components';
+import { FormTextEditor } from 'ui';
 import {
   BoostJornadaEnum,
   BoostRemotoEnum,
@@ -17,7 +12,7 @@ import {
   getPaises,
   IEstado,
   IPais,
-} from '@clevery/data';
+} from 'data';
 import { useField } from 'formik';
 
 const Step1 = () => {
@@ -88,27 +83,11 @@ const Step1 = () => {
           loadOptions={loadEmpresasByNombre}
         />
 
-        <FormInput
-          isRequired
-          type="number"
-          name="salarioMin"
-          label="Salario mínimo"
-        />
+        <FormInput isRequired type="number" name="salarioMin" label="Salario mínimo" />
 
-        <FormInput
-          isRequired
-          type="number"
-          name="salarioMax"
-          label="Salario máximo"
-        />
+        <FormInput isRequired type="number" name="salarioMax" label="Salario máximo" />
 
-        <FormSelect
-          label="País de la oferta"
-          name="pais"
-          placeholder="Ej: España"
-          options={paises}
-          data-cy="pais"
-        />
+        <FormSelect label="País de la oferta" name="pais" placeholder="Ej: España" options={paises} data-cy="pais" />
 
         <FormSelect
           label="Región de la oferta"

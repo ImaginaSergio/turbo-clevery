@@ -4,21 +4,11 @@ import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { Button, useToast, Flex } from '@chakra-ui/react';
 
-import {
-  getCursos,
-  addHabilidad,
-  getHabilidades,
-  addCertificacion,
-} from '@clevery/data';
-import { FormTextEditor } from '@clevery/ui';
-import { onFailure, onSuccess } from '@clevery/utils';
+import { getCursos, addHabilidad, getHabilidades, addCertificacion } from 'data';
+import { FormTextEditor } from 'ui';
+import { onFailure, onSuccess } from 'ui';
 
-import {
-  FormInput,
-  FormSelect,
-  FormAsyncSelect,
-  FormAsyncCreatableSelect,
-} from '../../../../shared/components';
+import { FormInput, FormSelect, FormAsyncSelect, FormAsyncCreatableSelect } from '../../../../shared/components';
 
 const CertificacionesForm = () => {
   const toast = useToast();
@@ -37,21 +27,13 @@ const CertificacionesForm = () => {
 
   const validationSchema = Yup.object().shape({
     step: Yup.number().oneOf([1, 2, 3]).required(),
-    nombre: Yup.string()
-      .required('¡El título es obligatorio!')
-      .typeError('El título es obligatorio.'),
-    descripcion: Yup.string()
-      .required('La descripción es obligatoria.')
-      .typeError('La descripción es obligatoria.'),
+    nombre: Yup.string().required('¡El título es obligatorio!').typeError('El título es obligatorio.'),
+    descripcion: Yup.string().required('La descripción es obligatoria.').typeError('La descripción es obligatoria.'),
     habilidadId: Yup.number()
       .required('La habilidad asociada es obligatoria.')
       .typeError('La habilidad asociada es obligatoria.'),
-    cursoId: Yup.number()
-      .required('El curso asociado es obligatorio.')
-      .typeError('El curso asociado es obligatorio.'),
-    nivel: Yup.number()
-      .required('El nivel es obligatorio.')
-      .typeError('El nivel es obligatorio.'),
+    cursoId: Yup.number().required('El curso asociado es obligatorio.').typeError('El curso asociado es obligatorio.'),
+    nivel: Yup.number().required('El nivel es obligatorio.').typeError('El nivel es obligatorio.'),
     publicado: Yup.boolean().notRequired(),
   });
 
@@ -69,9 +51,7 @@ const CertificacionesForm = () => {
     await addCertificacion({ certificacion, client: 'admin' })
       .then(async (response) => {
         onSuccess(toast, `Certificación creada correctamente.`);
-        navigate(
-          `/contenidos/certificaciones/${response.value?.data?.id || ''}`
-        );
+        navigate(`/contenidos/certificaciones/${response.value?.data?.id || ''}`);
       })
       .catch((error) => {
         console.error('❌ Algo ha fallado...', { error });
@@ -80,18 +60,12 @@ const CertificacionesForm = () => {
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   return (
     <Flex boxSize="100%">
-      <Formik
-        enableReinitialize
-        onSubmit={submitForm}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-      >
+      <Formik enableReinitialize onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
         {(formik) => {
           const { values, handleSubmit, setFieldValue } = formik;
 
@@ -109,43 +83,18 @@ const CertificacionesForm = () => {
             >
               {formSteps[values.step - 1].body}
 
-              <Flex
-                h="90px"
-                bg="#f4f5f6"
-                p="15px 30px"
-                align="center"
-                justify="space-between"
-              >
+              <Flex h="90px" bg="#f4f5f6" p="15px 30px" align="center" justify="space-between">
                 <div />
 
                 <Flex gap="16px" fontSize="16px" fontWeight="semibold">
                   {formSteps.map(({ step }) => (
-                    <Flex
-                      key={'form-step-' + step}
-                      align="center"
-                      cursor="pointer"
-                      onClick={() => setFieldValue('step', step)}
-                    >
+                    <Flex key={'form-step-' + step} align="center" cursor="pointer" onClick={() => setFieldValue('step', step)}>
                       {values.step === step ? (
-                        <Flex
-                          bg="#3182FC"
-                          color="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex bg="#3182FC" color="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       ) : (
-                        <Flex
-                          color="#3182FC"
-                          bg="#E4EFFF"
-                          rounded="50%"
-                          boxSize="32px"
-                          align="center"
-                          justify="center"
-                        >
+                        <Flex color="#3182FC" bg="#E4EFFF" rounded="50%" boxSize="32px" align="center" justify="center">
                           {step}
                         </Flex>
                       )}
@@ -219,11 +168,7 @@ const Step1 = () => {
   return (
     <Flex bg="#fff" boxSize="100%" p="30px">
       <Flex direction="column" w="20%" mr="30px" rowGap="20px">
-        <FormInput
-          isRequired
-          name="nombre"
-          label="Nombre de la certificación"
-        />
+        <FormInput isRequired name="nombre" label="Nombre de la certificación" />
 
         <FormAsyncSelect
           isRequired
@@ -240,9 +185,7 @@ const Step1 = () => {
           label="Habilidad relacionada"
           placeholder="Escribe para buscar"
           loadOptions={loadHabilidades}
-          onCreateOption={(nombre: any) =>
-            onCreateHabilidad({ nombre: nombre })
-          }
+          onCreateOption={(nombre: any) => onCreateHabilidad({ nombre: nombre })}
         />
 
         <FormSelect
@@ -269,11 +212,7 @@ const Step1 = () => {
       </Flex>
 
       <Flex direction="column" h="100%" w="80%" rowGap="20px">
-        <FormTextEditor
-          isRequired
-          name="descripcion"
-          label="Descripción de la certificación"
-        />
+        <FormTextEditor isRequired name="descripcion" label="Descripción de la certificación" />
       </Flex>
     </Flex>
   );

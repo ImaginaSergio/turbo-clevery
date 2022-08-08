@@ -4,9 +4,9 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
 import { BiBookContent, BiBookReader, BiCog, BiShow } from 'react-icons/bi';
 
-import { IEmpresa } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
-import { getEmpresa, updateEmpresa } from '@clevery/data';
+import { IEmpresa } from 'data';
+import { onFailure } from 'ui';
+import { getEmpresa, updateEmpresa } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
 import { TabVacantes } from './TabVacantes';

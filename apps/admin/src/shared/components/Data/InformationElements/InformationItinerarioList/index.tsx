@@ -14,20 +14,14 @@ import {
   updateProyectoBoost,
   RutaItinerarioLoaded,
   RutaItinerarioTipoEnum,
-} from '@clevery/data';
-import { sortByRoadmap } from '@clevery/utils';
+} from 'data';
+import { sortByRoadmap } from 'utils';
 
 import ItinerarioListItem from './ListItem';
 import { ProyectoModal } from './ProyectoModal';
 import { LoginContext } from '../../../../context';
 
-export const ItinerarioList = ({
-  ruta,
-  updateRuta,
-}: {
-  ruta?: IRuta;
-  updateRuta: Function;
-}) => {
+export const ItinerarioList = ({ ruta, updateRuta }: { ruta?: IRuta; updateRuta: Function }) => {
   const proyectoModalState = useDisclosure();
 
   const { user } = useContext(LoginContext);
@@ -44,15 +38,11 @@ export const ItinerarioList = ({
   const refreshData = async () => {
     if (ruta?.meta?.itinerario) {
       let cursosRuta: number[] = ruta?.meta?.itinerario
-        ?.filter(
-          (i: any) => i.tipo === RutaItinerarioTipoEnum.CURSO && !isNaN(i.id)
-        )
+        ?.filter((i: any) => i.tipo === RutaItinerarioTipoEnum.CURSO && !isNaN(i.id))
         ?.map((i) => i.id);
 
       let proyectosRuta: number[] = ruta?.meta?.itinerario
-        ?.filter(
-          (i: any) => i.tipo === RutaItinerarioTipoEnum.PROYECTO && !isNaN(i.id)
-        )
+        ?.filter((i: any) => i.tipo === RutaItinerarioTipoEnum.PROYECTO && !isNaN(i.id))
         ?.map((i) => i.id);
 
       let cursosData = await getCursos({
@@ -67,13 +57,7 @@ export const ItinerarioList = ({
         query: [{ lista: '[' + proyectosRuta + ']' }, { limit: 1000 }],
       }).catch((error: any) => console.error({ error }));
 
-      setItinerario(
-        sortByRoadmap(
-          cursosData?.data || [],
-          proyectosData?.data || [],
-          ruta?.meta?.itinerario
-        )
-      );
+      setItinerario(sortByRoadmap(cursosData?.data || [], proyectosData?.data || [], ruta?.meta?.itinerario));
     }
   };
 
@@ -123,9 +107,7 @@ export const ItinerarioList = ({
   };
 
   const onUpdateProyectoBoost = async (id: number, proyectoBoost: any) => {
-    await updateProyectoBoost({ id, proyectoBoost }).catch((error) =>
-      console.error({ error })
-    );
+    await updateProyectoBoost({ id, proyectoBoost }).catch((error) => console.error({ error }));
   };
 
   /** Controlador para el drag and drop del listado
@@ -165,31 +147,17 @@ export const ItinerarioList = ({
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="ruta">
           {(provided) => (
-            <Flex
-              gap="10px"
-              direction="column"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
+            <Flex gap="10px" direction="column" {...provided.droppableProps} ref={provided.innerRef}>
               {itinerario.map((item, index) => (
-                <Draggable
-                  key={item.id}
-                  index={index}
-                  draggableId={'ruta-' + item.id}
-                >
+                <Draggable key={item.id} index={index} draggableId={'ruta-' + item.id}>
                   {(provided) => (
-                    <Box
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
+                    <Box ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                       <ItinerarioListItem
                         curso={item?.curso}
                         proyecto={item?.proyecto}
                         onDelete={() => onDelete(item.id)}
                         onSelect={() => {
-                          if (item?.tipo === 'proyecto')
-                            setProyectoToUpdate(item?.proyecto);
+                          if (item?.tipo === 'proyecto') setProyectoToUpdate(item?.proyecto);
                         }}
                       />
                     </Box>
@@ -216,15 +184,9 @@ export const ItinerarioList = ({
                     border="1px solid #E6E8EE"
                     onClick={() => setOpen('curso')}
                     leftIcon={<Icon as={BiBook} boxSize="21px" />}
-                    rightIcon={
-                      <Icon as={BiPlusCircle} ml="8px" boxSize="21px" />
-                    }
+                    rightIcon={<Icon as={BiPlusCircle} ml="8px" boxSize="21px" />}
                   >
-                    <Box
-                      fontSize="15px"
-                      lineHeight="17px"
-                      fontWeight="semibold"
-                    >
+                    <Box fontSize="15px" lineHeight="17px" fontWeight="semibold">
                       Añadir <strong>curso</strong>
                     </Box>
                   </Button>
@@ -238,15 +200,9 @@ export const ItinerarioList = ({
                     border="1px solid #E6E8EE"
                     onClick={proyectoModalState.onOpen}
                     leftIcon={<Icon as={BiBox} boxSize="21px" />}
-                    rightIcon={
-                      <Icon as={BiPlusCircle} ml="8px" boxSize="21px" />
-                    }
+                    rightIcon={<Icon as={BiPlusCircle} ml="8px" boxSize="21px" />}
                   >
-                    <Box
-                      fontSize="15px"
-                      lineHeight="17px"
-                      fontWeight="semibold"
-                    >
+                    <Box fontSize="15px" lineHeight="17px" fontWeight="semibold">
                       Añadir <strong>proyecto</strong>
                     </Box>
                   </Button>

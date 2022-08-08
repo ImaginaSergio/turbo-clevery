@@ -3,15 +3,9 @@ import { useState } from 'react';
 import { Field } from 'formik';
 import ReactMde from 'react-mde';
 import ReactMarkdown from 'react-markdown';
-import {
-  FormLabel,
-  FormControl,
-  FormErrorMessage,
-  useToast,
-  Box,
-} from '@chakra-ui/react';
+import { FormLabel, FormControl, FormErrorMessage, useToast, Box } from '@chakra-ui/react';
 
-import { onWarning } from '@clevery/utils';
+import { onWarning } from 'utils';
 
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import './FormTextarea.scss';
@@ -62,18 +56,11 @@ export const FormTextarea = ({
         if (row) recommCount++;
 
         if (row && !row.startsWith('-') && !row.startsWith('*')) {
-          error = `Cada fila debe empezar con '-' o '*'. Revisa la línea ${
-            index + 1
-          }.`;
+          error = `Cada fila debe empezar con '-' o '*'. Revisa la línea ${index + 1}.`;
         }
       });
 
-      if (recommCount > 5)
-        onWarning(
-          toast,
-          'Atención',
-          `Es recomendable un número máximo de 5 ${name}`
-        );
+      if (recommCount > 5) onWarning(toast, 'Atención', `Es recomendable un número máximo de 5 ${name}`);
     }
 
     return error;
@@ -90,15 +77,8 @@ export const FormTextarea = ({
       list.forEach((row: string, index: number) => {
         row = row.trimStart();
 
-        if (
-          row &&
-          !row.startsWith('-') &&
-          !row.startsWith('*') &&
-          !row.startsWith('#')
-        ) {
-          error = `Cada tema debe empezar con '#', y cada subtema '-' o '*'. Revisa la línea ${
-            index + 1
-          }.`;
+        if (row && !row.startsWith('-') && !row.startsWith('*') && !row.startsWith('#')) {
+          error = `Cada tema debe empezar con '#', y cada subtema '-' o '*'. Revisa la línea ${index + 1}.`;
         }
       });
     }
@@ -118,10 +98,7 @@ export const FormTextarea = ({
       }
     >
       {({ field, form }: { field: any; form: any }) => (
-        <FormControl
-          style={{ width: '100%', ...controlStyle }}
-          isInvalid={form.errors[name] && form.touched[name]}
-        >
+        <FormControl style={{ width: '100%', ...controlStyle }} isInvalid={form.errors[name] && form.touched[name]}>
           <FormLabel className="form-label" htmlFor={name}>
             {label}
             {isRequired && <Box color="cancel"> *</Box>}
@@ -133,9 +110,7 @@ export const FormTextarea = ({
             onTabChange={setSelectedTab}
             minEditorHeight={minEditorHeight}
             onChange={(e: string) => form.setFieldValue(name, e)}
-            generateMarkdownPreview={(markdown) =>
-              Promise.resolve(<ReactMarkdown children={markdown || ''} />)
-            }
+            generateMarkdownPreview={(markdown) => Promise.resolve(<ReactMarkdown children={markdown || ''} />)}
             classes={{ toolbar: hideToolbar ? 'formtextarea-hidetoolbar' : '' }}
             childProps={{
               writeButton: { tabIndex: -1 },

@@ -2,20 +2,10 @@ import { useContext, useState } from 'react';
 
 import { Box, Flex, Image } from '@chakra-ui/react';
 
-import { isRoleAllowed } from '@clevery/utils';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../../../../shared/context';
-import {
-  IUser,
-  UserRolEnum,
-  getGrupos,
-  UserRemotoEnum,
-  HabilidadTiemposEnum,
-  HabilidadExperiencia,
-} from '@clevery/data';
-import {
-  InformationInput,
-  InformationSelect,
-} from '../../../../../shared/components';
+import { IUser, UserRolEnum, getGrupos, UserRemotoEnum, HabilidadTiemposEnum, HabilidadExperiencia } from 'data';
+import { InformationInput, InformationSelect } from '../../../../../shared/components';
 
 type TabEmpleoProps = {
   user: IUser;
@@ -23,11 +13,7 @@ type TabEmpleoProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabEmpleo = ({
-  user: alumno,
-  updateValue,
-  refreshState,
-}: TabEmpleoProps) => {
+export const TabEmpleo = ({ user: alumno, updateValue, refreshState }: TabEmpleoProps) => {
   const { user } = useContext(LoginContext);
 
   const [estados, setEstados] = useState([]);
@@ -46,21 +32,14 @@ export const TabEmpleo = ({
   };
 
   return (
-    <Flex
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-      direction="column"
-    >
+    <Flex p="30px" boxSize="100%" rowGap="30px" overflow="auto" direction="column">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el alumno como su nombre, datos de contacto,
-          ajustes...
+          Información sobre el alumno como su nombre, datos de contacto, ajustes...
         </Box>
       </Flex>
 
@@ -153,45 +132,29 @@ export const TabEmpleo = ({
             </Box>
 
             {(alumno?.habilidades?.length || 0) > 0 ? (
-              alumno?.habilidades?.map(
-                (hab: HabilidadExperiencia, index: number) => (
-                  <Flex key={'habilidad-' + index} gap="15px" align="center">
-                    <Image
-                      minW="32px"
-                      boxSize="32px"
-                      src={`data:image/svg+xml;utf8,${hab.icono}`}
-                    />
+              alumno?.habilidades?.map((hab: HabilidadExperiencia, index: number) => (
+                <Flex key={'habilidad-' + index} gap="15px" align="center">
+                  <Image minW="32px" boxSize="32px" src={`data:image/svg+xml;utf8,${hab.icono}`} />
 
-                    <Box
-                      w="100%"
-                      fontWeight="medium"
-                      fontSize="16px"
-                      lineHeight="26px"
-                    >
-                      {hab.nombre}
-                    </Box>
+                  <Box w="100%" fontWeight="medium" fontSize="16px" lineHeight="26px">
+                    {hab.nombre}
+                  </Box>
 
-                    <Flex>
-                      {hab.meta.pivot_experiencia ===
-                      HabilidadTiemposEnum.MENOS_DE_UNO
-                        ? 'Menos de 1 año'
-                        : hab.meta.pivot_experiencia ===
-                          HabilidadTiemposEnum.UNO_A_TRES
-                        ? '1-3 años'
-                        : hab.meta.pivot_experiencia ===
-                          HabilidadTiemposEnum.CUATRO_A_SIETE
-                        ? '4-7 años'
-                        : hab.meta.pivot_experiencia ===
-                          HabilidadTiemposEnum.OCHO_A_DIEZ
-                        ? '8-10 años'
-                        : hab.meta.pivot_experiencia ===
-                          HabilidadTiemposEnum.MAS_DE_DIEZ
-                        ? 'Más de 10 años'
-                        : 'Sin experiencia'}
-                    </Flex>
+                  <Flex>
+                    {hab.meta.pivot_experiencia === HabilidadTiemposEnum.MENOS_DE_UNO
+                      ? 'Menos de 1 año'
+                      : hab.meta.pivot_experiencia === HabilidadTiemposEnum.UNO_A_TRES
+                      ? '1-3 años'
+                      : hab.meta.pivot_experiencia === HabilidadTiemposEnum.CUATRO_A_SIETE
+                      ? '4-7 años'
+                      : hab.meta.pivot_experiencia === HabilidadTiemposEnum.OCHO_A_DIEZ
+                      ? '8-10 años'
+                      : hab.meta.pivot_experiencia === HabilidadTiemposEnum.MAS_DE_DIEZ
+                      ? 'Más de 10 años'
+                      : 'Sin experiencia'}
                   </Flex>
-                )
-              )
+                </Flex>
+              ))
             ) : (
               <Box>Sin habilidades seleccionadas</Box>
             )}

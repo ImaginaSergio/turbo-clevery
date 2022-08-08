@@ -8,7 +8,7 @@ import {
   InformationTextEditor,
   InformationAsyncSelect,
 } from '../../../../../shared/components';
-import { CursoNivelEnum, ICurso, getUsers } from '@clevery/data';
+import { CursoNivelEnum, ICurso, getUsers } from 'data';
 
 type TabInformacionProps = {
   curso: ICurso;
@@ -41,32 +41,20 @@ export const TabInformacion = ({ curso, updateValue }: TabInformacionProps) => {
   };
 
   return (
-    <Flex
-      p="30px"
-      overflow="auto"
-      boxSize="100%"
-      rowGap="30px"
-      direction="column"
-    >
+    <Flex p="30px" overflow="auto" boxSize="100%" rowGap="30px" direction="column">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el curso, como el título del mismo, descripción,
-          logotipo, etc...
+          Información sobre el curso, como el título del mismo, descripción, logotipo, etc...
         </Box>
       </Flex>
 
       <Flex direction={{ base: 'column', lg: 'row' }} gap="30px" w="100%">
         <Flex direction="column" w="100%" gap="30px">
-          <InformationInput
-            name="titulo"
-            label="Titulo"
-            defaultValue={curso.titulo}
-            updateValue={updateValue}
-          />
+          <InformationInput name="titulo" label="Titulo" defaultValue={curso.titulo} updateValue={updateValue} />
 
           <InformationAsyncSelect
             name="profesorId"
@@ -80,11 +68,7 @@ export const TabInformacion = ({ curso, updateValue }: TabInformacionProps) => {
             }}
           />
 
-          <Flex
-            gap="30px"
-            width="100%"
-            direction={{ base: 'column', lg: 'row' }}
-          >
+          <Flex gap="30px" width="100%" direction={{ base: 'column', lg: 'row' }}>
             <InformationSelect
               name="publicado"
               label="Estado"
@@ -134,11 +118,7 @@ export const TabInformacion = ({ curso, updateValue }: TabInformacionProps) => {
             />
           </Flex>
 
-          <Flex
-            gap="30px"
-            width="100%"
-            direction={{ base: 'column', lg: 'row' }}
-          >
+          <Flex gap="30px" width="100%" direction={{ base: 'column', lg: 'row' }}>
             <InformationSelect
               name="nivel"
               label="Nivel"
@@ -172,9 +152,7 @@ export const TabInformacion = ({ curso, updateValue }: TabInformacionProps) => {
               defaultValue={
                 curso?.habilitarCodemirror
                   ? {
-                      label: curso?.habilitarCodemirror
-                        ? 'CodeMirror Habilitado'
-                        : 'CodeMirror Deshabilitado',
+                      label: curso?.habilitarCodemirror ? 'CodeMirror Habilitado' : 'CodeMirror Deshabilitado',
                       value: curso?.habilitarCodemirror,
                     }
                   : undefined
@@ -196,12 +174,7 @@ export const TabInformacion = ({ curso, updateValue }: TabInformacionProps) => {
         </Flex>
 
         <Flex direction="column" w="100%" gap="30px">
-          <InformationFilepond
-            name="imagen"
-            label="Portada"
-            putEP={'/godAPI/cursos/' + curso.id}
-            isDisabled={!curso?.id}
-          />
+          <InformationFilepond name="imagen" label="Portada" putEP={'/godAPI/cursos/' + curso.id} isDisabled={!curso?.id} />
 
           <InformationMde
             allowCopy

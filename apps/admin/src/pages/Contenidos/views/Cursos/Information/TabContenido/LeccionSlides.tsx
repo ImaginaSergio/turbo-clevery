@@ -1,19 +1,9 @@
 import { Flex } from '@chakra-ui/react';
 
-import { ILeccion, LeccionTipoEnum } from '@clevery/data';
-import {
-  InformationInput,
-  InformationSelect,
-  InformationTextEditor,
-} from '../../../../../../shared/components';
+import { ILeccion, LeccionTipoEnum } from 'data';
+import { InformationInput, InformationSelect, InformationTextEditor } from '../../../../../../shared/components';
 
-export const LeccionSlides = ({
-  leccion,
-  updateValue,
-}: {
-  leccion: ILeccion;
-  updateValue: (e?: any) => any;
-}) => (
+export const LeccionSlides = ({ leccion, updateValue }: { leccion: ILeccion; updateValue: (e?: any) => any }) => (
   <Flex direction="column" w="100%" gap="30px">
     <Flex w="100%" gap="30px" direction={{ lg: 'column', xl: 'row' }}>
       <InformationInput

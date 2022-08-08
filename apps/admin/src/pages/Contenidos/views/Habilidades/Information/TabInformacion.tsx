@@ -2,14 +2,10 @@ import { useContext } from 'react';
 
 import { Box, Flex } from '@chakra-ui/react';
 
-import { isRoleAllowed } from '@clevery/utils';
-import { getHabilidades, IHabilidad, UserRolEnum } from '@clevery/data';
+import { isRoleAllowed } from 'utils';
+import { getHabilidades, IHabilidad, UserRolEnum } from 'data';
 
-import {
-  InformationMde,
-  InformationSelect,
-  InformationAsyncSelect,
-} from '../../../../../shared/components';
+import { InformationMde, InformationSelect, InformationAsyncSelect } from '../../../../../shared/components';
 import { LoginContext } from '../../../../../shared/context';
 
 type TabInformacionProps = {
@@ -17,10 +13,7 @@ type TabInformacionProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  habilidad,
-  updateValue,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ habilidad, updateValue }: TabInformacionProps) => {
   const { user } = useContext(LoginContext);
 
   const loadHabilidadesByNombre = async (value: string) => {
@@ -43,8 +36,7 @@ export const TabInformacion = ({
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre la habilidad, como su título, contenido y el icono
-          de la misma.
+          Información sobre la habilidad, como su título, contenido y el icono de la misma.
         </Box>
       </Flex>
 

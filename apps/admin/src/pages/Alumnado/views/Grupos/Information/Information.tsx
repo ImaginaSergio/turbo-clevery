@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import {
-  BiBadgeCheck,
-  BiBookBookmark,
-  BiGroup,
-  BiIdCard,
-} from 'react-icons/bi';
+import { BiBadgeCheck, BiBookBookmark, BiGroup, BiIdCard } from 'react-icons/bi';
 import { Flex, useToast, Spinner, Center } from '@chakra-ui/react';
 
-import { IGrupo, getGrupoByID, updateGrupo } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
+import { IGrupo, getGrupoByID, updateGrupo } from 'data';
+import { onFailure } from 'ui';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
 import { TabCursos } from './TabCursos';
@@ -121,19 +116,11 @@ export default function GruposInformation() {
             <Spinner boxSize="40px" />
           </Center>
         ) : tab === Tab.CURSOS ? (
-          <TabCursos
-            grupo={grupo}
-            updateValue={updateValue}
-            refreshState={refreshState}
-          />
+          <TabCursos grupo={grupo} updateValue={updateValue} refreshState={refreshState} />
         ) : tab === Tab.ALUMNOS ? (
           <TabAlumnos grupo={grupo} updateValue={updateValue} />
         ) : tab === Tab.CERTIFICACIONES ? (
-          <TabCertificaciones
-            grupo={grupo}
-            updateValue={updateValue}
-            refreshState={refreshState}
-          />
+          <TabCertificaciones grupo={grupo} updateValue={updateValue} refreshState={refreshState} />
         ) : (
           <TabDetalles grupo={grupo} updateValue={updateValue} />
         )}

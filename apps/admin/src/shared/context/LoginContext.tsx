@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { IUser } from '@clevery/data';
+import { IUser } from 'data';
 
 interface ContextProps {
   token?: string;
@@ -7,11 +7,7 @@ interface ContextProps {
   user: IUser | null;
   setUser: (e: any) => any;
 
-  login: (
-    token: { token: string; type?: string },
-    userId: number,
-    saveInStorage: boolean
-  ) => any;
+  login: (token: { token: string; type?: string }, userId: number, saveInStorage: boolean) => any;
   logout: () => any;
 }
 
@@ -21,10 +17,6 @@ export const LoginContext = createContext<ContextProps>({
   token: undefined,
   setToken: (e: any) => {},
 
-  login: (
-    token: { token: string; type?: string },
-    userId: number,
-    saveInStorage: boolean
-  ) => {},
+  login: (token: { token: string; type?: string }, userId: number, saveInStorage: boolean) => {},
   logout: () => {},
 });

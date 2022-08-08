@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Box,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from '@chakra-ui/react';
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
-import { fmtMnts } from '@clevery/utils';
-import { ICurso, IExamen, IPregunta, IRespuesta } from '@clevery/data';
+import { fmtMnts } from 'utils';
+import { ICurso, IExamen, IPregunta, IRespuesta } from 'data';
 import {
   InformationDragDropList,
   InformationInput,
@@ -34,7 +26,7 @@ import {
   updateExamen,
   updatePregunta,
   updateRespuesta,
-} from '@clevery/data';
+} from 'data';
 
 type TabTestsProps = {
   curso: ICurso;
@@ -51,11 +43,7 @@ export const TabTests = ({ curso }: TabTestsProps) => {
   const refreshState = async () => {
     const _tests = await getExamenes({
       client: 'admin',
-      query: [
-        { limit: 100 },
-        { curso_id: curso?.id },
-        { es_certificacion: false },
-      ],
+      query: [{ limit: 100 }, { curso_id: curso?.id }, { es_certificacion: false }],
     });
 
     setTests(_tests?.data || []);
@@ -64,9 +52,7 @@ export const TabTests = ({ curso }: TabTestsProps) => {
   const updateTestValue = (value: any) => {
     if (!test?.id) return Promise.reject('test_id es indefinido');
 
-    return updateExamen({ id: test.id, examen: value, client: 'admin' }).then(
-      () => refreshState()
-    );
+    return updateExamen({ id: test.id, examen: value, client: 'admin' }).then(() => refreshState());
   };
 
   const onNewTest = async () => {
@@ -103,13 +89,7 @@ export const TabTests = ({ curso }: TabTestsProps) => {
   };
 
   return (
-    <Flex
-      p="30px"
-      gap="30px"
-      boxSize="100%"
-      overflow="auto"
-      direction={{ base: 'column', lg: 'row' }}
-    >
+    <Flex p="30px" gap="30px" boxSize="100%" overflow="auto" direction={{ base: 'column', lg: 'row' }}>
       <Flex direction="column" minW="400px" gap="30px">
         <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
           <Box fontSize="18px" fontWeight="semibold">
@@ -133,9 +113,7 @@ export const TabTests = ({ curso }: TabTestsProps) => {
       <Flex direction="column" w="100%" gap="30px">
         <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
           <Box fontSize="18px" fontWeight="semibold">
-            {test
-              ? `Contenido del test - ${test.nombre}`
-              : 'Sin test seleccionado'}
+            {test ? `Contenido del test - ${test.nombre}` : 'Sin test seleccionado'}
           </Box>
 
           <Box fontSize="14px" fontWeight="medium" color="#84889A">
@@ -189,13 +167,7 @@ export const TabTests = ({ curso }: TabTestsProps) => {
   );
 };
 
-const TabTestDetalles = ({
-  test,
-  updateValue,
-}: {
-  test?: IExamen;
-  updateValue: (value: any) => void;
-}) => {
+const TabTestDetalles = ({ test, updateValue }: { test?: IExamen; updateValue: (value: any) => void }) => {
   return (
     <Flex w="100%" gap="30px" direction={{ md: 'column', xl: 'row' }}>
       <Flex direction="column" w="100%" gap="30px">
@@ -310,25 +282,19 @@ const TabTestPreguntas = ({ test }: { test?: IExamen }) => {
   const onRemovePregunta = (preguntaId?: number) => {
     if (!preguntaId) return Promise.reject('preguntaId es indefinido');
 
-    removePregunta({ id: preguntaId, client: 'admin' }).then(() =>
-      refreshState()
-    );
+    removePregunta({ id: preguntaId, client: 'admin' }).then(() => refreshState());
   };
 
   const onRemoveRespuesta = (respuestaId?: number) => {
     if (!respuestaId) return Promise.reject('respuestaId es indefinido');
 
-    removeRespuesta({ id: respuestaId, client: 'admin' }).then(() =>
-      refreshState()
-    );
+    removeRespuesta({ id: respuestaId, client: 'admin' }).then(() => refreshState());
   };
 
   const onUpdatePregunta = (preguntaId?: number, value?: any) => {
     if (!preguntaId) return Promise.reject('preguntaId es indefinido');
 
-    updatePregunta({ id: preguntaId, pregunta: value, client: 'admin' }).then(
-      () => refreshState()
-    );
+    updatePregunta({ id: preguntaId, pregunta: value, client: 'admin' }).then(() => refreshState());
   };
 
   const onUpdateRespuesta = (respuestaId?: number, value?: any) => {
@@ -357,8 +323,7 @@ const TabTestPreguntas = ({ test }: { test?: IExamen }) => {
             isCheck: resp.correcta,
             onDeleteRespuesta: () => onRemoveRespuesta(resp.id),
             onEditRespuesta: (value: any) => onUpdateRespuesta(resp.id, value),
-            onCheckRespuesta: () =>
-              onUpdateRespuesta(resp.id, { correcta: !resp.correcta }),
+            onCheckRespuesta: () => onUpdateRespuesta(resp.id, { correcta: !resp.correcta }),
           })) || [],
     }));
   };

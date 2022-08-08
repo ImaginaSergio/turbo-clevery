@@ -2,12 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { Box, Flex, useToast } from '@chakra-ui/react';
 
-import { onFailure } from '@clevery/utils';
-import { IProceso, IRuta, getRutaByID, updateRuta } from '@clevery/data';
-import {
-  InformationInput,
-  ItinerarioList,
-} from '../../../../../shared/components';
+import { onFailure } from 'ui';
+import { IProceso, IRuta, getRutaByID, updateRuta } from 'data';
+import { InformationInput, ItinerarioList } from '../../../../../shared/components';
 
 type TabRutaProps = {
   proceso: IProceso;
@@ -49,21 +46,14 @@ export const TabRuta = ({ proceso, updateValue }: TabRutaProps) => {
   };
 
   return (
-    <Flex
-      direction="column"
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-    >
+    <Flex direction="column" p="30px" boxSize="100%" rowGap="30px" overflow="auto">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Hoja de ruta del proceso
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el proceso, como el título del mismo, descripción,
-          logotipo, etc...
+          Información sobre el proceso, como el título del mismo, descripción, logotipo, etc...
         </Box>
       </Flex>
 

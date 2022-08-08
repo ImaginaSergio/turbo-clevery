@@ -6,22 +6,16 @@ import stc from 'string-to-color';
 import { format } from 'date-fns';
 import { Flex, Icon, Badge } from '@chakra-ui/react';
 
-import {
-  PageHeader,
-  PageSidebar,
-  textRowTemplate,
-} from '../../../../shared/components';
-import { capitalizeFirst } from '@clevery/utils';
-import { Avatar, OpenColumn, OpenTable } from '@clevery/ui';
-import { BoostRemotoEnum, IBoost, useBoosts } from '@clevery/data';
+import { PageHeader, PageSidebar, textRowTemplate } from '../../../../shared/components';
+import { capitalizeFirst } from 'utils';
+import { Avatar, OpenColumn, OpenTable } from 'ui';
+import { BoostRemotoEnum, IBoost, useBoosts } from 'data';
 
 export default function BoostsTable() {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { boosts, isLoading } = useBoosts({
     client: 'admin',
@@ -36,8 +30,7 @@ export default function BoostsTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/clientes/boosts/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/clientes/boosts/' + e?.id || '');
 
   //?Columnas
   const columns: OpenColumn[] = [
@@ -50,13 +43,7 @@ export default function BoostsTable() {
       render: (rowData: IBoost) =>
         textRowTemplate({
           prefix: {
-            content: (
-              <Avatar
-                size="40px"
-                name={rowData?.titulo}
-                src={`data:image/svg+xml;utf8,${rowData?.icono}`}
-              />
-            ),
+            content: <Avatar size="40px" name={rowData?.titulo} src={`data:image/svg+xml;utf8,${rowData?.icono}`} />,
           },
           content: {
             text: rowData?.titulo || '',
@@ -92,9 +79,7 @@ export default function BoostsTable() {
       field: 'createdAt',
       header: 'Fecha creación',
       sortable: true,
-      render: (rowData: IBoost) => (
-        <Flex>{format(new Date(rowData?.createdAt), 'dd/MM/yyyy')}</Flex>
-      ),
+      render: (rowData: IBoost) => <Flex>{format(new Date(rowData?.createdAt), 'dd/MM/yyyy')}</Flex>,
     },
   ];
 

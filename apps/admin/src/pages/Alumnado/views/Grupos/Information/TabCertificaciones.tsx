@@ -5,13 +5,10 @@ import { es } from 'date-fns/locale';
 import { BiPlus } from 'react-icons/bi';
 import { Box, Button, Flex, Icon, useDisclosure } from '@chakra-ui/react';
 
-import {
-  InformationTable,
-  textRowTemplate,
-} from '../../../../../shared/components';
-import { isRoleAllowed } from '@clevery/utils';
+import { InformationTable, textRowTemplate } from '../../../../../shared/components';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../../../../shared/context';
-import { ICurso, IGrupo, UserRolEnum } from '@clevery/data';
+import { ICurso, IGrupo, UserRolEnum } from 'data';
 import { CertificacionesGruposModal } from '../../../components/CertificacionesGruposModal';
 
 type TabCertificacionesProps = {
@@ -20,43 +17,26 @@ type TabCertificacionesProps = {
   refreshState: () => void;
 };
 
-export const TabCertificaciones = ({
-  grupo,
-  updateValue,
-  refreshState,
-}: TabCertificacionesProps) => {
+export const TabCertificaciones = ({ grupo, updateValue, refreshState }: TabCertificacionesProps) => {
   const [certificacionSelected, setCertificacionSelected] = useState<ICurso>();
 
   const { user } = useContext(LoginContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex
-      p="30px"
-      boxSize="100%"
-      overflow="auto"
-      rowGap="30px"
-      direction="column"
-    >
+    <Flex p="30px" boxSize="100%" overflow="auto" rowGap="30px" direction="column">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Listado de certificaciones
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Listado de los certificaciones asociados al grupo, accesibles para
-          todos los alumnos dentro de este.
+          Listado de los certificaciones asociados al grupo, accesibles para todos los alumnos dentro de este.
         </Box>
       </Flex>
 
       <Flex direction="column" w="100%">
-        <Flex
-          minH="fit-content"
-          w="100%"
-          gap="8px"
-          justify="space-between"
-          align="center"
-        >
+        <Flex minH="fit-content" w="100%" gap="8px" justify="space-between" align="center">
           <Box fontSize="15px" fontWeight="medium">
             Listado de certificaciones
           </Box>
@@ -99,11 +79,7 @@ export const TabCertificaciones = ({
               render: (rowData: any) =>
                 textRowTemplate({
                   content: {
-                    text: format(
-                      new Date(rowData?.meta?.pivot_fecha_inicio),
-                      'dd LLL yyyy',
-                      { locale: es }
-                    ),
+                    text: format(new Date(rowData?.meta?.pivot_fecha_inicio), 'dd LLL yyyy', { locale: es }),
                   },
                 }),
             },
@@ -114,11 +90,7 @@ export const TabCertificaciones = ({
               render: (rowData: any) =>
                 textRowTemplate({
                   content: {
-                    text: format(
-                      new Date(rowData?.meta?.pivot_fecha_fin),
-                      'dd LLL yyyy',
-                      { locale: es }
-                    ),
+                    text: format(new Date(rowData?.meta?.pivot_fecha_fin), 'dd LLL yyyy', { locale: es }),
                   },
                 }),
             },

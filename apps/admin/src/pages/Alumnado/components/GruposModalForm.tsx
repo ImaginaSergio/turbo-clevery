@@ -1,32 +1,13 @@
 import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { BiX, BiUser, BiGroup } from 'react-icons/bi';
-import {
-  useToast,
-  Icon,
-  Flex,
-  Modal,
-  Button,
-  ModalBody,
-  ModalHeader,
-  ModalContent,
-  ModalOverlay,
-  Box,
-} from '@chakra-ui/react';
+import { useToast, Icon, Flex, Modal, Button, ModalBody, ModalHeader, ModalContent, ModalOverlay, Box } from '@chakra-ui/react';
 
-import { addGrupo, getRutas } from '@clevery/data';
-import { onFailure, onSuccess } from '@clevery/utils';
-import {
-  FormAsyncSelect,
-  FormInput,
-  FormTextarea,
-} from '../../../shared/components';
+import { addGrupo, getRutas } from 'data';
+import { onFailure, onSuccess } from 'ui';
+import { FormAsyncSelect, FormInput, FormTextarea } from '../../../shared/components';
 
-export default function GruposModalForm({
-  state,
-}: {
-  state: { isOpen: boolean; onClose: () => void };
-}) {
+export default function GruposModalForm({ state }: { state: { isOpen: boolean; onClose: () => void } }) {
   const toast = useToast();
 
   const validationSchema = Yup.object().shape({
@@ -96,8 +77,7 @@ export default function GruposModalForm({
         });
     } else {
       const userPromises = [];
-      const grupos: { descripcion: string; nombre: string; rutaId: number }[] =
-        [];
+      const grupos: { descripcion: string; nombre: string; rutaId: number }[] = [];
 
       values.grupos.split('\n').map((groupRaw: string) => {
         const user = groupRaw.split(',');
@@ -127,8 +107,7 @@ export default function GruposModalForm({
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   return (
@@ -140,20 +119,11 @@ export default function GruposModalForm({
           <Flex justify="space-between" align="center">
             <Box fontSize="19px">Añadir grupos</Box>
 
-            <Icon
-              as={BiX}
-              boxSize="32px"
-              cursor="pointer"
-              onClick={state.onClose}
-            />
+            <Icon as={BiX} boxSize="32px" cursor="pointer" onClick={state.onClose} />
           </Flex>
         </ModalHeader>
 
-        <Formik
-          onSubmit={submitForm}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
+        <Formik onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
           {(formik) => {
             const { values, handleSubmit, setFieldValue } = formik;
 
@@ -161,12 +131,7 @@ export default function GruposModalForm({
               <FormikForm onSubmit={handleSubmit} onKeyDown={onKeyDown}>
                 <ModalBody p="30px">
                   <Flex direction="column" gap="30px">
-                    <Flex
-                      bg="#F0F1F5"
-                      p="4px"
-                      rounded="8px"
-                      fontWeight="semibold"
-                    >
+                    <Flex bg="#F0F1F5" p="4px" rounded="8px" fontWeight="semibold">
                       <Button
                         w="100%"
                         rounded="6px"
@@ -200,18 +165,9 @@ export default function GruposModalForm({
                       />
                     ) : (
                       <>
-                        <FormInput
-                          isRequired
-                          name="nombre"
-                          label="Nombre"
-                          placeholder="Introduce un nombre"
-                        />
+                        <FormInput isRequired name="nombre" label="Nombre" placeholder="Introduce un nombre" />
 
-                        <FormTextarea
-                          name="descripcion"
-                          label="Descripción"
-                          placeholder="Introduce la descripción"
-                        />
+                        <FormTextarea name="descripcion" label="Descripción" placeholder="Introduce la descripción" />
                       </>
                     )}
 
@@ -223,13 +179,7 @@ export default function GruposModalForm({
                       placeholder="Escribe para buscar"
                     />
 
-                    <Button
-                      w="100%"
-                      bg="primary"
-                      rounded="12px"
-                      color="white"
-                      type="submit"
-                    >
+                    <Button w="100%" bg="primary" rounded="12px" color="white" type="submit">
                       Subir
                     </Button>
                   </Flex>

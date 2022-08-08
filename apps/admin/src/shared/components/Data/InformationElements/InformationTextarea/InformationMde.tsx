@@ -6,7 +6,7 @@ import { BiClipboard } from 'react-icons/bi';
 import { Spinner, Icon, useToast, Flex } from '@chakra-ui/react';
 import { AiOutlineFileSync, AiOutlineCloudSync } from 'react-icons/ai';
 
-import { onFailure, onSuccess } from '@clevery/utils';
+import { onFailure, onSuccess } from 'ui';
 
 import 'react-mde/lib/styles/css/react-mde-all.css';
 
@@ -76,11 +76,7 @@ export const InformationMde = ({
 
   const syncData = () => {
     if (value) {
-      onFailure(
-        toast,
-        'Error al sincronizar',
-        '¡Borra toda la información actual para sincronizar!'
-      );
+      onFailure(toast, 'Error al sincronizar', '¡Borra toda la información actual para sincronizar!');
     } else {
       setUpdate('loading');
       setValue(valueToSync);
@@ -92,8 +88,7 @@ export const InformationMde = ({
     }
   };
 
-  const generateMarkdownPreview = (markdown: any) =>
-    Promise.resolve(<ReactMarkdown children={markdown || ''} />);
+  const generateMarkdownPreview = (markdown: any) => Promise.resolve(<ReactMarkdown children={markdown || ''} />);
 
   return (
     <Flex direction="column" fontSize="14px" style={style}>

@@ -1,13 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  BiBookContent,
-  BiGroup,
-  BiPieChartAlt2,
-  BiTask,
-  BiPieChartAlt,
-} from 'react-icons/bi';
+import { BiBookContent, BiGroup, BiPieChartAlt2, BiTask, BiPieChartAlt } from 'react-icons/bi';
 import * as Locale from 'date-fns/esm/locale';
 import { format, formatDistance } from 'date-fns/esm';
 import { Flex, Box, useToast, useDisclosure } from '@chakra-ui/react';
@@ -21,17 +15,11 @@ import {
   LeccionTipoEnum,
   removeEntregable,
   EntregableEstadoEnum,
-} from '@clevery/data';
-import { OpenColumn, OpenTable } from '@clevery/ui';
-import { isRoleAllowed, onFailure, onSuccess_Undo } from '@clevery/utils';
+} from 'data';
+import { isRoleAllowed } from 'utils';
+import { OpenColumn, OpenTable, onFailure, onSuccess_Undo } from 'ui';
 
-import {
-  PageHeader,
-  PageSidebar,
-  DeleteModal,
-  rowQuickActions,
-  badgeRowTemplate,
-} from '../../../../shared/components';
+import { PageHeader, PageSidebar, DeleteModal, rowQuickActions, badgeRowTemplate } from '../../../../shared/components';
 import { LoginContext } from '../../../../shared/context';
 
 export default function EjerciciosTable() {
@@ -44,9 +32,7 @@ export default function EjerciciosTable() {
   const [elementSelected, setElementSelected] = useState<IEntregable>();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    `&page=${currentPage}`
-  );
+  const [queryString, setQueryString] = useState<string>(`&page=${currentPage}`);
 
   const { data, isLoading } = useEntregables({
     client: 'admin',
@@ -66,12 +52,9 @@ export default function EjerciciosTable() {
       client: 'admin',
       treatData: false,
       query: [{ titulo: value }],
-    }).then((res) =>
-      res?.data?.map((curso: any) => ({ value: curso.id, label: curso.titulo }))
-    );
+    }).then((res) => res?.data?.map((curso: any) => ({ value: curso.id, label: curso.titulo })));
 
-  const onRowClick = async (e: any) =>
-    navigate('/alumnado/ejercicios/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/alumnado/ejercicios/' + e?.id || '');
 
   const loadUsers = (value: string) =>
     getUsers({ query: [{ nombre: value }], client: 'admin' }).then((res) =>
@@ -106,22 +89,14 @@ export default function EjerciciosTable() {
       field: 'fecha_entrega',
       header: 'Fecha de entrega',
       sortable: true,
-      render: (rowData) => (
-        <Box>{format(new Date(rowData.updatedAt), 'dd/MM/yyy')}</Box>
-      ),
+      render: (rowData) => <Box>{format(new Date(rowData.updatedAt), 'dd/MM/yyy')}</Box>,
     },
     {
       key: 'tiempo_empleado',
       field: 'tiempo_empleado',
       header: 'Tiempo empleado',
       render: (rowData) => (
-        <Box>
-          {formatDistance(
-            new Date(rowData.updatedAt),
-            new Date(rowData.createdAt),
-            { locale: Locale.es }
-          )}
-        </Box>
+        <Box>{formatDistance(new Date(rowData.updatedAt), new Date(rowData.createdAt), { locale: Locale.es })}</Box>
       ),
     },
     {
@@ -139,16 +114,10 @@ export default function EjerciciosTable() {
           badges: [
             {
               content: {
-                text:
-                  rowData?.leccion?.tipo === LeccionTipoEnum.ENTREGABLE
-                    ? 'ENTREGABLE'
-                    : 'AUTOCORRECION',
+                text: rowData?.leccion?.tipo === LeccionTipoEnum.ENTREGABLE ? 'ENTREGABLE' : 'AUTOCORRECION',
               },
               style: {
-                background:
-                  rowData?.leccion?.tipo === LeccionTipoEnum.ENTREGABLE
-                    ? '#2EDDBE'
-                    : '#DDB72E',
+                background: rowData?.leccion?.tipo === LeccionTipoEnum.ENTREGABLE ? '#2EDDBE' : '#DDB72E',
               },
             },
           ],
@@ -178,21 +147,17 @@ export default function EjerciciosTable() {
             {
               content: {
                 text:
-                  rowData?.estado === EntregableEstadoEnum.CORRECTO ||
-                  rowData?.estado === EntregableEstadoEnum.ERROR
+                  rowData?.estado === EntregableEstadoEnum.CORRECTO || rowData?.estado === EntregableEstadoEnum.ERROR
                     ? 'CORREGIDO'
-                    : rowData?.estado ===
-                      EntregableEstadoEnum.PENDIENTE_CORRECCION
+                    : rowData?.estado === EntregableEstadoEnum.PENDIENTE_CORRECCION
                     ? 'PENDIENTE DE CORRECCIÓN'
                     : 'PENDIENTE DE ENTREGA',
               },
               style: {
                 background:
-                  rowData?.estado === EntregableEstadoEnum.CORRECTO ||
-                  rowData?.estado === EntregableEstadoEnum.ERROR
+                  rowData?.estado === EntregableEstadoEnum.CORRECTO || rowData?.estado === EntregableEstadoEnum.ERROR
                     ? '#2EDDBE'
-                    : rowData?.estado ===
-                      EntregableEstadoEnum.PENDIENTE_CORRECCION
+                    : rowData?.estado === EntregableEstadoEnum.PENDIENTE_CORRECCION
                     ? '#DDB72E'
                     : 'var(--chakra-colors-gray_4)',
               },
@@ -304,8 +269,7 @@ export default function EjerciciosTable() {
       <DeleteModal
         title={
           <div>
-            ¿Estás seguro de que quieres eliminar el ejercicio de{' '}
-            <strong>{elementSelected?.user?.nombre}</strong>?
+            ¿Estás seguro de que quieres eliminar el ejercicio de <strong>{elementSelected?.user?.nombre}</strong>?
           </div>
         }
         isOpen={isOpen}
@@ -316,17 +280,11 @@ export default function EjerciciosTable() {
             () =>
               removeEntregable({ id: +(elementSelected?.id || 0) })
                 //.then(() => tableRef?.current?.refreshData())
-                .catch((error: any) =>
-                  onFailure(toast, error.title, error.message)
-                ),
+                .catch((error: any) => onFailure(toast, error.title, error.message)),
             5000
           );
 
-          onSuccess_Undo(
-            toast,
-            `Se va a eliminar el ejercicio ${elementSelected?.user?.nombre}`,
-            timeout
-          );
+          onSuccess_Undo(toast, `Se va a eliminar el ejercicio ${elementSelected?.user?.nombre}`, timeout);
 
           onClose();
         }}

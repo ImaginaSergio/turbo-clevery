@@ -2,28 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { Flex, toast } from '@chakra-ui/react';
 
-import { onFailure } from '@clevery/utils';
-import {
-  addSolucion,
-  getSoluciones,
-  ILeccion,
-  ISolucion,
-  LeccionTipoEnum,
-  updateSolucion,
-} from '@clevery/data';
-import {
-  InformationInput,
-  InformationSelect,
-  InformationTextEditor,
-} from '../../../../../../shared/components';
+import { onFailure } from 'ui';
+import { addSolucion, getSoluciones, ILeccion, ISolucion, LeccionTipoEnum, updateSolucion } from 'data';
+import { InformationInput, InformationSelect, InformationTextEditor } from '../../../../../../shared/components';
 
-export const LeccionEntregable = ({
-  leccion,
-  updateValue,
-}: {
-  leccion: ILeccion;
-  updateValue: (e?: any) => any;
-}) => {
+export const LeccionEntregable = ({ leccion, updateValue }: { leccion: ILeccion; updateValue: (e?: any) => any }) => {
   const [solucion, setSolucion] = useState<ISolucion>();
 
   useEffect(() => {

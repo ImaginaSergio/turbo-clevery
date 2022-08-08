@@ -2,14 +2,10 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Flex, Box } from '@chakra-ui/react';
 
-import { Avatar } from '@clevery/ui';
-import { getRutas, IGrupo } from '@clevery/data';
+import { Avatar } from 'ui';
+import { getRutas, IGrupo } from 'data';
 
-import {
-  textRowTemplate,
-  InformationTable,
-  progressRowTemplate,
-} from '../../../../../shared/components';
+import { textRowTemplate, InformationTable, progressRowTemplate } from '../../../../../shared/components';
 
 type TabAlumnosProps = {
   grupo: IGrupo;
@@ -34,8 +30,7 @@ export const TabAlumnos = ({ grupo, updateValue }: TabAlumnosProps) => {
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre los {grupo?.users?.length || 0} alumnos dentro del
-          grupo.
+          Información sobre los {grupo?.users?.length || 0} alumnos dentro del grupo.
         </Box>
       </Flex>
 
@@ -60,9 +55,7 @@ export const TabAlumnos = ({ grupo, updateValue }: TabAlumnosProps) => {
                       size="40px"
                       name={rowData.fullName || 'Avatar del usuario'}
                       src={rowData.avatar?.url}
-                      colorVariant={
-                        (rowData?.id || 0) % 2 == 1 ? 'hot' : 'cold'
-                      }
+                      colorVariant={(rowData?.id || 0) % 2 == 1 ? 'hot' : 'cold'}
                     />
                   ),
                 },
@@ -89,10 +82,7 @@ export const TabAlumnos = ({ grupo, updateValue }: TabAlumnosProps) => {
             render: (rowData: any) =>
               progressRowTemplate({
                 content: {
-                  value: Math.min(
-                    100,
-                    (rowData?.meta?.porcentajeCompletadoRutaPro || 0) * 100
-                  ),
+                  value: Math.min(100, (rowData?.meta?.porcentajeCompletadoRutaPro || 0) * 100),
                   label: rowData?.progresoGlobal?.ruta?.nombre || '-',
                 },
               }),

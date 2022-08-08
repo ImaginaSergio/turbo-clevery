@@ -5,17 +5,16 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { Flex, Box, Button, useToast, useColorMode } from '@chakra-ui/react';
 
-import { login } from '@clevery/data';
-import { errorHandler, onFailure } from '@clevery/utils';
+import { login } from 'data';
+import { onFailure } from 'ui';
+import { errorHandler } from 'utils';
 
 import { LoginContext } from '../../../shared/context';
 import { FormInput } from '../../../shared/components';
 import { LogoOBFullWhite } from '../../../assets/logos/openbootcamp/LogoOBFullWhite';
 import { LogoOMFullWhite } from '../../../assets/logos/openmarketers/LogoOMFullWhite';
-import { LogoImaginaFullWhite } from '../../../assets/logos/imagina/LogoImaginaFullWhite';
-import { LogoOBFullBlack } from 'apps/campus/src/assets/logos/openbootcamp/LogoOBFullBlack';
-import { LogoOMFullBlack } from 'apps/campus/src/assets/logos/openmarketers/LogoOMFullBlack';
-import { LogoImaginaFullBlack } from 'apps/campus/src/assets/logos/imagina/LogoImaginaFullBlack';
+import { LogoOBFullBlack } from '../../../assets/logos/openbootcamp/LogoOBFullBlack';
+import { LogoOMFullBlack } from '../../../assets/logos/openmarketers/LogoOMFullBlack';
 
 const LoginForm = () => {
   const toast = useToast();

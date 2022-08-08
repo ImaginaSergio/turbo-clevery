@@ -2,14 +2,10 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Flex, Box } from '@chakra-ui/react';
 
-import { Avatar } from '@clevery/ui';
-import { getRutas, IBoost } from '@clevery/data';
+import { Avatar } from 'ui';
+import { getRutas, IBoost } from 'data';
 
-import {
-  textRowTemplate,
-  InformationTable,
-  progressRowTemplate,
-} from '../../../../../shared/components';
+import { textRowTemplate, InformationTable, progressRowTemplate } from '../../../../../shared/components';
 
 type TabInscritosProps = {
   boost: IBoost;
@@ -33,8 +29,7 @@ export const TabInscritos = ({ boost }: TabInscritosProps) => {
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre los {boost?.users?.length || 0} alumnos inscritos en
-          el Boost.
+          Información sobre los {boost?.users?.length || 0} alumnos inscritos en el Boost.
         </Box>
       </Flex>
 
@@ -56,9 +51,7 @@ export const TabInscritos = ({ boost }: TabInscritosProps) => {
                       size="40px"
                       name={rowData.fullName || 'Avatar del usuario'}
                       src={rowData.avatar?.url}
-                      colorVariant={
-                        (rowData?.id || 0) % 2 == 1 ? 'hot' : 'cold'
-                      }
+                      colorVariant={(rowData?.id || 0) % 2 == 1 ? 'hot' : 'cold'}
                     />
                   ),
                 },
@@ -72,11 +65,7 @@ export const TabInscritos = ({ boost }: TabInscritosProps) => {
               textRowTemplate({
                 content: {
                   text: rowData?.meta?.fechaInscripcion
-                    ? format(
-                        new Date(rowData?.meta?.fechaInscripcion),
-                        'dd LLL yyyy',
-                        { locale: es }
-                      )
+                    ? format(new Date(rowData?.meta?.fechaInscripcion), 'dd LLL yyyy', { locale: es })
                     : '-',
                 },
               }),
@@ -92,10 +81,7 @@ export const TabInscritos = ({ boost }: TabInscritosProps) => {
             render: (rowData: any) =>
               progressRowTemplate({
                 content: {
-                  value: Math.min(
-                    100,
-                    (rowData?.meta?.porcentajeCompletadoRutaPro || 0) * 100
-                  ),
+                  value: Math.min(100, (rowData?.meta?.porcentajeCompletadoRutaPro || 0) * 100),
                   label: rowData?.progresoGlobal?.ruta?.nombre || '-',
                 },
               }),

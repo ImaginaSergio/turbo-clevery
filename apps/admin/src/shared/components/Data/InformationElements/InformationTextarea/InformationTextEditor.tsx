@@ -4,8 +4,8 @@ import { BiClipboard } from 'react-icons/bi';
 import { Spinner, Icon, useToast, Flex } from '@chakra-ui/react';
 import { AiOutlineFileSync, AiOutlineCloudSync } from 'react-icons/ai';
 
-import { OpenEditor } from '@clevery/ui';
-import { onFailure, onSuccess } from '@clevery/utils';
+import { OpenEditor } from 'ui';
+import { onFailure, onSuccess } from 'ui';
 
 type InformationTextEditorProps = {
   name: string;
@@ -56,11 +56,7 @@ export const InformationTextEditor = ({
 
   const syncData = () => {
     if (value) {
-      onFailure(
-        toast,
-        'Error al sincronizar',
-        '¡Borra toda la información actual para sincronizar!'
-      );
+      onFailure(toast, 'Error al sincronizar', '¡Borra toda la información actual para sincronizar!');
     } else {
       setUpdate('loading');
 
@@ -79,11 +75,7 @@ export const InformationTextEditor = ({
 
           <Flex w="fit-content" align="center" gap="4px">
             {update === 'editing' ? (
-              <Icon
-                ml="2"
-                as={AiOutlineCloudSync}
-                color={value === defaultValue ? 'gray_5' : 'primary'}
-              />
+              <Icon ml="2" as={AiOutlineCloudSync} color={value === defaultValue ? 'gray_5' : 'primary'} />
             ) : update === 'loading' ? (
               <Spinner ml="2" boxSize="14px" />
             ) : null}

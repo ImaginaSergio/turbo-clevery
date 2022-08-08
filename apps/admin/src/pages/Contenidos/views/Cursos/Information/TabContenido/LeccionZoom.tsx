@@ -6,7 +6,7 @@ import {
   InformationDateInput,
   InformationTextEditor,
 } from '../../../../../../shared/components';
-import { LeccionTipoEnum } from '@clevery/data';
+import { LeccionTipoEnum } from 'data';
 
 export const LeccionZoom = ({ leccion, updateValue }: any) => (
   <Flex direction="column" w="100%" gap="30px">
@@ -61,8 +61,7 @@ export const LeccionZoom = ({ leccion, updateValue }: any) => (
         ]}
       />
 
-
-     <InformationInput
+      <InformationInput
         name="orden"
         label="Orden"
         defaultValue={leccion?.orden}

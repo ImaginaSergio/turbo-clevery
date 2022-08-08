@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { Stack, Tooltip, Flex, Box, Image } from '@chakra-ui/react';
 
-import { Avatar } from '@clevery/ui';
+import { Avatar } from 'ui';
 
 import './RowTemplateText.scss';
 
@@ -42,12 +42,7 @@ const textRowTemplate = ({ content, prefix, suffix }: textRowTemplateProps) => {
     content.link && !content.isDisabled ? (
       <Link to={content?.link || ''}>{props.children}</Link>
     ) : content.externalLink && !content.isDisabled ? (
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href={content?.externalLink}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <a target="_blank" rel="noreferrer" href={content?.externalLink} onClick={(e) => e.stopPropagation()}>
         {props.children}
       </a>
     ) : (
@@ -56,11 +51,7 @@ const textRowTemplate = ({ content, prefix, suffix }: textRowTemplateProps) => {
 
   const TooltipWrapper = (props: any) =>
     content.tooltip ? (
-      <Tooltip
-        aria-label="A tooltip"
-        className="content-tooltip"
-        label={content?.tooltip}
-      >
+      <Tooltip aria-label="A tooltip" className="content-tooltip" label={content?.tooltip}>
         {props.children}
       </Tooltip>
     ) : (
@@ -85,35 +76,20 @@ const textRowTemplate = ({ content, prefix, suffix }: textRowTemplateProps) => {
             />
           ) : (
             prefix?.svg === null && (
-              <Box
-                minH="40px"
-                minW="40px"
-                bg="transparent"
-                border="2px dashed #3182FC"
-                rounded="50%"
-                mr="15px"
-              />
+              <Box minH="40px" minW="40px" bg="transparent" border="2px dashed #3182FC" rounded="50%" mr="15px" />
             )
           )}
 
-          {prefix?.imagen && (
-            <Avatar src={prefix.imagen} size="40px" name="NA" />
-          )}
+          {prefix?.imagen && <Avatar src={prefix.imagen} size="40px" name="NA" />}
 
           {prefix?.content && <Box>{prefix.content}</Box>}
 
           <TooltipWrapper>
-            <div
-              className="content-text"
-              style={content?.style}
-              title={content?.text}
-            >
+            <div className="content-text" style={content?.style} title={content?.text}>
               {content?.text}
 
               <Box color="#A3A3B4" fontWeight="medium">
-                {content.subtext
-                  ? content.subtext
-                  : content.subtext === null && '---'}
+                {content.subtext ? content.subtext : content.subtext === null && '---'}
               </Box>
             </div>
           </TooltipWrapper>

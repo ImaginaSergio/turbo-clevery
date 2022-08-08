@@ -2,15 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 
 import { Box, Flex } from '@chakra-ui/react';
 
-import {
-  getEstados,
-  getPaises,
-  IEmpresa,
-  IEstado,
-  IPais,
-  UserRolEnum,
-} from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
+import { getEstados, getPaises, IEmpresa, IEstado, IPais, UserRolEnum } from 'data';
+import { isRoleAllowed } from 'utils';
 
 import {
   InformationFilepond,
@@ -26,10 +19,7 @@ type TabInformacionProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  empresa,
-  updateValue,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ empresa, updateValue }: TabInformacionProps) => {
   const { user } = useContext(LoginContext);
 
   const [paises, setPaises] = useState([]);
@@ -76,33 +66,17 @@ export const TabInformacion = ({
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre la empresa, como el nombre del misma, su cif, sector
-          y datos de contacto
+          Información sobre la empresa, como el nombre del misma, su cif, sector y datos de contacto
         </Box>
       </Flex>
 
       <Flex direction={{ base: 'column', lg: 'row' }} gap="30px" w="100%">
         <Flex direction="column" w="100%" gap="30px">
-          <InformationInput
-            name="cif"
-            label="CIF"
-            defaultValue={empresa?.cif}
-            updateValue={updateValue}
-          />
+          <InformationInput name="cif" label="CIF" defaultValue={empresa?.cif} updateValue={updateValue} />
 
-          <InformationInput
-            name="sector"
-            label="Sector"
-            defaultValue={empresa?.sector}
-            updateValue={updateValue}
-          />
+          <InformationInput name="sector" label="Sector" defaultValue={empresa?.sector} updateValue={updateValue} />
 
-          <InformationInput
-            name="web"
-            label="Enlace a la web"
-            defaultValue={empresa?.web}
-            updateValue={updateValue}
-          />
+          <InformationInput name="web" label="Enlace a la web" defaultValue={empresa?.web} updateValue={updateValue} />
 
           <Flex direction={{ base: 'column', lg: 'row' }} gap="30px" w="100%">
             <InformationSelect
@@ -118,9 +92,7 @@ export const TabInformacion = ({
                   : undefined
               }
               options={paises}
-              updateValue={(v: any) =>
-                updateValue({ paisId: v.pais.value?.id })
-              }
+              updateValue={(v: any) => updateValue({ paisId: v.pais.value?.id })}
               isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol)}
               style={{ width: '100%' }}
             />
@@ -130,17 +102,9 @@ export const TabInformacion = ({
               name="estado"
               options={estados}
               placeholder="Selecciona una opción"
-              updateValue={(v: any) =>
-                updateValue({ estadoId: v.estado.value?.id })
-              }
-              isDisabled={
-                !isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || !empresa?.pais
-              }
-              defaultValue={
-                empresa?.estado
-                  ? { label: empresa?.estado?.nombre, value: empresa?.estado }
-                  : undefined
-              }
+              updateValue={(v: any) => updateValue({ estadoId: v.estado.value?.id })}
+              isDisabled={!isRoleAllowed([UserRolEnum.ADMIN], user?.rol) || !empresa?.pais}
+              defaultValue={empresa?.estado ? { label: empresa?.estado?.nombre, value: empresa?.estado } : undefined}
               style={{ width: '100%' }}
             />
           </Flex>
@@ -152,12 +116,7 @@ export const TabInformacion = ({
             defaultValue={empresa?.personaContacto}
           />
 
-          <InformationInput
-            name="email"
-            label="Email de contacto"
-            defaultValue={empresa?.email}
-            updateValue={updateValue}
-          />
+          <InformationInput name="email" label="Email de contacto" defaultValue={empresa?.email} updateValue={updateValue} />
 
           <InformationInput
             name="telefono"

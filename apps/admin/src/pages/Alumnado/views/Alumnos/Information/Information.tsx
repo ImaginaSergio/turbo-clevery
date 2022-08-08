@@ -1,28 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import {
-  BiRedo,
-  BiTask,
-  BiIdCard,
-  BiEnvelope,
-  BiBriefcase,
-} from 'react-icons/bi';
 import { Flex, useToast, Spinner, Center, Icon } from '@chakra-ui/react';
+import { BiRedo, BiTask, BiIdCard, BiEnvelope, BiBriefcase } from 'react-icons/bi';
 
-import {
-  IUser,
-  updateUser,
-  UserRolEnum,
-  getUserByID,
-  resendCredentials,
-} from '@clevery/data';
+import { isRoleAllowed } from 'utils';
+import { onFailure, onSuccess } from 'ui';
+import { IUser, updateUser, UserRolEnum, getUserByID, resendCredentials } from 'data';
 import { LoginContext } from '../../../../../shared/context';
-import { isRoleAllowed, onFailure, onSuccess } from '@clevery/utils';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
-import { TabProgreso } from './TabProgreso';
 import { TabEmpleo } from './TabEmpleo';
+import { TabProgreso } from './TabProgreso';
 import { TabEjercicios } from './TabEjercicios';
 import { TabInformacion } from './TabInformacion';
 
@@ -56,11 +45,7 @@ export default function AlumnosInformation() {
 
   const refreshState = async () => {
     if (!userId) {
-      onFailure(
-        toast,
-        'Error inesperado',
-        'El ID de usuario es undefined. Por favor, contacte con soporte.'
-      );
+      onFailure(toast, 'Error inesperado', 'El ID de usuario es undefined. Por favor, contacte con soporte.');
       return;
     }
 
@@ -70,11 +55,7 @@ export default function AlumnosInformation() {
 
   const updateValue = (value: any) => {
     if (!userId) {
-      onFailure(
-        toast,
-        'Error inesperado',
-        'El ID de usuario es undefined. Por favor, contacte con soporte.'
-      );
+      onFailure(toast, 'Error inesperado', 'El ID de usuario es undefined. Por favor, contacte con soporte.');
       return;
     }
 
@@ -149,16 +130,8 @@ export default function AlumnosInformation() {
             isDisabled: !isRoleAllowed([UserRolEnum.ADMIN], user?.rol),
             onClick: () => {
               resendCredentials({ id: +(userId || 0), client: 'admin' })
-                .then(() =>
-                  onSuccess(toast, 'Email de credenciales reenviado.')
-                )
-                .catch(() =>
-                  onFailure(
-                    toast,
-                    'Algo ha fallado',
-                    'Contacta con el administrador.'
-                  )
-                );
+                .then(() => onSuccess(toast, 'Email de credenciales reenviado.'))
+                .catch(() => onFailure(toast, 'Algo ha fallado', 'Contacta con el administrador.'));
             },
           }}
         />
@@ -168,29 +141,13 @@ export default function AlumnosInformation() {
             <Spinner boxSize="40px" />
           </Center>
         ) : tab === Tab.INFORMACION ? (
-          <TabInformacion
-            user={alumno}
-            updateValue={updateValue}
-            refreshState={refreshState}
-          />
+          <TabInformacion user={alumno} updateValue={updateValue} refreshState={refreshState} />
         ) : tab === Tab.EJERCICIOS ? (
-          <TabEjercicios
-            user={alumno}
-            updateValue={updateValue}
-            refreshState={refreshState}
-          />
+          <TabEjercicios user={alumno} updateValue={updateValue} refreshState={refreshState} />
         ) : tab === Tab.PROGRESO ? (
-          <TabProgreso
-            user={alumno}
-            updateValue={updateValue}
-            refreshState={refreshState}
-          />
+          <TabProgreso user={alumno} updateValue={updateValue} refreshState={refreshState} />
         ) : (
-          <TabEmpleo
-            user={alumno}
-            updateValue={updateValue}
-            refreshState={refreshState}
-          />
+          <TabEmpleo user={alumno} updateValue={updateValue} refreshState={refreshState} />
         )}
       </Flex>
     </Flex>

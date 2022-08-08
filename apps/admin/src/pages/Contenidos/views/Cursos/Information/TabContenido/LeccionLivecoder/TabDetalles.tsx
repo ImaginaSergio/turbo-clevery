@@ -1,19 +1,9 @@
 import { Flex } from '@chakra-ui/react';
-import { ILeccion, LeccionTipoEnum } from '@clevery/data';
+import { ILeccion, LeccionTipoEnum } from 'data';
 
-import {
-  InformationInput,
-  InformationSelect,
-  InformationTextEditor,
-} from 'apps/admin/src/shared/components';
+import { InformationInput, InformationSelect, InformationTextEditor } from 'apps/admin/src/shared/components';
 
-export const TabDetalles = ({
-  leccion,
-  updateValue,
-}: {
-  leccion?: ILeccion;
-  updateValue: (e: any) => void;
-}) => {
+export const TabDetalles = ({ leccion, updateValue }: { leccion?: ILeccion; updateValue: (e: any) => void }) => {
   return (
     <Flex direction="column" w="100%" gap="30px">
       <Flex w="100%" gap="30px" direction={{ lg: 'column', xl: 'row' }}>
@@ -32,11 +22,7 @@ export const TabDetalles = ({
           placeholder="Selecciona una opción"
           updateValue={updateValue}
           isDisabled={!leccion?.id}
-          defaultValue={
-            leccion?.tipo
-              ? { label: leccion?.tipo, value: leccion?.tipo }
-              : undefined
-          }
+          defaultValue={leccion?.tipo ? { label: leccion?.tipo, value: leccion?.tipo } : undefined}
           options={Object.values(LeccionTipoEnum).map((k) => ({
             label: k,
             value: k,

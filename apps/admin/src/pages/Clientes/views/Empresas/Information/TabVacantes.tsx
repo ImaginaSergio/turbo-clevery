@@ -1,5 +1,5 @@
 import { Flex, Box } from '@chakra-ui/react';
-import { IEmpresa } from '@clevery/data';
+import { IEmpresa } from 'data';
 
 type TabVacantesProps = {
   empresa: IEmpresa;
@@ -8,13 +8,7 @@ type TabVacantesProps = {
 
 export const TabVacantes = ({ empresa, updateValue }: TabVacantesProps) => {
   return (
-    <Flex
-      direction="column"
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-    >
+    <Flex direction="column" p="30px" boxSize="100%" rowGap="30px" overflow="auto">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Vacantes creadas por la empresa

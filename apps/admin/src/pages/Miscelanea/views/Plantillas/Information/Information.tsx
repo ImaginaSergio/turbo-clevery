@@ -4,9 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BiBookContent } from 'react-icons/bi';
 import { Flex, useToast, Spinner, Center } from '@chakra-ui/react';
 
-import { IPlantilla } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
-import { getPlantilla, updatePlantilla } from '@clevery/data';
+import { IPlantilla } from 'data';
+import { onFailure } from 'ui';
+import { getPlantilla, updatePlantilla } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
 import { TabInformacion } from './TabInformacion';
@@ -76,9 +76,7 @@ export default function PlantillasInformation() {
             isActive: tab === Tab.INFORMACION,
             onClick: () => {
               setTab(Tab.INFORMACION);
-              navigate(
-                `/miscelanea/plantillas/${plantillaID}#${Tab.INFORMACION}`
-              );
+              navigate(`/miscelanea/plantillas/${plantillaID}#${Tab.INFORMACION}`);
             },
           },
         ]}

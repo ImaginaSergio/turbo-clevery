@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { BiClipboard } from 'react-icons/bi';
 
-import { onSuccess } from '@clevery/utils';
+import { onSuccess } from 'ui';
 import { LoginContext } from '../../../../context';
 
 import './InformationInputTooltip.scss';
@@ -43,8 +43,7 @@ export const InformationInputTooltip = ({
   const treatValue = () => {
     if (!_value) return;
 
-    if (inputType === 'date')
-      return new Date(_value).toISOString().substring(0, 10);
+    if (inputType === 'date') return new Date(_value).toISOString().substring(0, 10);
     else return _value;
   };
 
@@ -56,8 +55,7 @@ export const InformationInputTooltip = ({
     }
 
     function handleClickOutside(event: any) {
-      if (event.type === 'keypress' && event.key === 'Enter' && inputElement)
-        setEditing(0);
+      if (event.type === 'keypress' && event.key === 'Enter' && inputElement) setEditing(0);
     }
 
     document.addEventListener('keypress', handleClickOutside);

@@ -1,23 +1,8 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  useToast,
-  useDisclosure,
-  Flex,
-  Icon,
-  Image,
-  Box,
-} from '@chakra-ui/react';
-import {
-  BiShow,
-  BiHide,
-  BiPlus,
-  BiBrain,
-  BiDirections,
-  BiBookContent,
-  BiBadgeCheck,
-} from 'react-icons/bi';
+import { useToast, useDisclosure, Flex, Icon, Image, Box } from '@chakra-ui/react';
+import { BiShow, BiHide, BiPlus, BiBrain, BiDirections, BiBookContent, BiBadgeCheck } from 'react-icons/bi';
 
 import {
   DeleteModal,
@@ -27,9 +12,8 @@ import {
   rowQuickActions,
   badgeRowTemplate,
 } from '../../../../shared/components';
-import { OpenColumn, OpenTable } from '@clevery/ui';
-import { onFailure, onSuccess_Undo } from '@clevery/utils';
-import { useHabilidades, removeHabilidad } from '@clevery/data';
+import { useHabilidades, removeHabilidad } from 'data';
+import { OpenColumn, OpenTable, onFailure, onSuccess_Undo } from 'ui';
 
 export default function HabilidadesTable() {
   const [elementSelected, setElementSelected] = useState<any>(undefined);
@@ -41,9 +25,7 @@ export default function HabilidadesTable() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { data, isLoading } = useHabilidades({
     client: 'admin',
@@ -58,8 +40,7 @@ export default function HabilidadesTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/contenidos/habilidades/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/contenidos/habilidades/' + e?.id || '');
 
   const columns: OpenColumn[] = [
     {
@@ -70,11 +51,7 @@ export default function HabilidadesTable() {
       filterable: true,
       render: (rowData) => (
         <Flex align="center" gap="15px">
-          <Image
-            minW="50px"
-            boxSize="50px"
-            src={`data:image/svg+xml;utf8,${rowData.icono}`}
-          />
+          <Image minW="50px" boxSize="50px" src={`data:image/svg+xml;utf8,${rowData.icono}`} />
 
           <Box as="a" href={'/contenidos/habilidades/' + rowData?.id || ''}>
             {rowData.nombre}
@@ -99,12 +76,7 @@ export default function HabilidadesTable() {
               content: {
                 text: (
                   <Flex color="#fff" align="center">
-                    <Icon
-                      w="14px"
-                      h="14px"
-                      mr="8px"
-                      as={rowData?.publicado ? BiShow : BiHide}
-                    />
+                    <Icon w="14px" h="14px" mr="8px" as={rowData?.publicado ? BiShow : BiHide} />
                     {rowData?.publicado ? 'Publicado' : 'Oculto'}
                   </Flex>
                 ),
@@ -124,8 +96,7 @@ export default function HabilidadesTable() {
       header: 'Fecha de creación ',
       sortable: true,
       filterable: true,
-      render: (rowData: any) =>
-        dateRowTemplate({ content: { date: rowData?.createdAt } }),
+      render: (rowData: any) => dateRowTemplate({ content: { date: rowData?.createdAt } }),
     },
     {
       key: '',
@@ -201,8 +172,7 @@ export default function HabilidadesTable() {
       <DeleteModal
         title={
           <div>
-            ¿Estás seguro de que quieres eliminar la habilidad{' '}
-            <strong>{elementSelected?.nombre}</strong>?
+            ¿Estás seguro de que quieres eliminar la habilidad <strong>{elementSelected?.nombre}</strong>?
           </div>
         }
         isOpen={isOpen}
@@ -213,17 +183,11 @@ export default function HabilidadesTable() {
             () =>
               removeHabilidad({ id: elementSelected?.id, client: 'admin' })
                 .then((e) => tableRef?.current?.refreshData())
-                .catch((error: any) =>
-                  onFailure(toast, error.title, error.message)
-                ),
+                .catch((error: any) => onFailure(toast, error.title, error.message)),
             5000
           );
 
-          onSuccess_Undo(
-            toast,
-            `Se va a eliminar la habilidad ${elementSelected?.nombre}`,
-            timeout
-          );
+          onSuccess_Undo(toast, `Se va a eliminar la habilidad ${elementSelected?.nombre}`, timeout);
 
           onClose();
         }}

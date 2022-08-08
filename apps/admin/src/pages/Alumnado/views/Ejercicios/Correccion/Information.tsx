@@ -7,13 +7,9 @@ import { format, intervalToDuration } from 'date-fns';
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
 
 import { TabDetalles } from './TabDetalles';
-import { onFailure } from '@clevery/utils';
+import { onFailure } from 'ui';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
-import {
-  IEntregable,
-  getEntregableByID,
-  updateEntregable,
-} from '@clevery/data';
+import { IEntregable, getEntregableByID, updateEntregable } from 'data';
 
 enum Tab {
   DETALLES = 'detalles',
@@ -83,19 +79,11 @@ export default function EjerciciosCorreccion() {
         <PageHeader
           head={{
             title: entregable?.leccion?.titulo || 'Entregable',
-            subtitle: `Curso: ${
-              entregable?.leccion?.modulo?.curso?.titulo
-            }  |  Entregado por: ${
-              entregable?.user?.nombre +
-              ' ' +
-              (entregable?.user?.apellidos || ' ')
+            subtitle: `Curso: ${entregable?.leccion?.modulo?.curso?.titulo}  |  Entregado por: ${
+              entregable?.user?.nombre + ' ' + (entregable?.user?.apellidos || ' ')
             }  |  Fecha de Entrega: ${
               entregable?.createdAt
-                ? format(
-                    new Date(entregable?.createdAt),
-                    'dd LLL yyyy, HH:mm',
-                    { locale: es }
-                  )
+                ? format(new Date(entregable?.createdAt), 'dd LLL yyyy, HH:mm', { locale: es })
                 : 'Sin entregar'
             }  |  Tiempo utilizado:
              ${

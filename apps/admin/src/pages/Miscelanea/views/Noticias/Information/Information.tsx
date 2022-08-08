@@ -4,9 +4,9 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { BiShow, BiBookContent } from 'react-icons/bi';
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
 
-import { INoticia } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
-import { getNoticia, updateNoticia } from '@clevery/data';
+import { INoticia } from 'data';
+import { onFailure } from 'ui';
+import { getNoticia, updateNoticia } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
 import { TabInformacion } from './TabInformacion';

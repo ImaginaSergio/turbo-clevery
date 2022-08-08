@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { BiPlus, BiPencil, BiTrash } from 'react-icons/bi';
 import { Button, Box, Flex, Icon, Input } from '@chakra-ui/react';
 
-import { UserRolEnum } from '@clevery/data';
+import { UserRolEnum } from 'data';
 
 import './InformationEditableList.scss';
 
@@ -25,13 +25,7 @@ export const InformationEditableList = ({
   onNewClick,
 }: InformationEditableListProps) => {
   return (
-    <Flex
-      direction="column"
-      h="100%"
-      rowGap="32px"
-      justify="space-between"
-      overflowY="hidden"
-    >
+    <Flex direction="column" h="100%" rowGap="32px" justify="space-between" overflowY="hidden">
       <Flex direction="column" rowGap="12px" overflow="auto">
         {data?.map((item) => (
           <InformationEditableListItem
@@ -93,8 +87,7 @@ const InformationEditableListItem = ({
     if (inputElement) inputElement.focus();
 
     function handleClickOutside(event: any) {
-      if (event.type === 'keypress' && event.key === 'Enter' && inputElement)
-        setEditing(0);
+      if (event.type === 'keypress' && event.key === 'Enter' && inputElement) setEditing(0);
     }
 
     document.addEventListener('keypress', handleClickOutside);

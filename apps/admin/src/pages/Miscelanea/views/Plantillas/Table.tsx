@@ -1,22 +1,8 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  useToast,
-  useDisclosure,
-  Flex,
-  Icon,
-  Image,
-  Box,
-} from '@chakra-ui/react';
-import {
-  BiShow,
-  BiHide,
-  BiPlus,
-  BiEnvelope,
-  BiImages,
-  BiNews,
-} from 'react-icons/bi';
+import { useToast, useDisclosure, Flex, Icon, Image, Box } from '@chakra-ui/react';
+import { BiShow, BiHide, BiPlus, BiEnvelope, BiNews } from 'react-icons/bi';
 
 import {
   badgeRowTemplate,
@@ -26,9 +12,9 @@ import {
   PageHeader,
   PageSidebar,
 } from '../../../../shared/components';
-import { OpenColumn, OpenTable } from '@clevery/ui';
-import { onFailure, onSuccess_Undo } from '@clevery/utils';
-import { removePlantilla, usePlantillas } from '@clevery/data';
+import { OpenColumn, OpenTable } from 'ui';
+import { onFailure, onSuccess_Undo } from 'ui';
+import { removePlantilla, usePlantillas } from 'data';
 
 export default function PlantillasTable() {
   const [elementSelected, setElementSelected] = useState<any>(undefined);
@@ -39,9 +25,7 @@ export default function PlantillasTable() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { data, isLoading } = usePlantillas({
     client: 'admin',
@@ -55,8 +39,7 @@ export default function PlantillasTable() {
       })
       ?.filter((v: any) => v),
   });
-  const onRowClick = async (e: any) =>
-    navigate('/miscelanea/plantillas/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/miscelanea/plantillas/' + e?.id || '');
 
   const columns: OpenColumn[] = [
     {
@@ -67,11 +50,7 @@ export default function PlantillasTable() {
       filterable: true,
       render: (rowData) => (
         <Flex align="center" gap="15px">
-          <Image
-            minW="50px"
-            boxSize="50px"
-            src={`data:image/svg+xml;utf8,${rowData.icono}`}
-          />
+          <Image minW="50px" boxSize="50px" src={`data:image/svg+xml;utf8,${rowData.icono}`} />
 
           <Box>{rowData.titulo}</Box>
         </Flex>
@@ -94,12 +73,7 @@ export default function PlantillasTable() {
               content: {
                 text: (
                   <Flex color="#fff" align="center">
-                    <Icon
-                      w="14px"
-                      h="14px"
-                      mr="8px"
-                      as={rowData?.publicado ? BiShow : BiHide}
-                    />
+                    <Icon w="14px" h="14px" mr="8px" as={rowData?.publicado ? BiShow : BiHide} />
                     {rowData?.publicado ? 'Publicado' : 'Oculto'}
                   </Flex>
                 ),
@@ -119,8 +93,7 @@ export default function PlantillasTable() {
       header: 'Fecha de creación',
       sortable: true,
       filterable: true,
-      render: (rowData: any) =>
-        dateRowTemplate({ content: { date: rowData?.createdAt } }),
+      render: (rowData: any) => dateRowTemplate({ content: { date: rowData?.createdAt } }),
     },
     {
       key: '',
@@ -184,8 +157,7 @@ export default function PlantillasTable() {
       <DeleteModal
         title={
           <div>
-            ¿Estás seguro de que quieres eliminar la plantilla{' '}
-            <strong>{elementSelected?.titulo}</strong>?
+            ¿Estás seguro de que quieres eliminar la plantilla <strong>{elementSelected?.titulo}</strong>?
           </div>
         }
         isOpen={isOpen}
@@ -196,17 +168,11 @@ export default function PlantillasTable() {
             () =>
               removePlantilla(elementSelected?.id)
                 .then((e) => tableRef?.current?.refreshData())
-                .catch((error: any) =>
-                  onFailure(toast, error.title, error.message)
-                ),
+                .catch((error: any) => onFailure(toast, error.title, error.message)),
             5000
           );
 
-          onSuccess_Undo(
-            toast,
-            `Se va a eliminar la plantilla ${elementSelected?.titulo}`,
-            timeout
-          );
+          onSuccess_Undo(toast, `Se va a eliminar la plantilla ${elementSelected?.titulo}`, timeout);
 
           onClose();
         }}

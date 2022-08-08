@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Box,
-  Menu,
-  MenuButton,
-  Icon,
-  IconButton,
-  MenuList,
-  MenuItem,
-} from '@chakra-ui/react';
+import { Box, Menu, MenuButton, Icon, IconButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { BiSlider, BiCheckbox, BiCheckboxChecked } from 'react-icons/bi';
 
-import { setItem } from '@clevery/data';
+import { setItem } from 'data';
 
 export interface ColumnSettings {
   label?: string;
@@ -20,13 +12,7 @@ export interface ColumnSettings {
   onClick?: () => void | any;
 }
 
-export const TableSettings = ({
-  icon,
-  columns = [],
-}: {
-  icon?: any;
-  columns: ColumnSettings[];
-}) => {
+export const TableSettings = ({ icon, columns = [] }: { icon?: any; columns: ColumnSettings[] }) => {
   const [_columns, setColumns] = useState<ColumnSettings[]>(columns);
 
   useEffect(() => {
@@ -49,13 +35,7 @@ export const TableSettings = ({
         icon={<Icon as={icon || BiSlider} w={'28px'} h={'28px'} />}
       />
 
-      <MenuList
-        p="10px 0px"
-        overflowY="auto"
-        maxHeight="380px"
-        rounded="8px"
-        boxShadow={'0px 10px 30px rgba(1, 20, 52, 0.2)'}
-      >
+      <MenuList p="10px 0px" overflowY="auto" maxHeight="380px" rounded="8px" boxShadow={'0px 10px 30px rgba(1, 20, 52, 0.2)'}>
         {_columns.map((c, index) => (
           <MenuItem
             key={'tablesettings-menu-item-' + index}
@@ -85,21 +65,14 @@ export const TableSettings = ({
   );
 };
 
-export const checkColumn = (
-  page: string,
-  value: string,
-  columnSettings: any[],
-  setColumnSettings: any
-) => {
+export const checkColumn = (page: string, value: string, columnSettings: any[], setColumnSettings: any) => {
   const newValue = columnSettings?.find((c: any) => c.value === value)?.checked;
 
   if (typeof newValue === 'boolean') {
     setItem(`user_${page}_${value}`, !newValue);
 
     setColumnSettings((lastC: any) => [
-      ...lastC?.map((c: any) =>
-        c.value === value ? { ...c, checked: !c.checked } : { ...c }
-      ),
+      ...lastC?.map((c: any) => (c.value === value ? { ...c, checked: !c.checked } : { ...c })),
     ]);
   } else {
     alert('Error al filtrar columnas');

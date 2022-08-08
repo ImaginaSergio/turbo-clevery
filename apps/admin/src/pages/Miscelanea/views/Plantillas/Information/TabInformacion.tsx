@@ -2,12 +2,9 @@ import { useContext } from 'react';
 
 import { Box, Flex } from '@chakra-ui/react';
 
-import {
-  InformationInput,
-  InformationMde,
-} from '../../../../../shared/components';
-import { IPlantilla, UserRolEnum } from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
+import { InformationInput, InformationMde } from '../../../../../shared/components';
+import { IPlantilla, UserRolEnum } from 'data';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from 'apps/admin/src/shared/context';
 
 type TabInformacionProps = {
@@ -15,10 +12,7 @@ type TabInformacionProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  plantilla,
-  updateValue,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ plantilla, updateValue }: TabInformacionProps) => {
   const { user } = useContext(LoginContext);
 
   return (
@@ -29,8 +23,7 @@ export const TabInformacion = ({
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre la plantilla, como su título, contenido y el icono
-          de la misma.
+          Información sobre la plantilla, como su título, contenido y el icono de la misma.
         </Box>
       </Flex>
 

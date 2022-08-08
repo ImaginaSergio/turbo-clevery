@@ -5,19 +5,10 @@ import { es } from 'date-fns/locale';
 import { Box, Center, Flex } from '@chakra-ui/react';
 import { formatDuration, intervalToDuration } from 'date-fns';
 
-import {
-  EntregableEstadoEnum,
-  IUser,
-  UserRolEnum,
-  useEntregables,
-} from '@clevery/data';
-import {
-  badgeRowTemplate,
-  dateRowTemplate,
-  textRowTemplate,
-} from '../../../../../shared/components';
-import { isRoleAllowed } from '@clevery/utils';
-import { OpenTable } from '@clevery/ui';
+import { EntregableEstadoEnum, IUser, UserRolEnum, useEntregables } from 'data';
+import { badgeRowTemplate, dateRowTemplate, textRowTemplate } from '../../../../../shared/components';
+import { isRoleAllowed } from 'utils';
+import { OpenTable } from 'ui';
 
 type TabEjerciciosProps = {
   user: IUser;
@@ -25,17 +16,11 @@ type TabEjerciciosProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabEjercicios = ({
-  user,
-  updateValue,
-  refreshState,
-}: TabEjerciciosProps) => {
+export const TabEjercicios = ({ user, updateValue, refreshState }: TabEjerciciosProps) => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const [query, setQuery] = useState<string>(
-    `&user_id=${user?.id}&page=${currentPage}`
-  );
+  const [query, setQuery] = useState<string>(`&user_id=${user?.id}&page=${currentPage}`);
 
   const { data: entregables, isLoading } = useEntregables({
     query: query
@@ -57,13 +42,7 @@ export const TabEjercicios = ({
 
   return (
     <Flex direction="column" boxSize="100%" overflow="auto">
-      <Flex
-        w="100%"
-        p="30px"
-        rowGap="8px"
-        minH="fit-content"
-        direction="column"
-      >
+      <Flex w="100%" p="30px" rowGap="8px" minH="fit-content" direction="column">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
@@ -149,21 +128,17 @@ export const TabEjercicios = ({
                     {
                       content: {
                         text:
-                          rowData?.estado === EntregableEstadoEnum.CORRECTO ||
-                          rowData?.estado === EntregableEstadoEnum.ERROR
+                          rowData?.estado === EntregableEstadoEnum.CORRECTO || rowData?.estado === EntregableEstadoEnum.ERROR
                             ? 'CORREGIDO'
-                            : rowData?.estado ===
-                              EntregableEstadoEnum.PENDIENTE_CORRECCION
+                            : rowData?.estado === EntregableEstadoEnum.PENDIENTE_CORRECCION
                             ? 'PENDIENTE DE CORRECCIÓN'
                             : 'PENDIENTE DE ENTREGA',
                       },
                       style: {
                         background:
-                          rowData?.estado === EntregableEstadoEnum.CORRECTO ||
-                          rowData?.estado === EntregableEstadoEnum.ERROR
+                          rowData?.estado === EntregableEstadoEnum.CORRECTO || rowData?.estado === EntregableEstadoEnum.ERROR
                             ? '#2EDDBE'
-                            : rowData?.estado ===
-                              EntregableEstadoEnum.PENDIENTE_CORRECCION
+                            : rowData?.estado === EntregableEstadoEnum.PENDIENTE_CORRECCION
                             ? '#DDB72E'
                             : 'var(--chakra-colors-gray_4)',
                       },

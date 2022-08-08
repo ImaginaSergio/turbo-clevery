@@ -1,13 +1,8 @@
 import { Flex } from '@chakra-ui/react';
-import { getCursos, getUsers } from '@clevery/data';
+import { getCursos, getUsers } from 'data';
 
-import {
-  FormInput,
-  FormSelect,
-  FormAsyncCreatableSelect,
-  FormAsyncSelect,
-} from '../../../../../shared/components';
-import { FormTextEditor } from '@clevery/ui';
+import { FormInput, FormSelect, FormAsyncCreatableSelect, FormAsyncSelect } from '../../../../../shared/components';
+import { FormTextEditor } from 'ui';
 
 const Step1 = () => {
   const loadCursos = async (value: any) => {
@@ -63,13 +58,7 @@ const Step1 = () => {
           ]}
         />
 
-        <FormAsyncSelect
-          isRequired
-          name="autorId"
-          label="Autor"
-          placeholder="Escribe para buscar"
-          loadOptions={loadAutores}
-        />
+        <FormAsyncSelect isRequired name="autorId" label="Autor" placeholder="Escribe para buscar" loadOptions={loadAutores} />
 
         <FormAsyncCreatableSelect
           isClearable
@@ -81,11 +70,7 @@ const Step1 = () => {
       </Flex>
 
       <Flex direction="column" h="100%" w="80%" rowGap="20px">
-        <FormTextEditor
-          isRequired
-          name="descripcionCorta"
-          label="Descripción corta"
-        />
+        <FormTextEditor isRequired name="descripcionCorta" label="Descripción corta" />
 
         <FormTextEditor isRequired name="contenido" label="Contenido" />
       </Flex>

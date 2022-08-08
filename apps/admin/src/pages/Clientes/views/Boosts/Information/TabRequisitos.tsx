@@ -2,8 +2,8 @@ import { useContext } from 'react';
 
 import { Box, Flex } from '@chakra-ui/react';
 
-import { isRoleAllowed } from '@clevery/utils';
-import { getCertificaciones, IBoost, UserRolEnum } from '@clevery/data';
+import { isRoleAllowed } from 'utils';
+import { getCertificaciones, IBoost, UserRolEnum } from 'data';
 
 import { LoginContext } from '../../../../../shared/context';
 import { InformationMultiSelect } from '../../../../../shared/components';
@@ -30,21 +30,14 @@ export const TabRequisitos = ({ boost, updateValue }: TabRequisitosProps) => {
   };
 
   return (
-    <Flex
-      p="30px"
-      boxSize="100%"
-      overflow="auto"
-      rowGap="30px"
-      direction="column"
-    >
+    <Flex p="30px" boxSize="100%" overflow="auto" rowGap="30px" direction="column">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Requisitos
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Listado de certificaciones requeridas para que los usuarios puedan
-          inscribirse al Boost.
+          Listado de certificaciones requeridas para que los usuarios puedan inscribirse al Boost.
         </Box>
       </Flex>
 

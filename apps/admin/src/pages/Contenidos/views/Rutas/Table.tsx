@@ -1,22 +1,8 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  Box,
-  Flex,
-  Icon,
-  Image,
-  Badge,
-  useToast,
-  useDisclosure,
-} from '@chakra-ui/react';
-import {
-  BiPlus,
-  BiBrain,
-  BiDirections,
-  BiBadgeCheck,
-  BiBookContent,
-} from 'react-icons/bi';
+import { Box, Flex, Icon, Image, Badge, useToast, useDisclosure } from '@chakra-ui/react';
+import { BiPlus, BiBrain, BiDirections, BiBadgeCheck, BiBookContent } from 'react-icons/bi';
 
 import {
   PageHeader,
@@ -26,9 +12,8 @@ import {
   rowQuickActions,
   badgeRowTemplate,
 } from '../../../../shared/components';
-import { onFailure, onSuccess_Undo } from '@clevery/utils';
-import { IRuta, useRutas, removeRuta } from '@clevery/data';
-import { OpenColumn, OpenParser, OpenTable } from '@clevery/ui';
+import { IRuta, useRutas, removeRuta } from 'data';
+import { OpenColumn, OpenParser, OpenTable, onFailure, onSuccess_Undo } from 'ui';
 
 export default function RutasTable() {
   const [elementSelected, setElementSelected] = useState<any>(undefined);
@@ -40,9 +25,7 @@ export default function RutasTable() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { data, isLoading } = useRutas({
     client: 'admin',
@@ -57,8 +40,7 @@ export default function RutasTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/contenidos/rutas/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/contenidos/rutas/' + e?.id || '');
 
   const columns: OpenColumn[] = [
     {
@@ -69,11 +51,7 @@ export default function RutasTable() {
       filterable: true,
       render: (rowData: IRuta) => (
         <Flex align="center" gap="15px">
-          <Image
-            minW="50px"
-            boxSize="50px"
-            src={`data:image/svg+xml;utf8,${rowData.icono}`}
-          />
+          <Image minW="50px" boxSize="50px" src={`data:image/svg+xml;utf8,${rowData.icono}`} />
 
           <Box as="a" href={'/contenidos/rutas/' + rowData?.id || ''}>
             {rowData.nombre}
@@ -88,13 +66,7 @@ export default function RutasTable() {
       sortable: true,
       filterable: true,
       render: (rowData: IRuta) => (
-        <Flex
-          gap="15px"
-          align="center"
-          overflow="hidden"
-          whiteSpace="nowrap"
-          textOverflow="ellipsis"
-        >
+        <Flex gap="15px" align="center" overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">
           <OpenParser value={rowData.descripcion} />
         </Flex>
       ),
@@ -133,11 +105,7 @@ export default function RutasTable() {
         { label: 'Pública', value: 'false' },
       ],
       render: (rowData: IRuta) => (
-        <Badge
-          rounded="7px"
-          color={!rowData.privada ? 'white' : 'black'}
-          bg={!rowData.privada ? 'primary' : '#D9DBE3'}
-        >
+        <Badge rounded="7px" color={!rowData.privada ? 'white' : 'black'} bg={!rowData.privada ? 'primary' : '#D9DBE3'}>
           {rowData.privada ? 'Privada' : 'Pública'}
         </Badge>
       ),
@@ -148,8 +116,7 @@ export default function RutasTable() {
       header: 'Fecha de creación',
       sortable: true,
       filterable: true,
-      render: (rowData: IRuta) =>
-        dateRowTemplate({ content: { date: rowData?.createdAt } }),
+      render: (rowData: IRuta) => dateRowTemplate({ content: { date: rowData?.createdAt } }),
     },
     {
       key: '',
@@ -223,8 +190,7 @@ export default function RutasTable() {
       <DeleteModal
         title={
           <div>
-            ¿Estás seguro de que quieres eliminar la ruta{' '}
-            <strong>{elementSelected?.nombre}</strong>?
+            ¿Estás seguro de que quieres eliminar la ruta <strong>{elementSelected?.nombre}</strong>?
           </div>
         }
         isOpen={isOpen}
@@ -235,17 +201,11 @@ export default function RutasTable() {
             () =>
               removeRuta(elementSelected?.id)
                 .then((e) => tableRef?.current?.refreshData())
-                .catch((error: any) =>
-                  onFailure(toast, error.title, error.message)
-                ),
+                .catch((error: any) => onFailure(toast, error.title, error.message)),
             5000
           );
 
-          onSuccess_Undo(
-            toast,
-            `Se va a eliminar la ruta ${elementSelected?.nombre}`,
-            timeout
-          );
+          onSuccess_Undo(toast, `Se va a eliminar la ruta ${elementSelected?.nombre}`, timeout);
 
           onClose();
         }}

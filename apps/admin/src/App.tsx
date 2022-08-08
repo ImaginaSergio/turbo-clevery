@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Route,
-  Routes,
-  Navigate,
-  BrowserRouter as Router,
-} from 'react-router-dom';
+import { Route, Routes, Navigate, BrowserRouter as Router } from 'react-router-dom';
 
 /** Page imports */
 import Login from './pages/Login';
@@ -32,9 +27,9 @@ import {
   UserRolEnum,
   getUserByID,
   setItemWithExpire,
-} from '@clevery/data';
-import { theme } from '@clevery/ui';
-import { isRoleAllowed } from '@clevery/utils';
+} from 'data';
+import { theme } from 'ui';
+import { isRoleAllowed } from 'utils';
 import { LoginContext, QueryContext, ThemeContext } from './shared/context';
 
 /** Style imports */
@@ -73,11 +68,7 @@ function App() {
     };
   }, []);
 
-  const login = async (
-    _token: { token: string; type?: string },
-    userId: number,
-    saveInStorage: boolean
-  ) => {
+  const login = async (_token: { token: string; type?: string }, userId: number, saveInStorage: boolean) => {
     // Guardamos el token en la contextAPI
     setToken(_token.token);
 
@@ -89,10 +80,7 @@ function App() {
     // Y también recuperamos los datos del usuario
     const _user: IUser = await getUserByID({ id: userId, client: 'admin' });
 
-    if (
-      _user?.id &&
-      isRoleAllowed([UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR], _user?.rol)
-    ) {
+    if (_user?.id && isRoleAllowed([UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR], _user?.rol)) {
       setUser({ ..._user });
 
       // Y los guardamos en local o session storage según convenga.
@@ -120,9 +108,7 @@ function App() {
   return (
     <Router basename="/">
       <ChakraProvider theme={theme}>
-        <LoginContext.Provider
-          value={{ user, setUser, token, setToken, login, logout }}
-        >
+        <LoginContext.Provider value={{ user, setUser, token, setToken, login, logout }}>
           <ThemeContext.Provider value={{ themeMode, setThemeMode }}>
             <QueryContext.Provider
               value={{
@@ -130,8 +116,7 @@ function App() {
                 setPage,
                 query,
                 resetQuery: () => setQuery(new Map<string, any>()),
-                setQuery: (key: string, value: any) =>
-                  setQuery(new Map<string, any>(query.set(key, value))),
+                setQuery: (key: string, value: any) => setQuery(new Map<string, any>(query.set(key, value))),
               }}
             >
               <div className="app">
@@ -145,42 +130,15 @@ function App() {
 
                     <div className="app-container">
                       <Routes>
-                        <Route
-                          element={
-                            <RequireAuth
-                              isAuthenticated={isRoleAllowed(
-                                [UserRolEnum.ADMIN],
-                                user?.rol
-                              )}
-                            />
-                          }
-                        >
+                        <Route element={<RequireAuth isAuthenticated={isRoleAllowed([UserRolEnum.ADMIN], user?.rol)} />}>
                           <Route path="miscelanea/*" element={<Miscelanea />} />
                         </Route>
 
-                        <Route
-                          element={
-                            <RequireAuth
-                              isAuthenticated={isRoleAllowed(
-                                [UserRolEnum.ADMIN],
-                                user?.rol
-                              )}
-                            />
-                          }
-                        >
+                        <Route element={<RequireAuth isAuthenticated={isRoleAllowed([UserRolEnum.ADMIN], user?.rol)} />}>
                           <Route path="contenidos/*" element={<Contenidos />} />
                         </Route>
 
-                        <Route
-                          element={
-                            <RequireAuth
-                              isAuthenticated={isRoleAllowed(
-                                [UserRolEnum.ADMIN],
-                                user?.rol
-                              )}
-                            />
-                          }
-                        >
+                        <Route element={<RequireAuth isAuthenticated={isRoleAllowed([UserRolEnum.ADMIN], user?.rol)} />}>
                           <Route path="clientes/*" element={<Clientes />} />
                         </Route>
 
@@ -188,11 +146,7 @@ function App() {
                           element={
                             <RequireAuth
                               isAuthenticated={isRoleAllowed(
-                                [
-                                  UserRolEnum.ADMIN,
-                                  UserRolEnum.SUPERVISOR,
-                                  UserRolEnum.PROFESOR,
-                                ],
+                                [UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR, UserRolEnum.PROFESOR],
                                 user?.rol
                               )}
                             />
@@ -201,20 +155,8 @@ function App() {
                           <Route path="alumnado/*" element={<Alumnado />} />
                         </Route>
 
-                        <Route
-                          element={
-                            <RequireAuth
-                              isAuthenticated={isRoleAllowed(
-                                [UserRolEnum.ADMIN],
-                                user?.rol
-                              )}
-                            />
-                          }
-                        >
-                          <Route
-                            path="configuracion/*"
-                            element={<Configuracion />}
-                          />
+                        <Route element={<RequireAuth isAuthenticated={isRoleAllowed([UserRolEnum.ADMIN], user?.rol)} />}>
+                          <Route path="configuracion/*" element={<Configuracion />} />
                         </Route>
 
                         <Route path="login/*" element={<Login />} />
@@ -222,10 +164,7 @@ function App() {
                         <Route
                           path="*"
                           element={
-                            isRoleAllowed(
-                              [UserRolEnum.SUPERVISOR],
-                              user?.rol
-                            ) ? (
+                            isRoleAllowed([UserRolEnum.SUPERVISOR], user?.rol) ? (
                               <Navigate to="/alumnado" />
                             ) : (
                               <Navigate to="/contenidos" />

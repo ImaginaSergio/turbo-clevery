@@ -3,8 +3,8 @@ import { es } from 'date-fns/locale';
 import { BiBook, BiBox, BiMenu, BiTrash } from 'react-icons/bi';
 import { Flex, Box, Image, Icon } from '@chakra-ui/react';
 
-import { Avatar } from '@clevery/ui';
-import { ICurso, IProyectoBoost } from '@clevery/data';
+import { Avatar } from 'ui';
+import { ICurso, IProyectoBoost } from 'data';
 
 const ItinerarioListItem = ({
   curso,
@@ -18,49 +18,22 @@ const ItinerarioListItem = ({
   onSelect: () => void;
 }) => {
   if (curso?.id) return <ListItem_Curso curso={curso} onDelete={onDelete} />;
-  else if (proyecto?.id)
-    return <ListItem_Proyecto proyecto={proyecto} onDelete={onDelete} />;
+  else if (proyecto?.id) return <ListItem_Proyecto proyecto={proyecto} onDelete={onDelete} />;
   else
     return (
-      <Flex
-        className="itinerario-list-item"
-        gap="20px"
-        bg="#FAFAFC"
-        p="10px 12px"
-        align="center"
-        rounded="12px"
-      >
+      <Flex className="itinerario-list-item" gap="20px" bg="#FAFAFC" p="10px 12px" align="center" rounded="12px">
         ¿?
       </Flex>
     );
 };
 
-const ListItem_Curso = ({
-  curso,
-  onDelete,
-}: {
-  curso: ICurso;
-  onDelete: () => void;
-}) => {
+const ListItem_Curso = ({ curso, onDelete }: { curso: ICurso; onDelete: () => void }) => {
   return (
-    <Flex
-      className="itinerario-list-item"
-      gap="20px"
-      bg="#FAFAFC"
-      p="10px 12px"
-      align="center"
-      rounded="12px"
-    >
+    <Flex className="itinerario-list-item" gap="20px" bg="#FAFAFC" p="10px 12px" align="center" rounded="12px">
       <Flex align="center" w="100%" minW="200px" gap="12px">
         <Icon as={BiBook} boxSize="18px" color="#878EA0" />
 
-        <Image
-          minW="40px"
-          fit="cover"
-          rounded="7px"
-          boxSize="40px"
-          src={`data:image/svg+xml;utf8,${curso?.icono}`}
-        />
+        <Image minW="40px" fit="cover" rounded="7px" boxSize="40px" src={`data:image/svg+xml;utf8,${curso?.icono}`} />
 
         <Flex direction="column" gap="2px">
           <Box fontWeight="semibold" fontSize="16px" lineHeight="19px">
@@ -122,32 +95,13 @@ const ListItem_Curso = ({
   );
 };
 
-const ListItem_Proyecto = ({
-  proyecto,
-  onDelete,
-}: {
-  proyecto: IProyectoBoost;
-  onDelete: () => void;
-}) => {
+const ListItem_Proyecto = ({ proyecto, onDelete }: { proyecto: IProyectoBoost; onDelete: () => void }) => {
   return (
-    <Flex
-      className="itinerario-list-item"
-      gap="20px"
-      bg="#FAFAFC"
-      p="10px 12px"
-      align="center"
-      rounded="12px"
-    >
+    <Flex className="itinerario-list-item" gap="20px" bg="#FAFAFC" p="10px 12px" align="center" rounded="12px">
       <Flex align="center" w="100%" minW="200px" gap="12px">
         <Icon as={BiBox} boxSize="18px" color="#878EA0" />
 
-        <Image
-          h="40px"
-          minW="40px"
-          fit="cover"
-          rounded="7px"
-          src={`data:image/svg+xml;utf8,${proyecto?.icono}`}
-        />
+        <Image h="40px" minW="40px" fit="cover" rounded="7px" src={`data:image/svg+xml;utf8,${proyecto?.icono}`} />
 
         <Flex direction="column" gap="2px">
           <Box fontWeight="semibold" fontSize="16px" lineHeight="19px">

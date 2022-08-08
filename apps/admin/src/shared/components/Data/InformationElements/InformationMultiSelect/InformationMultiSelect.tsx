@@ -5,7 +5,7 @@ import AsyncSelect from 'react-select/async';
 import { BiX, BiCloudUpload } from 'react-icons/bi';
 import { Flex, Badge, Icon, Spinner, useToast } from '@chakra-ui/react';
 
-import { onFailure } from '@clevery/utils';
+import { onFailure } from 'ui';
 import { LoginContext } from '../../../../context';
 
 import './InformationMultiSelect.scss';

@@ -3,11 +3,11 @@ import { useContext, useEffect, useState } from 'react';
 import { BiDownload, BiFile } from 'react-icons/bi';
 import { Box, Button, Flex, Icon, IconButton, Input } from '@chakra-ui/react';
 
-import { getSoluciones } from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
-import { OpenEditor, OpenParser } from '@clevery/ui';
+import { getSoluciones } from 'data';
+import { isRoleAllowed } from 'utils';
+import { OpenEditor, OpenParser } from 'ui';
 import { LoginContext } from '../../../../../shared/context';
-import { EntregableEstadoEnum, IEntregable, UserRolEnum } from '@clevery/data';
+import { EntregableEstadoEnum, IEntregable, UserRolEnum } from 'data';
 
 type TabDetallesProps = {
   entregable: IEntregable;
@@ -20,8 +20,7 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
   const [nota, setNota] = useState(entregable?.puntuacion);
   const [observaciones, setObservaciones] = useState(entregable?.observaciones);
   const [solucion, setSolucion] = useState<any>();
-  const [entregarCorrecionDisabled, setEntregarCorrecionDisabled] =
-    useState(true);
+  const [entregarCorrecionDisabled, setEntregarCorrecionDisabled] = useState(true);
 
   useEffect(() => {
     setEntregarCorrecionDisabled(false);
@@ -45,10 +44,7 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
         puntuacion: nota,
         observaciones: observaciones,
         fechaCorreccion: new Date().toISOString(),
-        estado:
-          (nota || 0) > 50
-            ? EntregableEstadoEnum.CORRECTO
-            : EntregableEstadoEnum.ERROR,
+        estado: (nota || 0) > 50 ? EntregableEstadoEnum.CORRECTO : EntregableEstadoEnum.ERROR,
       });
 
     setEntregarCorrecionDisabled(true);
@@ -65,21 +61,14 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
   };
 
   return (
-    <Flex
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-      direction="column"
-    >
+    <Flex p="30px" boxSize="100%" rowGap="30px" overflow="auto" direction="column">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre la certificación, como el título del mismo,
-          descripción, logotipo, etc...
+          Información sobre la certificación, como el título del mismo, descripción, logotipo, etc...
         </Box>
       </Flex>
 
@@ -110,11 +99,7 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
           </Flex>
         </Flex>
 
-        <Box
-          bg="gray_5"
-          w={{ base: '100%', lg: '1px' }}
-          h={{ base: '1px', lg: '100%' }}
-        />
+        <Box bg="gray_5" w={{ base: '100%', lg: '1px' }} h={{ base: '1px', lg: '100%' }} />
 
         <Flex direction="column" gap="20px" minW="520px">
           <Box fontSize="15px" lineHeight="18px" fontWeight="bold">
@@ -122,37 +107,15 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
           </Box>
 
           {entregable.adjunto ? (
-            <Flex
-              gap="10px"
-              bg="#FAFAFC"
-              rounded="12px"
-              align="center"
-              p="10px 10px 10px 15px"
-              border="1px solid #E6E8EE"
-            >
+            <Flex gap="10px" bg="#FAFAFC" rounded="12px" align="center" p="10px 10px 10px 15px" border="1px solid #E6E8EE">
               <Icon as={BiFile} boxSize="24px" color="#26C8AB" />
 
-              <Flex
-                w="100%"
-                overflow="hidden"
-                direction="column"
-                textOverflow="ellipsis"
-              >
-                <Box
-                  fontSize="13px"
-                  lineHeight="21px"
-                  overflow="hidden"
-                  fontWeight="medium"
-                >
+              <Flex w="100%" overflow="hidden" direction="column" textOverflow="ellipsis">
+                <Box fontSize="13px" lineHeight="21px" overflow="hidden" fontWeight="medium">
                   {entregable?.adjunto?.name}
                 </Box>
 
-                <Box
-                  color="gray_4"
-                  fontSize="11px"
-                  lineHeight="18px"
-                  fontWeight="medium"
-                >
+                <Box color="gray_4" fontSize="11px" lineHeight="18px" fontWeight="medium">
                   {(entregable?.adjunto?.size || 0) / 1000} KB
                 </Box>
               </Flex>
@@ -181,12 +144,7 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
             </Box>
 
             <Flex direction="column" gap="10px">
-              <Box
-                color="gray_5"
-                fontSize="13px"
-                fontWeight="bold"
-                lineHeight="15px"
-              >
+              <Box color="gray_5" fontSize="13px" fontWeight="bold" lineHeight="15px">
                 Puntuación
               </Box>
 
@@ -214,12 +172,7 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
             </Flex>
 
             <Flex direction="column" gap="10px">
-              <Box
-                color="gray_5"
-                fontSize="13px"
-                fontWeight="bold"
-                lineHeight="15px"
-              >
+              <Box color="gray_5" fontSize="13px" fontWeight="bold" lineHeight="15px">
                 Observaciones
               </Box>
 
@@ -242,10 +195,7 @@ export const TabDetalles = ({ entregable, updateValue }: TabDetallesProps) => {
               fontWeight="semibold"
               bg="linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #26C8AB"
               onClick={corregirEntregable}
-              isDisabled={
-                entregarCorrecionDisabled ||
-                !isRoleAllowed([UserRolEnum.ADMIN], user?.rol)
-              }
+              isDisabled={entregarCorrecionDisabled || !isRoleAllowed([UserRolEnum.ADMIN], user?.rol)}
             >
               Guardar corrección
             </Button>

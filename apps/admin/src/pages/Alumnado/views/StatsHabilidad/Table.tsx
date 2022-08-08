@@ -3,28 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Box, Flex } from '@chakra-ui/react';
 import AsyncSelect from 'react-select/async';
-import {
-  BiBookContent,
-  BiBrain,
-  BiGroup,
-  BiListUl,
-  BiPieChartAlt,
-  BiPieChartAlt2,
-  BiTask,
-} from 'react-icons/bi';
+import { BiBookContent, BiBrain, BiGroup, BiListUl, BiPieChartAlt, BiPieChartAlt2, BiTask } from 'react-icons/bi';
 
-import {
-  HBarChart2,
-  PageHeader,
-  PageSidebar,
-  RadarChart,
-} from '../../../../shared/components';
-import {
-  getHabilidades,
-  getStatsByHabilidad,
-  UserRolEnum,
-} from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
+import { HBarChart2, PageHeader, PageSidebar, RadarChart } from '../../../../shared/components';
+import { getHabilidades, getStatsByHabilidad, UserRolEnum } from 'data';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from 'apps/admin/src/shared/context';
 
 export default function HabilidadesTable() {
@@ -113,8 +96,7 @@ export default function HabilidadesTable() {
               </Box>
 
               <Box fontSize="14px" fontWeight="medium" color="#84889A">
-                Aquí se muestra la cantidad de alumnos que ha obtenido las
-                habilidades.
+                Aquí se muestra la cantidad de alumnos que ha obtenido las habilidades.
               </Box>
             </Flex>
 
@@ -152,40 +134,24 @@ export default function HabilidadesTable() {
                 Selecciona una habilidad
               </Box>
             ) : (
-              <Flex
-                gap="30px"
-                w="100%"
-                align="center"
-                direction={{ base: 'column', lg: 'row' }}
-              >
+              <Flex gap="30px" w="100%" align="center" direction={{ base: 'column', lg: 'row' }}>
                 <HBarChart2
                   showLegend={false}
                   datasets={stats?.data?.map((item: any) => ({
                     image: item.imagen?.url,
                     title: item.titulo,
-                    data: [
-                      getPercent(
-                        +(item.meta?.totalUsers || 0),
-                        +(stats.totalUsers || 0)
-                      ),
-                      100,
-                    ],
+                    data: [getPercent(+(item.meta?.totalUsers || 0), +(stats.totalUsers || 0)), 100],
                     total: +(stats.totalUsers || 0),
                     num: +(item.meta?.totalUsers || 0),
                   }))}
                 />
 
-                <Flex
-                  w={{ base: undefined, lg: '100%' }}
-                  maxW={{ base: undefined, lg: '500px' }}
-                >
+                <Flex w={{ base: undefined, lg: '100%' }} maxW={{ base: undefined, lg: '500px' }}>
                   <RadarChart
                     labels={stats?.labels}
                     dataset={{
                       label: '# of Votes',
-                      data: stats?.data?.map(
-                        (item: any) => item.meta?.totalUsers
-                      ),
+                      data: stats?.data?.map((item: any) => item.meta?.totalUsers),
                       backgroundColor: 'rgba(50, 213, 164, 0.3)',
                       borderColor: '#09C598',
                     }}

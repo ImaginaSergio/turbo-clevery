@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { BiLogOut, BiSlideshow, BiChevronDown, BiChevronLeft } from 'react-icons/bi';
 import { Box, Flex, Icon, Menu, Portal, MenuItem, MenuList, IconButton, MenuButton } from '@chakra-ui/react';
 
-import { Avatar } from '@clevery/ui';
+import { Avatar } from 'ui';
 
 import { LoginContext } from '../../../context';
 

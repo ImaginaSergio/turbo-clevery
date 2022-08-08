@@ -4,10 +4,10 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { BiBookContent, BiShow, BiTask } from 'react-icons/bi';
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
 
-import { onFailure } from '@clevery/utils';
-import { ICertificacion } from '@clevery/data';
+import { onFailure } from 'ui';
+import { ICertificacion } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
-import { getCertificacionByID, updateCertificacion } from '@clevery/data';
+import { getCertificacionByID, updateCertificacion } from 'data';
 
 import { TabExamenes } from './TabExamenes';
 import { TabInformacion } from './TabInformacion';
@@ -80,9 +80,7 @@ export default function CursosInformation() {
             isActive: tab === Tab.INFORMACION,
             onClick: () => {
               setTab(Tab.INFORMACION);
-              navigate(
-                `/contenidos/certificaciones/${certificacionID}#informacion`
-              );
+              navigate(`/contenidos/certificaciones/${certificacionID}#informacion`);
             },
           },
           {
@@ -91,9 +89,7 @@ export default function CursosInformation() {
             isActive: tab === Tab.EXAMENES,
             onClick: () => {
               setTab(Tab.EXAMENES);
-              navigate(
-                `/contenidos/certificaciones/${certificacionID}#examenes`
-              );
+              navigate(`/contenidos/certificaciones/${certificacionID}#examenes`);
             },
           },
         ]}
@@ -118,10 +114,7 @@ export default function CursosInformation() {
             <Spinner boxSize="40px" />
           </Center>
         ) : tab === Tab.INFORMACION ? (
-          <TabInformacion
-            certificacion={certificacion}
-            updateValue={updateValue}
-          />
+          <TabInformacion certificacion={certificacion} updateValue={updateValue} />
         ) : tab === Tab.EXAMENES ? (
           <TabExamenes certificacion={certificacion} />
         ) : null}

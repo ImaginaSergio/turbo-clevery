@@ -1,33 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Tab,
-  Tabs,
-  useToast,
-  TabList,
-  TabPanel,
-  TabPanels,
-} from '@chakra-ui/react';
+import { Tab, Tabs, useToast, TabList, TabPanel, TabPanels } from '@chakra-ui/react';
 
-import {
-  ILeccion,
-  ILivecoder,
-  addLivecoder,
-  getLivecoders,
-} from '@clevery/data';
-import { onFailure } from '@clevery/utils';
+import { ILeccion, ILivecoder, addLivecoder, getLivecoders } from 'data';
+import { onFailure } from 'ui';
 
 import { TabTests } from './TabTests';
 import { TabDetalles } from './TabDetalles';
 import { TabLivecoder } from './TabLivecoder';
 
-export const LeccionLivecoder = ({
-  leccion,
-  updateValue,
-}: {
-  leccion: ILeccion;
-  updateValue: (e?: any) => any;
-}) => {
+export const LeccionLivecoder = ({ leccion, updateValue }: { leccion: ILeccion; updateValue: (e?: any) => any }) => {
   const toast = useToast();
   const [livecoder, setLivecoder] = useState<ILivecoder>();
 

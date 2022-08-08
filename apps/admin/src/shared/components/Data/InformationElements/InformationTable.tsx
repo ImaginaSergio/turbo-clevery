@@ -1,7 +1,7 @@
 import { BiPlus } from 'react-icons/bi';
 import { Box, Button, Flex, Icon } from '@chakra-ui/react';
 
-import { OpenColumn, OpenTable } from '@clevery/ui';
+import { OpenColumn, OpenTable } from 'ui';
 
 type InformationTableProps = {
   label?: string;
@@ -48,10 +48,7 @@ const InformationTable = ({
     <>
       <Flex align="center" justify="space-between" boxSize="100%">
         {label && (
-          <label
-            className="information-block-label"
-            style={{ marginBottom: '0px' }}
-          >
+          <label className="information-block-label" style={{ marginBottom: '0px' }}>
             {label}
           </label>
         )}
@@ -80,13 +77,7 @@ const InformationTable = ({
         )
       ) : (
         <Flex style={style}>
-          <OpenTable
-            data={data}
-            columns={columns}
-            isPaginable={false}
-            isLoading={isLoading}
-            onRowClick={onRowClick}
-          />
+          <OpenTable data={data} columns={columns} isPaginable={false} isLoading={isLoading} onRowClick={onRowClick} />
         </Flex>
       )}
     </>

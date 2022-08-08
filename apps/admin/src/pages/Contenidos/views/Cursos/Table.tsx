@@ -1,19 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  BiPlus,
-  BiBrain,
-  BiDirections,
-  BiBadgeCheck,
-  BiBookContent,
-} from 'react-icons/bi';
+import { BiPlus, BiBrain, BiDirections, BiBadgeCheck, BiBookContent } from 'react-icons/bi';
 import { format } from 'date-fns';
 import { Flex, Icon, Box, Badge, Image, toast } from '@chakra-ui/react';
 
-import { onFailure } from '@clevery/utils';
-import { Avatar, OpenColumn, OpenTable } from '@clevery/ui';
-import { getUsers, useCursos, UserRolEnum, getCursos } from '@clevery/data';
+import { onFailure } from 'ui';
+import { Avatar, OpenColumn, OpenTable } from 'ui';
+import { getUsers, useCursos, UserRolEnum, getCursos } from 'data';
 import { PageHeader, PageSidebar } from '../../../../shared/components';
 import { descargarTemarioCurso } from '../../../../shared/utils/temaryGenerator';
 
@@ -22,9 +16,7 @@ export default function CursosTable() {
   const [loadingDowload, setLoadingDowload] = useState<boolean>(false);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [queryString, setQueryString] = useState<string>(
-    '&page=' + currentPage
-  );
+  const [queryString, setQueryString] = useState<string>('&page=' + currentPage);
 
   const { cursos, isLoading } = useCursos({
     client: 'admin',
@@ -39,8 +31,7 @@ export default function CursosTable() {
       ?.filter((v: any) => v),
   });
 
-  const onRowClick = async (e: any) =>
-    navigate('/contenidos/cursos/' + e?.id || '');
+  const onRowClick = async (e: any) => navigate('/contenidos/cursos/' + e?.id || '');
 
   const loadProfesores = (value: string) =>
     getUsers({
@@ -64,11 +55,7 @@ export default function CursosTable() {
     for (const curso of cursos?.data || []) {
       console.log(`🔄 Descargando temario de ${curso?.titulo}`);
 
-      await descargarTemarioCurso(
-        curso?.id,
-        `Formacion en ${curso?.titulo} - OpenBootcamp`,
-        false
-      )
+      await descargarTemarioCurso(curso?.id, `Formacion en ${curso?.titulo} - OpenBootcamp`, false)
         .then((url: string) => {
           console.log(`✅ Temario de ${curso?.titulo} descargado`, { url });
 
@@ -95,11 +82,7 @@ export default function CursosTable() {
       filterable: true,
       render: (rowData) => (
         <Flex align="center" gap="15px">
-          <Image
-            minW="50px"
-            boxSize="50px"
-            src={`data:image/svg+xml;utf8,${rowData.icono}`}
-          />
+          <Image minW="50px" boxSize="50px" src={`data:image/svg+xml;utf8,${rowData.icono}`} />
 
           <Box>{rowData.titulo}</Box>
         </Flex>
@@ -117,17 +100,13 @@ export default function CursosTable() {
           <Avatar
             size="50px"
             variant="bauhaus"
-            colorVariant={
-              (rowData?.profesor?.id || 0) % 2 == 1 ? 'hot' : 'cold'
-            }
+            colorVariant={(rowData?.profesor?.id || 0) % 2 == 1 ? 'hot' : 'cold'}
             src={rowData.profesor.avatar?.url}
             name={rowData.profesor?.fullName || 'Avatar del profesor'}
           />
 
           <Box as="a" href={'/contenidos/cursos/' + rowData?.id || ''}>
-            {(rowData.profesor?.nombre || '') +
-              ' ' +
-              (rowData.profesor?.apellidos || '')}
+            {(rowData.profesor?.nombre || '') + ' ' + (rowData.profesor?.apellidos || '')}
           </Box>
         </Flex>
       ),
@@ -149,11 +128,7 @@ export default function CursosTable() {
         { label: 'No publicado', value: 'false' },
       ],
       render: (rowData) => (
-        <Badge
-          rounded="7px"
-          color={rowData.publicado ? 'white' : 'black'}
-          bg={rowData.publicado ? 'primary' : '#D9DBE3'}
-        >
+        <Badge rounded="7px" color={rowData.publicado ? 'white' : 'black'} bg={rowData.publicado ? 'primary' : '#D9DBE3'}>
           {rowData.publicado ? 'Publicado' : 'No publicado'}
         </Badge>
       ),
@@ -163,9 +138,7 @@ export default function CursosTable() {
       field: 'createdAt',
       header: 'Fecha de creación',
       sortable: true,
-      render: (rowData) => (
-        <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>
-      ),
+      render: (rowData) => <Flex>{format(new Date(rowData.createdAt), 'dd/MM/yyy')}</Flex>,
     },
   ];
 

@@ -5,8 +5,8 @@ import { Image, Flex, useColorMode } from '@chakra-ui/react';
 
 import LoginForm from './views/LoginForm';
 
-import { UserRolEnum } from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
+import { UserRolEnum } from 'data';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../shared/context';
 
 import loginDarkBg from '../../assets/login/login_dark.png';

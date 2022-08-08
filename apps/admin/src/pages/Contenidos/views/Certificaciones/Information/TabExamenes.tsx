@@ -1,30 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Box,
-  Flex,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  useToast,
-} from '@chakra-ui/react';
+import { Box, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from '@chakra-ui/react';
 
-import { fmtMnts, onFailure } from '@clevery/utils';
-import { IExamen, IPregunta, IRespuesta, ICertificacion } from '@clevery/data';
+import { onFailure } from 'ui';
+import { fmtMnts } from 'utils';
 
 import {
-  ListItemProps,
-  PreguntasItem,
-  InformationInput,
-  InformationTestList,
-  InformationTextEditor,
-  InformationFilepond,
-  InformationDragDropList,
-} from '../../../../../shared/components';
-
-import {
+  IExamen,
+  IPregunta,
+  IRespuesta,
+  ICertificacion,
   addExamen,
   addPregunta,
   addRespuesta,
@@ -36,7 +21,16 @@ import {
   updateExamen,
   updatePregunta,
   updateRespuesta,
-} from '@clevery/data';
+} from 'data';
+import {
+  ListItemProps,
+  PreguntasItem,
+  InformationInput,
+  InformationTestList,
+  InformationTextEditor,
+  InformationFilepond,
+  InformationDragDropList,
+} from '../../../../../shared/components';
 
 type TabExamenesProps = {
   certificacion: ICertificacion;
@@ -54,10 +48,7 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
 
   const refreshState = async () => {
     const _examenes = await getExamenes({
-      query: [
-        { certificacion_id: certificacion?.id },
-        { es_certificacion: true },
-      ],
+      query: [{ certificacion_id: certificacion?.id }, { es_certificacion: true }],
       client: 'admin',
     });
 
@@ -67,27 +58,17 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
   const updateTestValue = (value: any) => {
     if (!examen?.id) return Promise.reject('examen_id es indefinido');
 
-    return updateExamen({ id: examen.id, examen: value, client: 'admin' }).then(
-      () => refreshState()
-    );
+    return updateExamen({ id: examen.id, examen: value, client: 'admin' }).then(() => refreshState());
   };
 
   const onNewExamen = async () => {
     if (!certificacion?.id) {
-      onFailure(
-        toast,
-        'Error al crear el examen',
-        'certificacion_id es indefinido'
-      );
+      onFailure(toast, 'Error al crear el examen', 'certificacion_id es indefinido');
       return;
     }
 
     if ((certificacion.examenes?.length || 0) >= 1) {
-      onFailure(
-        toast,
-        'Error al crear el examen',
-        'Sólo puedes crear un examen por certificación'
-      );
+      onFailure(toast, 'Error al crear el examen', 'Sólo puedes crear un examen por certificación');
       return;
     }
 
@@ -111,9 +92,7 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
     removeExamen({ id: examen.id, client: 'admin' }).then(() => refreshState());
   };
 
-  const transformTestsToDnDItems = (
-    examenes: IExamen[] = []
-  ): ListItemProps[] => {
+  const transformTestsToDnDItems = (examenes: IExamen[] = []): ListItemProps[] => {
     return examenes.map((examen: IExamen) => ({
       showIndex: false,
       title: examen.nombre,
@@ -124,13 +103,7 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
   };
 
   return (
-    <Flex
-      direction={{ base: 'column', lg: 'row' }}
-      p="30px"
-      boxSize="100%"
-      gap="30px"
-      overflow="auto"
-    >
+    <Flex direction={{ base: 'column', lg: 'row' }} p="30px" boxSize="100%" gap="30px" overflow="auto">
       <Flex direction="column" minW="400px" gap="30px">
         <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
           <Box fontSize="18px" fontWeight="semibold">
@@ -154,9 +127,7 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
       <Flex direction="column" w="100%" gap="30px">
         <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
           <Box fontSize="18px" fontWeight="semibold">
-            {examen
-              ? `Contenido del examen - ${examen.nombre}`
-              : 'Sin examen seleccionado'}
+            {examen ? `Contenido del examen - ${examen.nombre}` : 'Sin examen seleccionado'}
           </Box>
 
           <Box fontSize="14px" fontWeight="medium" color="#84889A">
@@ -196,10 +167,7 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
 
             <TabPanels>
               <TabPanel p="30px 0px">
-                <TabTestDetalles
-                  examen={examen}
-                  updateValue={updateTestValue}
-                />
+                <TabTestDetalles examen={examen} updateValue={updateTestValue} />
               </TabPanel>
 
               <TabPanel p="30px 0px">
@@ -213,13 +181,7 @@ export const TabExamenes = ({ certificacion }: TabExamenesProps) => {
   );
 };
 
-const TabTestDetalles = ({
-  examen,
-  updateValue,
-}: {
-  examen?: IExamen;
-  updateValue: (value: any) => void;
-}) => {
+const TabTestDetalles = ({ examen, updateValue }: { examen?: IExamen; updateValue: (value: any) => void }) => {
   return (
     <Flex w="100%" gap="30px" direction={{ md: 'column', xl: 'row' }}>
       <Flex direction="column" w="100%" gap="30px">
@@ -331,25 +293,19 @@ const TabTestPreguntas = ({ examen }: { examen?: IExamen }) => {
   const onRemovePregunta = (preguntaId?: number) => {
     if (!preguntaId) return Promise.reject('preguntaId es indefinido');
 
-    removePregunta({ id: preguntaId, client: 'admin' }).then(() =>
-      refreshState()
-    );
+    removePregunta({ id: preguntaId, client: 'admin' }).then(() => refreshState());
   };
 
   const onRemoveRespuesta = (respuestaId?: number) => {
     if (!respuestaId) return Promise.reject('respuestaId es indefinido');
 
-    removeRespuesta({ id: respuestaId, client: 'admin' }).then(() =>
-      refreshState()
-    );
+    removeRespuesta({ id: respuestaId, client: 'admin' }).then(() => refreshState());
   };
 
   const onUpdatePregunta = (preguntaId?: number, value?: any) => {
     if (!preguntaId) return Promise.reject('preguntaId es indefinido');
 
-    updatePregunta({ id: preguntaId, pregunta: value, client: 'admin' }).then(
-      () => refreshState()
-    );
+    updatePregunta({ id: preguntaId, pregunta: value, client: 'admin' }).then(() => refreshState());
   };
 
   const onUpdateRespuesta = (respuestaId?: number, value?: any) => {
@@ -378,8 +334,7 @@ const TabTestPreguntas = ({ examen }: { examen?: IExamen }) => {
             isCheck: resp.correcta,
             onDeleteRespuesta: () => onRemoveRespuesta(resp.id),
             onEditRespuesta: (value: any) => onUpdateRespuesta(resp.id, value),
-            onCheckRespuesta: () =>
-              onUpdateRespuesta(resp.id, { correcta: !resp.correcta }),
+            onCheckRespuesta: () => onUpdateRespuesta(resp.id, { correcta: !resp.correcta }),
           })) || [],
     }));
   };

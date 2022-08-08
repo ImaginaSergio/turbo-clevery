@@ -1,18 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
-import {
-  BiShow,
-  BiBookReader,
-  BiDirections,
-  BiBookContent,
-  BiListCheck,
-} from 'react-icons/bi';
+import { BiShow, BiBookReader, BiDirections, BiBookContent, BiListCheck } from 'react-icons/bi';
 import { Flex, Icon, useToast, Spinner, Center } from '@chakra-ui/react';
 
-import { IBoost } from '@clevery/data';
-import { onFailure } from '@clevery/utils';
-import { getBoost, updateBoost } from '@clevery/data';
+import { IBoost } from 'data';
+import { onFailure } from 'ui';
+import { getBoost, updateBoost } from 'data';
 import { PageHeader, PageSidebar } from '../../../../../shared/components';
 
 import { TabRuta } from './TabRuta';

@@ -6,8 +6,8 @@ import {
   InformationFilepond,
   InformationTextEditor,
 } from '../../../../../shared/components';
-import { getHabilidades } from '@clevery/data';
-import { IProceso, ProcesoRemotoEnum } from '@clevery/data';
+import { getHabilidades } from 'data';
+import { IProceso, ProcesoRemotoEnum } from 'data';
 import { InformationHabilidades } from '../../../components/InformationHabilidades/InformationHabilidades';
 
 type TabInformacionProps = {
@@ -15,10 +15,7 @@ type TabInformacionProps = {
   updateValue: (value: any) => void;
 };
 
-export const TabInformacion = ({
-  proceso,
-  updateValue,
-}: TabInformacionProps) => {
+export const TabInformacion = ({ proceso, updateValue }: TabInformacionProps) => {
   const loadHabilidadesByNombre = async (value: string) => {
     const _habilidades = await getHabilidades({
       client: 'admin',
@@ -33,39 +30,22 @@ export const TabInformacion = ({
   };
 
   return (
-    <Flex
-      direction="column"
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-    >
+    <Flex direction="column" p="30px" boxSize="100%" rowGap="30px" overflow="auto">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el proceso, como el título del mismo, descripción,
-          logotipo, etc...
+          Información sobre el proceso, como el título del mismo, descripción, logotipo, etc...
         </Box>
       </Flex>
 
       <Flex direction={{ base: 'column', lg: 'row' }} gap="30px" w="100%">
         <Flex direction="column" w="100%" gap="30px">
-          <InformationInput
-            name="titulo"
-            label="Titulo del proceso"
-            defaultValue={proceso?.titulo}
-            updateValue={updateValue}
-          />
+          <InformationInput name="titulo" label="Titulo del proceso" defaultValue={proceso?.titulo} updateValue={updateValue} />
 
-          <InformationInput
-            name="localidad"
-            label="Ubicación"
-            defaultValue={proceso?.localidad}
-            updateValue={updateValue}
-          />
+          <InformationInput name="localidad" label="Ubicación" defaultValue={proceso?.localidad} updateValue={updateValue} />
 
           <Flex direction={{ base: 'column', lg: 'row' }} gap="30px" w="100%">
             <InformationInput

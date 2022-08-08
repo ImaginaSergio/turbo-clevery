@@ -14,27 +14,11 @@ import {
 } from '@chakra-ui/react';
 import { BiPlusCircle, BiTrash } from 'react-icons/bi';
 
-import {
-  ILenguaje,
-  ILivecoder,
-  ITestLivecoder,
-  addTestLivecoder,
-  removeTestLivecoder,
-  updateTestLivecoder,
-} from '@clevery/data';
-import {
-  InformationInput,
-  InformationMonaco,
-} from 'apps/admin/src/shared/components';
-import { onFailure } from '@clevery/utils';
+import { ILenguaje, ILivecoder, ITestLivecoder, addTestLivecoder, removeTestLivecoder, updateTestLivecoder } from 'data';
+import { InformationInput, InformationMonaco } from 'apps/admin/src/shared/components';
+import { onFailure } from 'ui';
 
-export const TabTests = ({
-  livecoder,
-  refreshState,
-}: {
-  livecoder?: ILivecoder;
-  refreshState: () => void;
-}) => {
+export const TabTests = ({ livecoder, refreshState }: { livecoder?: ILivecoder; refreshState: () => void }) => {
   const [tests, setTests] = useState<ITestLivecoder[]>(livecoder?.tests || []);
   const toast = useToast();
 
@@ -53,10 +37,7 @@ export const TabTests = ({
         else return 0;
       });
 
-      const sumArray = array.reduce(
-        (previousValue, currentValue) => previousValue + currentValue,
-        sum
-      );
+      const sumArray = array.reduce((previousValue, currentValue) => previousValue + currentValue, sum);
 
       sum = +sumArray + +value?.puntuacion;
     }
@@ -95,10 +76,7 @@ export const TabTests = ({
         return item?.puntuacion;
       });
 
-      const sumArray = array.reduce(
-        (previousValue, currentValue) => previousValue + currentValue,
-        sum
-      );
+      const sumArray = array.reduce((previousValue, currentValue) => previousValue + currentValue, sum);
 
       sum = sumArray;
     }
@@ -184,24 +162,14 @@ const TestItem = ({ test, lenguaje, onRemove, onEdit }: TestItemProps) => (
           onChange={(value: string) => onEdit({ nombre: value })}
         />
 
-        <Icon
-          ml="10px"
-          as={BiTrash}
-          onClick={onRemove}
-          _hover={{ opacity: 0.7 }}
-        />
+        <Icon ml="10px" as={BiTrash} onClick={onRemove} _hover={{ opacity: 0.7 }} />
 
         <AccordionIcon />
       </AccordionButton>
     </h2>
 
     <AccordionPanel pb={4} h="100%">
-      <Flex
-        w="100%"
-        mb="20px"
-        gap="20px"
-        direction={{ base: 'column', md: 'row' }}
-      >
+      <Flex w="100%" mb="20px" gap="20px" direction={{ base: 'column', md: 'row' }}>
         <InformationInput
           name="orden"
           label="Orden"
@@ -268,8 +236,7 @@ const TextInput = ({
     if (inputElement) inputElement.focus();
 
     function handleClickOutside(event: any) {
-      if (event.type === 'keypress' && event.key === 'Enter' && inputElement)
-        setEditing(0);
+      if (event.type === 'keypress' && event.key === 'Enter' && inputElement) setEditing(0);
     }
 
     document.addEventListener('keypress', handleClickOutside);

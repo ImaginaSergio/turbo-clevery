@@ -1,13 +1,10 @@
 import { useContext } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 
-import { IGrupo, UserRolEnum } from '@clevery/data';
-import {
-  InformationInput,
-  InformationTextEditor,
-} from '../../../../../shared/components';
+import { IGrupo, UserRolEnum } from 'data';
+import { InformationInput, InformationTextEditor } from '../../../../../shared/components';
 import { LoginContext } from '../../../../../shared/context';
-import { isRoleAllowed } from '@clevery/utils';
+import { isRoleAllowed } from 'utils';
 
 type TabDetallesProps = {
   grupo: IGrupo;
@@ -18,21 +15,14 @@ export const TabDetalles = ({ grupo, updateValue }: TabDetallesProps) => {
   const { user } = useContext(LoginContext);
 
   return (
-    <Flex
-      direction="column"
-      p="30px"
-      boxSize="100%"
-      rowGap="30px"
-      overflow="auto"
-    >
+    <Flex direction="column" p="30px" boxSize="100%" rowGap="30px" overflow="auto">
       <Flex minH="fit-content" w="100%" direction="column" rowGap="8px">
         <Box fontSize="18px" fontWeight="semibold">
           Información General
         </Box>
 
         <Box fontSize="14px" fontWeight="medium" color="#84889A">
-          Información sobre el alumno como su nombre, datos de contacto,
-          ajustes...
+          Información sobre el alumno como su nombre, datos de contacto, ajustes...
         </Box>
       </Flex>
 

@@ -2,21 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Flex } from '@chakra-ui/react';
-import {
-  BiBookContent,
-  BiGroup,
-  BiPieChartAlt,
-  BiPieChartAlt2,
-  BiTask,
-} from 'react-icons/bi';
+import { BiBookContent, BiGroup, BiPieChartAlt, BiPieChartAlt2, BiTask } from 'react-icons/bi';
 
-import {
-  HBarChart,
-  PageHeader,
-  PageSidebar,
-} from '../../../../shared/components';
-import { getStatsByCurso, UserRolEnum } from '@clevery/data';
-import { isRoleAllowed } from '@clevery/utils';
+import { HBarChart, PageHeader, PageSidebar } from '../../../../shared/components';
+import { getStatsByCurso, UserRolEnum } from 'data';
+import { isRoleAllowed } from 'utils';
 import { LoginContext } from 'apps/admin/src/shared/context';
 
 export default function CursosTable() {
@@ -32,9 +22,7 @@ export default function CursosTable() {
 
       setCursosStats(
         stats?.data?.map((s: any) => {
-          const totalUsers =
-            (s.meta?.usersNoEmpezados?.length || 0) +
-            (s.meta?.progresosUsers?.length || 0);
+          const totalUsers = (s.meta?.usersNoEmpezados?.length || 0) + (s.meta?.progresosUsers?.length || 0);
           const totalNoEmpezados = s.meta?.usersNoEmpezados?.length || 0;
           const totalCompletos = +(s.meta?.totalUsers || 0);
           const totalEnCurso = totalUsers - totalCompletos - totalNoEmpezados;
@@ -45,11 +33,7 @@ export default function CursosTable() {
             id: s.id,
             title: s.titulo,
             image: s.imagen?.url,
-            data: [
-              getPercent(totalCompletos),
-              getPercent(totalEnCurso),
-              getPercent(totalNoEmpezados),
-            ],
+            data: [getPercent(totalCompletos), getPercent(totalEnCurso), getPercent(totalNoEmpezados)],
           };
         }) || []
       );
@@ -95,30 +79,19 @@ export default function CursosTable() {
         <PageHeader head={{ title: 'Stats por cursos' }} />
 
         <Flex w="100%" direction="column" gap="30px">
-          <Flex
-            minH="fit-content"
-            w="100%"
-            direction="column"
-            gap="8px"
-            p="0px 30px"
-          >
+          <Flex minH="fit-content" w="100%" direction="column" gap="8px" p="0px 30px">
             <Box fontSize="18px" fontWeight="semibold">
               Progreso de Cursos
             </Box>
 
             <Box fontSize="14px" fontWeight="medium" color="#84889A">
-              En este gráfico se muestra el progreso general del grupo respecto
-              a los cursos.
+              En este gráfico se muestra el progreso general del grupo respecto a los cursos.
             </Box>
           </Flex>
 
           <Flex direction="column" gap="30px" w="100%">
             {cursosStats?.length > 0 ? (
-              <HBarChart
-                showLegend
-                datasets={cursosStats}
-                onItemClick={(e) => navigate(`/alumnado/stats-cursos/${e?.id}`)}
-              />
+              <HBarChart showLegend datasets={cursosStats} onItemClick={(e) => navigate(`/alumnado/stats-cursos/${e?.id}`)} />
             ) : (
               <Box>No hay cursos asociados al grupo</Box>
             )}
