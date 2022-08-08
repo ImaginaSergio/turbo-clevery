@@ -1,10 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Flex, Icon, Image, Center, Skeleton, CircularProgress } from '@chakra-ui/react';
 import { BiLock, BiCheck, BiBook, BiBox } from 'react-icons/bi';
 
-import { IRuta, ICurso, useCurso, RutaItinerario, IProyectoBoost, useProyectoBoost, RutaItinerarioTipoEnum } from 'data';
+import {
+  IRuta,
+  ICurso,
+  useCurso,
+  RutaItinerario,
+  IProyectoBoost,
+  useProyectoBoost,
+  RutaItinerarioTipoEnum,
+  getCurso,
+  getProyectoBoost,
+} from 'data';
 import { OpenParser } from 'ui';
 import { fmtMnts } from 'utils';
 
@@ -27,10 +37,22 @@ export const RutaLista = ({ ruta }: { ruta?: IRuta }) => {
 const RutaListaItem = (props: { id: number; userId?: number; isFromBoost?: boolean; tipo: RutaItinerarioTipoEnum }) => {
   const navigate = useNavigate();
 
-  const { data, isLoading } =
-    props.tipo === RutaItinerarioTipoEnum.CURSO
-      ? useCurso({ id: props.id, userId: props.userId })
-      : useProyectoBoost({ id: props.id });
+  const [data, setData] = useState<any>();
+  const [isLoading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (props.tipo === RutaItinerarioTipoEnum.CURSO) {
+      getCurso({ id: props.id, userId: props.userId }).then((dataCurso) => {
+        setData(dataCurso);
+        setLoading(false);
+      });
+    } else {
+      getProyectoBoost({ id: props.id }).then((dataProyecto) => {
+        setData(dataProyecto);
+        setLoading(false);
+      });
+    }
+  }, [props.tipo, props.id, props.userId]);
 
   return (
     <Flex w="100%" gap="12px" align="center">
