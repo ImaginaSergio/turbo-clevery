@@ -21,30 +21,10 @@ const Sidebar = () => {
   const { user } = useContext(LoginContext);
 
   return (
-    <Flex
-      w="80px"
-      h="100vh"
-      bg="#1B1F31"
-      p="0px 0px 15px"
-      rowGap="20px"
-      direction="column"
-      align="flex-start"
-    >
-      <Flex
-        h="90px"
-        w="100%"
-        align="center"
-        cursor="pointer"
-        justify="center"
-        data-cy="logo_ob"
-        onClick={() => navigate('/')}
-      >
+    <Flex w="80px" h="100vh" bg="#1B1F31" p="0px 0px 15px" rowGap="20px" direction="column" align="flex-start">
+      <Flex h="90px" w="100%" align="center" cursor="pointer" justify="center" data-cy="logo_ob" onClick={() => navigate('/')}>
         <Flex display={{ base: 'flex', '2xl': 'none' }}>
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
-            <LogoOB w="30" h="35" />
-          ) : (
-            <LogoOM w="30" h="35" />
-          )}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? <LogoOB w="30" h="35" /> : <LogoOM w="30" h="35" />}
         </Flex>
       </Flex>
 
@@ -59,33 +39,15 @@ const Sidebar = () => {
         )}
 
         {isRoleAllowed([UserRolEnum.ADMIN], user?.rol) && (
-          <NavLink
-            label="Clientes"
-            to="/clientes"
-            icon={BiBriefcase}
-            isActive={location.pathname.startsWith('/clientes')}
-          />
+          <NavLink label="Clientes" to="/clientes" icon={BiBriefcase} isActive={location.pathname.startsWith('/clientes')} />
         )}
 
-        {isRoleAllowed(
-          [UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR],
-          user?.rol
-        ) && (
-          <NavLink
-            label="Alumnado"
-            to="/alumnado"
-            icon={FiUsers}
-            isActive={location.pathname.startsWith('/alumnado')}
-          />
+        {isRoleAllowed([UserRolEnum.ADMIN, UserRolEnum.SUPERVISOR], user?.rol) && (
+          <NavLink label="Alumnado" to="/alumnado" icon={FiUsers} isActive={location.pathname.startsWith('/alumnado')} />
         )}
 
         {isRoleAllowed([UserRolEnum.ADMIN], user?.rol) && (
-          <NavLink
-            label="Miscelánea"
-            to="/miscelanea"
-            icon={BiBox}
-            isActive={location.pathname.startsWith('/miscelanea')}
-          />
+          <NavLink label="Miscelánea" to="/miscelanea" icon={BiBox} isActive={location.pathname.startsWith('/miscelanea')} />
         )}
       </Flex>
 

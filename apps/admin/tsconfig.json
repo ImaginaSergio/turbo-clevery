@@ -1,22 +1,7 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "tsconfig/react-app.json",
+  "include": ["src"],
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": false,
-    "strict": true,
-
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": true
-  },
-  "files": [],
-  "include": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.spec.json" }
-  ]
+    "isolatedModules": false
+  }
 }

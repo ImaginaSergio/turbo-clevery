@@ -70,14 +70,7 @@ export interface RowQuickActionProps {
   };
 }
 
-export const rowQuickActions = ({
-  edit,
-  view,
-  download,
-  remove,
-  check,
-  duplicate,
-}: RowQuickActionProps) => {
+export const rowQuickActions = ({ edit, view, download, remove, check, duplicate }: RowQuickActionProps) => {
   return (
     <Menu isLazy>
       <MenuButton
@@ -90,14 +83,7 @@ export const rowQuickActions = ({
         _hover={{ bg: 'transparent', color: '#71717E' }}
         _active={{ bg: 'transparent', color: '#3484FB' }}
         _expanded={{ bg: 'transparent', color: '#3484FB' }}
-        icon={
-          <Icon
-            color="#55556A"
-            as={BiDotsVerticalRounded}
-            w={'24px'}
-            h={'24px'}
-          />
-        }
+        icon={<Icon color="#55556A" as={BiDotsVerticalRounded} w={'24px'} h={'24px'} />}
       />
       <MenuList
         p="0px"
@@ -248,8 +234,7 @@ export const DeleteModal = ({
 
         <ModalBody>
           <FormLabel className="form-label">
-            Escribe <i>{securityWord}</i> para confirmar{' '}
-            <strong>que quieres borrar</strong> el elemento.
+            Escribe <i>{securityWord}</i> para confirmar <strong>que quieres borrar</strong> el elemento.
           </FormLabel>
           <Input
             className="form-input"
@@ -266,11 +251,7 @@ export const DeleteModal = ({
             Cancelar
           </Button>
 
-          <Button
-            colorScheme={value !== securityWord ? 'gray' : 'red'}
-            isDisabled={value !== securityWord}
-            onClick={onAccept}
-          >
+          <Button colorScheme={value !== securityWord ? 'gray' : 'red'} isDisabled={value !== securityWord} onClick={onAccept}>
             Eliminar
           </Button>
         </ModalFooter>
@@ -307,8 +288,7 @@ export const RelatedEntitiesModal = ({
 
         <ModalBody>
           <FormLabel className="form-label">
-            Por favor, borra las siguientes entidades o des-relaciónalas de la
-            entidad que tratas de borrar.
+            Por favor, borra las siguientes entidades o des-relaciónalas de la entidad que tratas de borrar.
           </FormLabel>
 
           <Table size="sm">
@@ -324,11 +304,7 @@ export const RelatedEntitiesModal = ({
                 <Tr key={index}>
                   <Td>{entity.title}</Td>
                   <Td>
-                    <a
-                      target="_blank"
-                      href={process.env.NX_ERP_URL + '/' + entity.href}
-                      rel="noreferrer"
-                    >
+                    <a target="_blank" href={process.env.REACT_APP_ERP_URL + '/' + entity.href} rel="noreferrer">
                       <Icon as={BiLinkExternal} />
                     </a>
                   </Td>

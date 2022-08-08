@@ -71,11 +71,7 @@ export default function CursosInformation() {
 
     console.log(`🔄 Descargando temario de ${curso?.titulo}`);
 
-    await descargarTemarioCurso(
-      curso?.id,
-      `Formacion en ${curso?.titulo} - OpenBootcamp`,
-      false
-    )
+    await descargarTemarioCurso(curso?.id, `Formacion en ${curso?.titulo} - OpenBootcamp`, false)
       .then((url: string) => {
         console.log(`✅ Temario de ${curso?.titulo} descargado`, { url });
 
@@ -132,7 +128,7 @@ export default function CursosInformation() {
         <PageHeader
           head={{ title: curso?.titulo || '-', image: curso?.imagen?.url }}
           buttonGroup={
-            process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
               ? [
                   {
                     text: 'Generar temario',

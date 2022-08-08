@@ -19,7 +19,7 @@ import { sortByRoadmap } from '@clevery/utils';
 
 import ItinerarioListItem from './ListItem';
 import { ProyectoModal } from './ProyectoModal';
-import { LoginContext } from '../../../../../shared/context';
+import { LoginContext } from '../../../../context';
 
 export const ItinerarioList = ({
   ruta,

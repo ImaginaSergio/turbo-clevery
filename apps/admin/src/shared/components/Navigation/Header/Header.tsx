@@ -1,23 +1,8 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  BiLogOut,
-  BiSlideshow,
-  BiChevronDown,
-  BiChevronLeft,
-} from 'react-icons/bi';
-import {
-  Box,
-  Flex,
-  Icon,
-  Menu,
-  Portal,
-  MenuItem,
-  MenuList,
-  IconButton,
-  MenuButton,
-} from '@chakra-ui/react';
+import { BiLogOut, BiSlideshow, BiChevronDown, BiChevronLeft } from 'react-icons/bi';
+import { Box, Flex, Icon, Menu, Portal, MenuItem, MenuList, IconButton, MenuButton } from '@chakra-ui/react';
 
 import { Avatar } from '@clevery/ui';
 
@@ -40,35 +25,15 @@ const Header = ({ head }: HeaderProps) => {
   return (
     <div className="header">
       <div className="header--head">
-        <Box
-          className={`header--head--item ${
-            !head.children ? 'header--head--item__active' : ''
-          }`}
-          onClick={head.onClick}
-        >
+        <Box className={`header--head--item ${!head.children ? 'header--head--item__active' : ''}`} onClick={head.onClick}>
           {head.title}
         </Box>
 
         {head?.children?.map((child: any, index: number) => (
-          <Flex
-            onClick={child.onClick}
-            key={`header-breadcrumb-item-${index}`}
-            className="header--head--breadcrumb_item"
-          >
-            <Icon
-              as={BiChevronLeft}
-              boxSize="21px"
-              opacity={0.6}
-              color="#fff"
-            />
+          <Flex onClick={child.onClick} key={`header-breadcrumb-item-${index}`} className="header--head--breadcrumb_item">
+            <Icon as={BiChevronLeft} boxSize="21px" opacity={0.6} color="#fff" />
 
-            <Box
-              className={`header--head--item ${
-                child.isActive ? 'header--head--item__active' : ''
-              }`}
-            >
-              {child.title}
-            </Box>
+            <Box className={`header--head--item ${child.isActive ? 'header--head--item__active' : ''}`}>{child.title}</Box>
           </Flex>
         ))}
       </div>
@@ -116,7 +81,7 @@ const Header = ({ head }: HeaderProps) => {
                 <MenuItem
                   as="a"
                   target="_blank"
-                  href={process.env.NX_CAMPUS_URL || ''}
+                  href={process.env.REACT_APP_CAMPUS_URL || ''}
                   icon={<Icon as={BiSlideshow} boxSize="16px" />}
                 >
                   Volver al campus

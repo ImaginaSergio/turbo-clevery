@@ -1,40 +1,15 @@
 import * as Yup from 'yup';
 import { Form as FormikForm, Formik } from 'formik';
 import { BiX, BiUser, BiGroup } from 'react-icons/bi';
-import {
-  Box,
-  Icon,
-  Flex,
-  Modal,
-  Button,
-  useToast,
-  ModalBody,
-  ModalHeader,
-  ModalContent,
-  ModalOverlay,
-} from '@chakra-ui/react';
+import { Box, Icon, Flex, Modal, Button, useToast, ModalBody, ModalHeader, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
-import {
-  IEmpresa,
-  getGrupos,
-  getEmpresas,
-  updateProgresoGlobal,
-} from '@clevery/data';
+import { IEmpresa, getGrupos, getEmpresas, updateProgresoGlobal } from '@clevery/data';
 
-import {
-  FormInput,
-  FormTextarea,
-  FormAsyncSelect,
-  FormAsyncMultiSelect,
-} from '../../../shared/components';
+import { FormInput, FormTextarea, FormAsyncSelect, FormAsyncMultiSelect } from '../../../shared/components';
 import { onFailure, onSuccess } from '@clevery/utils';
 import { addUser, getRutas, getUserByID } from '@clevery/data';
 
-export default function UsuariosModalForm({
-  state,
-}: {
-  state: { isOpen: boolean; onOpen: () => void; onClose: () => void };
-}) {
+export default function UsuariosModalForm({ state }: { state: { isOpen: boolean; onOpen: () => void; onClose: () => void } }) {
   const toast = useToast();
 
   const validationSchema = Yup.object().shape({
@@ -68,10 +43,7 @@ export default function UsuariosModalForm({
     email: Yup.string().when('tipo', {
       is: 'en_masa',
       then: Yup.string().notRequired().nullable(),
-      otherwise: Yup.string()
-        .email()
-        .required('El email es obligatorio.')
-        .typeError('El email es obligatorio.'),
+      otherwise: Yup.string().email().required('El email es obligatorio.').typeError('El email es obligatorio.'),
     }),
     users: Yup.string().when('tipo', {
       is: 'individual',
@@ -103,13 +75,12 @@ export default function UsuariosModalForm({
     users: '',
     grupos: [],
     rutaId: undefined,
-    empresaId: process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 1 : undefined,
+    empresaId: process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? 1 : undefined,
   };
 
   const submitForm = async (values: any) => {
     if (values.tipo === 'individual') {
-      const pass =
-        'OpenBootcampEsGenial' + Math.floor(Math.random() * (3000 - 0 + 1) + 0);
+      const pass = 'OpenBootcampEsGenial' + Math.floor(Math.random() * (3000 - 0 + 1) + 0);
 
       const user = {
         email: values.email,
@@ -165,9 +136,7 @@ export default function UsuariosModalForm({
         const user = userRaw.split(',');
 
         if (user?.length > 0) {
-          const pass =
-            'OpenBootcampEsGenial' +
-            Math.floor(Math.random() * (3000 - 0 + 1) + 0);
+          const pass = 'OpenBootcampEsGenial' + Math.floor(Math.random() * (3000 - 0 + 1) + 0);
 
           users.push({
             email: user[0]?.trimStart(),
@@ -202,11 +171,7 @@ export default function UsuariosModalForm({
             })
             .catch((error: any) => {
               console.error('❌ Algo ha fallado...', { error });
-              onFailure(
-                toast,
-                'Error al subir: ' + user.nombre + user.apellidos,
-                error.message
-              );
+              onFailure(toast, 'Error al subir: ' + user.nombre + user.apellidos, error.message);
             })
         );
       }
@@ -216,8 +181,7 @@ export default function UsuariosModalForm({
   };
 
   function onKeyDown(keyEvent: any) {
-    if ((keyEvent.charCode || keyEvent.keyCode) === 13)
-      keyEvent.stopPropagation();
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) keyEvent.stopPropagation();
   }
 
   const loadGrupos = async (value: string) => {
@@ -265,20 +229,11 @@ export default function UsuariosModalForm({
           <Flex justify="space-between" align="center">
             <Box fontSize="19px">Añadir alumnos</Box>
 
-            <Icon
-              as={BiX}
-              boxSize="32px"
-              cursor="pointer"
-              onClick={state.onClose}
-            />
+            <Icon as={BiX} boxSize="32px" cursor="pointer" onClick={state.onClose} />
           </Flex>
         </ModalHeader>
 
-        <Formik
-          onSubmit={submitForm}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
+        <Formik onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
           {(formik) => {
             const { values, handleSubmit, setFieldValue } = formik;
 
@@ -286,12 +241,7 @@ export default function UsuariosModalForm({
               <FormikForm onSubmit={handleSubmit} onKeyDown={onKeyDown}>
                 <ModalBody p="30px">
                   <Flex direction="column" gap="30px">
-                    <Flex
-                      p="4px"
-                      bg="#F0F1F5"
-                      rounded="8px"
-                      fontWeight="semibold"
-                    >
+                    <Flex p="4px" bg="#F0F1F5" rounded="8px" fontWeight="semibold">
                       <Button
                         w="100%"
                         rounded="6px"
@@ -357,34 +307,14 @@ export default function UsuariosModalForm({
                         />
 
                         <Flex gap="20px">
-                          <FormInput
-                            isRequired
-                            name="nombre"
-                            label="Nombre"
-                            placeholder="Introduce un nombre"
-                          />
+                          <FormInput isRequired name="nombre" label="Nombre" placeholder="Introduce un nombre" />
 
-                          <FormInput
-                            isRequired
-                            name="apellidos"
-                            label="Apellidos"
-                            placeholder="Introduce los apellidos"
-                          />
+                          <FormInput isRequired name="apellidos" label="Apellidos" placeholder="Introduce los apellidos" />
                         </Flex>
 
-                        <FormInput
-                          isRequired
-                          type="email"
-                          name="email"
-                          label="Email"
-                          placeholder="Introduce un email"
-                        />
+                        <FormInput isRequired type="email" name="email" label="Email" placeholder="Introduce un email" />
 
-                        <FormInput
-                          name="dni"
-                          label="DNI"
-                          placeholder="Introduce un dni"
-                        />
+                        <FormInput name="dni" label="DNI" placeholder="Introduce un dni" />
 
                         <FormAsyncMultiSelect
                           isRequired
@@ -412,13 +342,7 @@ export default function UsuariosModalForm({
                       </>
                     )}
 
-                    <Button
-                      w="100%"
-                      bg="primary"
-                      color="white"
-                      type="submit"
-                      rounded="12px"
-                    >
+                    <Button w="100%" bg="primary" color="white" type="submit" rounded="12px">
                       Subir
                     </Button>
                   </Flex>

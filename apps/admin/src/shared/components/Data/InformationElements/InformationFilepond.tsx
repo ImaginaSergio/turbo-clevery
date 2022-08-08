@@ -18,13 +18,7 @@ export interface InformationFilepondProps {
   style?: React.CSSProperties;
 }
 
-export const InformationFilepond = ({
-  name,
-  label,
-  putEP,
-  isDisabled = false,
-  style = {},
-}: InformationFilepondProps) => {
+export const InformationFilepond = ({ name, label, putEP, isDisabled = false, style = {} }: InformationFilepondProps) => {
   return (
     <Flex fontSize="14px" direction="column" style={style}>
       <label className="information-block-label">{label}</label>
@@ -34,7 +28,7 @@ export const InformationFilepond = ({
         disabled={isDisabled}
         labelIdle='Deja caer tus archivos aquí o <span class="filepond--label-action">búscalos</span>'
         server={{
-          url: process.env.NX_API_URL,
+          url: process.env.REACT_APP_API_URL,
           process: {
             url: putEP,
             method: 'PUT',

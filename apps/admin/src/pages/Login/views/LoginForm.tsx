@@ -26,12 +26,7 @@ const LoginForm = () => {
 
   const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
 
-  const loginUser = async (
-    email: string,
-    password: string,
-    remember: boolean,
-    code?: string
-  ) => {
+  const loginUser = async (email: string, password: string, remember: boolean, code?: string) => {
     login({ email, password, code })
       .then(({ token, data }) => {
         loginContext
@@ -43,12 +38,7 @@ const LoginForm = () => {
           .catch((error: any) => {
             setIsLoggingIn(false);
 
-            onFailure(
-              toast,
-              'Error al iniciar sesión',
-              errorHandler(error),
-              8000
-            );
+            onFailure(toast, 'Error al iniciar sesión', errorHandler(error), 8000);
           });
       })
       .catch((error) => {
@@ -75,7 +65,7 @@ const LoginForm = () => {
     >
       <Flex position="absolute" top="0px" p="40px" w="100%">
         <Box>
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? (
             colorMode === 'dark' ? (
               <LogoOBFullWhite />
             ) : (
@@ -94,11 +84,7 @@ const LoginForm = () => {
           ¡Bienvenido/a!
         </Box>
 
-        <FormLoginForm
-          login={loginUser}
-          isLoggingIn={isLoggingIn}
-          setIsLoggingIn={setIsLoggingIn}
-        />
+        <FormLoginForm login={loginUser} isLoggingIn={isLoggingIn} setIsLoggingIn={setIsLoggingIn} />
       </Flex>
 
       <Flex
@@ -113,9 +99,7 @@ const LoginForm = () => {
       >
         <Box w="100%">
           Copyright © {new Date().getFullYear()}
-          {process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
-            ? ' OpenBootcamp S.L. '
-            : ' OpenMarketers S.L. '}
+          {process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? ' OpenBootcamp S.L. ' : ' OpenMarketers S.L. '}
           Todos los derechos reservados.
         </Box>
 
@@ -127,7 +111,7 @@ const LoginForm = () => {
           whiteSpace="nowrap"
           textDecoration="underline"
           href={
-            process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
+            process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
               ? 'https://open-bootcamp.com/politica-privacidad'
               : 'https://open-marketers.com/politica-privacidad'
           }
@@ -178,29 +162,19 @@ const FormLoginForm = ({
   const submitForm = async (values: any) => {
     setIsLoggingIn(true);
 
-    await login(values.email, values.password, values.remember).catch(
-      (error: any) => {
-        console.log('¡Error inesperado durante el login!', { error });
-      }
-    );
+    await login(values.email, values.password, values.remember).catch((error: any) => {
+      console.log('¡Error inesperado durante el login!', { error });
+    });
   };
 
   return (
-    <Formik
-      onSubmit={submitForm}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-    >
+    <Formik onSubmit={submitForm} initialValues={initialValues} validationSchema={validationSchema}>
       {(formik) => {
         const { handleSubmit } = formik;
 
         return (
           <Form onSubmit={handleSubmit}>
-            <Flex
-              gap="30px"
-              direction="column"
-              w={{ base: '250px', sm: '100%' }}
-            >
+            <Flex gap="30px" direction="column" w={{ base: '250px', sm: '100%' }}>
               <FormInput
                 data-cy="login_email"
                 name="email"
@@ -219,12 +193,7 @@ const FormLoginForm = ({
                 background={colorMode === 'light' ? 'gray_1' : 'gray_3'}
               />
 
-              <Flex
-                gap="12px"
-                align="center"
-                direction="column"
-                justify="space-between"
-              >
+              <Flex gap="12px" align="center" direction="column" justify="space-between">
                 <Button
                   data-cy="login_submit"
                   h="42px"
