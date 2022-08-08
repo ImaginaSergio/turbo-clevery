@@ -5,7 +5,7 @@ import ReactMde from 'react-mde';
 import ReactMarkdown from 'react-markdown';
 import { FormLabel, FormControl, FormErrorMessage, useToast, Box } from '@chakra-ui/react';
 
-import { onWarning } from 'utils';
+import { onWarning } from 'ui';
 
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import './FormTextarea.scss';

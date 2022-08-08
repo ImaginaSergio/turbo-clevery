@@ -1,6 +1,6 @@
 {
   "extends": "tsconfig/react-app.json",
-  "include": ["src"],
+  "include": ["src", "src/custom.d.ts"],
   "compilerOptions": {
     "isolatedModules": false
   }
