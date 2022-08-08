@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { Box, Flex } from '@chakra-ui/react';
 import AsyncSelect from 'react-select/async';
-import { BiBookContent, BiBrain, BiGroup, BiListUl, BiPieChartAlt, BiPieChartAlt2, BiTask } from 'react-icons/bi';
+import { BiBookContent, BiGroup, BiPieChartAlt, BiPieChartAlt2, BiTask } from 'react-icons/bi';
 
-import { HBarChart2, PageHeader, PageSidebar, RadarChart } from '../../../../shared/components';
-import { getHabilidades, getStatsByHabilidad, UserRolEnum } from 'data';
 import { isRoleAllowed } from 'utils';
-import { LoginContext } from 'apps/admin/src/shared/context';
+import { getHabilidades, getStatsByHabilidad, UserRolEnum } from 'data';
+
+import { LoginContext } from '../../../../shared/context';
+import { HBarChart2, PageHeader, PageSidebar, RadarChart } from '../../../../shared/components';
 
 export default function HabilidadesTable() {
   const navigate = useNavigate();

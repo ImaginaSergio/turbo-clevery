@@ -2,10 +2,11 @@ import { useContext } from 'react';
 
 import { Box, Flex } from '@chakra-ui/react';
 
-import { InformationInput, InformationMde } from '../../../../../shared/components';
-import { IPlantilla, UserRolEnum } from 'data';
 import { isRoleAllowed } from 'utils';
-import { LoginContext } from 'apps/admin/src/shared/context';
+import { IPlantilla, UserRolEnum } from 'data';
+
+import { LoginContext } from '../../../../../shared/context';
+import { InformationInput, InformationMde } from '../../../../../shared/components';
 
 type TabInformacionProps = {
   plantilla: IPlantilla;

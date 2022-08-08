@@ -10,10 +10,11 @@ import {
   InformationAsyncSelect,
   InformationMultiSelect,
 } from '../../../../../shared/components';
-import { BoostJornadaEnum, getEmpresas, getEstados, getHabilidades, getPaises, IEstado, IPais, UserRolEnum } from 'data';
+import { LoginContext } from '../../../../../shared/context';
+
 import { IBoost, BoostRemotoEnum } from 'data';
 import { capitalizeFirst, isRoleAllowed } from 'utils';
-import { LoginContext } from 'apps/admin/src/shared/context';
+import { BoostJornadaEnum, getEmpresas, getEstados, getHabilidades, getPaises, IEstado, IPais, UserRolEnum } from 'data';
 
 type TabInformacionProps = {
   boost: IBoost;

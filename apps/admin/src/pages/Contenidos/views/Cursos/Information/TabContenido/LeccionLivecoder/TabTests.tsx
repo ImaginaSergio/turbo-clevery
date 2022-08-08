@@ -5,18 +5,18 @@ import {
   Icon,
   Flex,
   Input,
+  useToast,
   Accordion,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
   AccordionButton,
-  useToast,
 } from '@chakra-ui/react';
 import { BiPlusCircle, BiTrash } from 'react-icons/bi';
 
-import { ILenguaje, ILivecoder, ITestLivecoder, addTestLivecoder, removeTestLivecoder, updateTestLivecoder } from 'data';
-import { InformationInput, InformationMonaco } from 'apps/admin/src/shared/components';
 import { onFailure } from 'ui';
+import { ILenguaje, ILivecoder, ITestLivecoder, addTestLivecoder, removeTestLivecoder, updateTestLivecoder } from 'data';
+import { InformationInput, InformationMonaco } from '../../../../../../../shared/components';
 
 export const TabTests = ({ livecoder, refreshState }: { livecoder?: ILivecoder; refreshState: () => void }) => {
   const [tests, setTests] = useState<ITestLivecoder[]>(livecoder?.tests || []);

@@ -1,7 +1,8 @@
 import { Flex } from '@chakra-ui/react';
+
 import { ILeccion, LeccionTipoEnum } from 'data';
 
-import { InformationInput, InformationSelect, InformationTextEditor } from 'apps/admin/src/shared/components';
+import { InformationInput, InformationSelect, InformationTextEditor } from '../../../../../../../shared/components';
 
 export const TabDetalles = ({ leccion, updateValue }: { leccion?: ILeccion; updateValue: (e: any) => void }) => {
   return (

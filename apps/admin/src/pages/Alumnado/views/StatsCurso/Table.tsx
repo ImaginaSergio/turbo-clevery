@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Flex } from '@chakra-ui/react';
 import { BiBookContent, BiGroup, BiPieChartAlt, BiPieChartAlt2, BiTask } from 'react-icons/bi';
 
-import { HBarChart, PageHeader, PageSidebar } from '../../../../shared/components';
-import { getStatsByCurso, UserRolEnum } from 'data';
 import { isRoleAllowed } from 'utils';
-import { LoginContext } from 'apps/admin/src/shared/context';
+import { getStatsByCurso, UserRolEnum } from 'data';
+
+import { LoginContext } from '../../../../shared/context';
+import { HBarChart, PageHeader, PageSidebar } from '../../../../shared/components';
 
 export default function CursosTable() {
   const navigate = useNavigate();

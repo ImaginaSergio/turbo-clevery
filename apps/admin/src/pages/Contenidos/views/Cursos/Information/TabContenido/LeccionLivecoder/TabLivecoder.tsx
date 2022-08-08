@@ -1,7 +1,8 @@
 import { Flex } from '@chakra-ui/react';
 
-import { InformationInput, InformationMonaco, InformationAsyncSelect } from 'apps/admin/src/shared/components';
 import { getLenguajes, ILivecoder, updateLiveCoder } from 'data';
+
+import { InformationInput, InformationMonaco, InformationAsyncSelect } from '../../../../../../../shared/components';
 
 export const TabLivecoder = ({ livecoder, refreshState }: { livecoder?: ILivecoder; refreshState: () => void }) => {
   const updateValue = (value: any) => {
