@@ -4,7 +4,6 @@ import { createBreakpoints } from '@chakra-ui/theme-tools';
 
 import { colors_ob } from './colors/openbootcamp';
 import { colors_om } from './colors/openmarketers';
-import { colors_imagina } from './colors/imagina';
 
 import { components } from './components';
 
@@ -24,17 +23,12 @@ const breakpoints = createBreakpoints({
 
 // 2. Call `extendTheme` and pass your custom values
 const theme = extendTheme({
-  semanticTokens: {
-    colors:
-      process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP'
-        ? colors_ob
-        : process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
-        ? colors_om
-        : colors_imagina,
-  },
+  config,
   breakpoints,
   components,
-  config,
+  semanticTokens: {
+    colors: process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? colors_ob : colors_om,
+  },
 });
 
 export { theme };
