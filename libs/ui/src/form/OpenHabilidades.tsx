@@ -119,7 +119,7 @@ export const OpenHabilidades = ({ isDisabled, name, label, onChange, defaultValu
             loadOptions={loadOptions}
             onInputChange={setInputValue}
             placeholder={
-              process.env.NX_ORIGEN_CAMPUS === 'OPENMARKETERS'
+              process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENMARKETERS'
                 ? 'Busca habilidades para añadirlas'
                 : 'Busca tecnologías para añadirlas'
             }

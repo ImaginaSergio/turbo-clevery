@@ -6,7 +6,7 @@ import { LOGIN_TOKEN, LOGIN_USER } from '../middlewares';
 import * as Sentry from '@sentry/react';
 
 const _axios = axios.create({
-  baseURL: process.env.NX_API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/pdf',
@@ -14,7 +14,7 @@ const _axios = axios.create({
 });
 
 const _axios_File = axios.create({
-  baseURL: process.env.NX_API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     'Content-Type': 'multipart/form-data',
   },

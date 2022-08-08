@@ -27,7 +27,7 @@ const theme = extendTheme({
   breakpoints,
   components,
   semanticTokens: {
-    colors: process.env.NX_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? colors_ob : colors_om,
+    colors: process.env.REACT_APP_ORIGEN_CAMPUS === 'OPENBOOTCAMP' ? colors_ob : colors_om,
   },
 });
 

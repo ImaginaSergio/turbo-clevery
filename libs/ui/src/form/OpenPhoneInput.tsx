@@ -37,7 +37,7 @@ export const OpenPhoneInput = ({
 
   useEffect(() => {
     (async () => {
-      await fetch(`https://api.ipdata.co?api-key=${process.env.NX_IPDATA_KEY}&fields=country_code`)
+      await fetch(`https://api.ipdata.co?api-key=${process.env.REACT_APP_IPDATA_KEY}&fields=country_code`)
         .then((data) => data.json())
         .then((response: any) => setCountryCode(response?.data?.country_code || 'ES'))
         .catch((error) => console.error(error));
