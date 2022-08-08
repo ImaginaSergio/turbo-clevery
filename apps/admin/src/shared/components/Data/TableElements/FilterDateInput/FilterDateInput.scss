@@ -1,0 +1,27 @@
+.table-filter-dateinput {
+  width: 100% !important;
+  background: white !important;
+
+  border: 1px solid #e7e7e7 !important;
+  border-radius: 2px !important;
+
+  min-height: 38px !important;
+  padding: 2px 8px !important;
+
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
+
+  color: #131340 !important;
+}
+
+.table-filter-dateinput::placeholder {
+  color: #c7c8cd !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+.app {
+  display: flex;
+
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  font-family: Raleway;
+  color: #10172e;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: hidden;
+}
+
+.page-body {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  overflow: hidden;
+}
+
+.form-label {
+  gap: 4px;
+  display: flex !important;
+  font-weight: bold !important;
+  font-size: 13px !important;
+  line-height: 15px !important;
+
+  margin-bottom: 10px;
+}
+
+/** Custom Scrollbar */
+
+/* width */
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  width: 100%;
+  border-radius: 6px;
+  background: rgba(128, 128, 128, 0.2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.3);
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(30px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

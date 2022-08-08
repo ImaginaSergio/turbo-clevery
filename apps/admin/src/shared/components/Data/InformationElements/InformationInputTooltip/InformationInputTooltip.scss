@@ -1,0 +1,17 @@
+.inputtooltip-tooltip {
+  background-color: #484848;
+  padding: 9px;
+  border-radius: 6px;
+  color: #c6c6c6;
+  font-weight: 500;
+}
+
+.inputtooltip-input {
+  border: 2px solid #5997f3;
+  box-shadow: 0px 1px 10px rgba(26, 20, 66, 0.2);
+  border-radius: 2px;
+  box-sizing: border-box;
+  position: absolute;
+  width: calc(100% - 90px - 30px);
+  right: 0;
+}

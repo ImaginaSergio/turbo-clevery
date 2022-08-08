@@ -1,0 +1,26 @@
+.etiquetas-badge {
+  padding: 7px 12px !important;
+  background: #e8e8e8 !important;
+  color: #a5a5a5 !important;
+  border-radius: 10px !important;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  text-transform: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.etiquetas-badge-close {
+  width: 16px !important;
+  height: 16px !important;
+  margin-top: 2px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.etiquetas-badge-close:hover {
+  color: #273360;
+}
