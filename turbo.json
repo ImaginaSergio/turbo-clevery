@@ -2,7 +2,7 @@
   "pipeline": {
     "build": {
       "outputs": ["build/**", "dist/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "$REACT_APP_*"]
     },
     "test": {
       "outputs": ["coverage/**"],
