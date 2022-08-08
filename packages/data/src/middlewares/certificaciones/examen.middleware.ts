@@ -1,4 +1,4 @@
-import { PropsByID, PropsByQuery } from './../_middleware';
+import { PropsByID, PropsByQuery } from '../_middleware';
 import useSWR from 'swr';
 
 import { IExamen } from '../../models';

@@ -1,7 +1,7 @@
 import { IPregunta } from '../../models';
 import { extractQuery } from '../_utils';
 import { get, post, put, remove } from '../../services';
-import { PropsByID, PropsByQuery } from './../_middleware';
+import { PropsByID, PropsByQuery } from '../_middleware';
 import {
   GET_HttpResponse,
   POST_HttpResponse,

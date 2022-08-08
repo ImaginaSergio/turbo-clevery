@@ -1,5 +1,5 @@
 import { ApiItem } from '../common.model';
-import { IProyectoBoost, ICurso } from './../';
+import { IProyectoBoost, ICurso } from '..';
 
 export interface IRuta extends ApiItem {
   icono?: string;

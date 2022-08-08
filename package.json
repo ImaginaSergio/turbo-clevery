@@ -2,12 +2,12 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "libs/*"
+    "packages/*"
   ],
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build --filter=./apps/*",
-    "build:libs": "turbo run build --filter=./libs/*",
+    "build:packages": "turbo run build --filter=./packages/*",
     "clean": "turbo run clean",
     "dev": "turbo run dev --no-cache --parallel --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

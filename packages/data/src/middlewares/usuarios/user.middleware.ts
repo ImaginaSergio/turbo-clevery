@@ -6,7 +6,7 @@ import {
   POST_HttpResponse,
   GETID_HttpResponse,
 } from '../_middleware';
-import { getCursos } from '../';
+import { getCursos } from '..';
 import { put, get, post } from '../../services';
 import { ICurso, RutaItinerarioTipoEnum } from '../../models';
 import { extractQuery, convertMetaItinerario } from '../_utils';
