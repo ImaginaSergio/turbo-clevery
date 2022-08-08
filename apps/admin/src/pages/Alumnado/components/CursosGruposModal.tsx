@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
-import { Form as FormikForm, Formik } from 'formik';
 import { BiX } from 'react-icons/bi';
+import { Form as FormikForm, Formik } from 'formik';
 import { useToast, Icon, Flex, Modal, Button, ModalBody, ModalHeader, ModalContent, ModalOverlay, Box } from '@chakra-ui/react';
 
 import { IGrupo } from 'data';

@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { BiBookOpen, BiCodeBlock, BiFolder, BiNews, BiPlayCircle, BiWebcam } from 'react-icons/bi';
 import { Box, Flex, Icon, useDisclosure } from '@chakra-ui/react';
 
-import { addLeccion, addModulo, removeLeccion, removeModulo, updateLeccion, updateModulo } from 'data';
-import { ListItemProps, InformationDragDropList } from '../../../../../../shared/components';
-import { fmtMnts } from 'utils';
 import ModuloModalForm from '../../../../components/ModuloModalForm';
+import { ListItemProps, InformationDragDropList } from '../../../../../../shared/components';
+
+import { fmtMnts } from 'utils';
 import { ICurso, ILeccion, IModulo, LeccionTipoEnum } from 'data';
+import { addLeccion, addModulo, removeLeccion, removeModulo, updateLeccion, updateModulo } from 'data';
 
 import { LeccionZoom } from './LeccionZoom';
 import { LeccionVideo } from './LeccionVideo';

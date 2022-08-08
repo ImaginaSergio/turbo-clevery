@@ -6,15 +6,14 @@ import { Box, Flex, Icon } from '@chakra-ui/react';
 import { BiBadge, BiUser, BiX } from 'react-icons/bi';
 
 import {
+  LineChart,
+  textRowTemplate,
   badgeRowTemplate,
   InformationTable,
-  LineChart,
   progressRowTemplate,
-  textRowTemplate,
 } from '../../../../../shared/components';
-import { IUser, UserRolEnum, useUserStats } from 'data';
 import { fmtTiempoTotal, isRoleAllowed } from 'utils';
-import { OpenColumn } from 'ui';
+import { IUser, UserRolEnum, useUserStats } from 'data';
 
 type TabProgresoProps = {
   user: IUser;

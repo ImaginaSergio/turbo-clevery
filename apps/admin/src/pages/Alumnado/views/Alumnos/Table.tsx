@@ -10,9 +10,9 @@ import {
   LineChart,
   PageHeader,
   PageSidebar,
+  dateRowTemplate,
   textRowTemplate,
   progressRowTemplate,
-  dateRowTemplate,
 } from '../../../../shared/components';
 import { LoginContext } from '../../../../shared/context';
 import { Avatar, OpenColumn, OpenTable } from 'ui';

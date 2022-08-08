@@ -5,10 +5,10 @@ import { es } from 'date-fns/locale';
 import { Box, Center, Flex } from '@chakra-ui/react';
 import { formatDuration, intervalToDuration } from 'date-fns';
 
+import { OpenTable } from 'ui';
+import { isRoleAllowed } from 'utils';
 import { EntregableEstadoEnum, IUser, UserRolEnum, useEntregables } from 'data';
 import { badgeRowTemplate, dateRowTemplate, textRowTemplate } from '../../../../../shared/components';
-import { isRoleAllowed } from 'utils';
-import { OpenTable } from 'ui';
 
 type TabEjerciciosProps = {
   user: IUser;

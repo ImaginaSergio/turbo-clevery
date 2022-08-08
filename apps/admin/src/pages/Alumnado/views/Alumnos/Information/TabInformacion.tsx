@@ -4,7 +4,7 @@ import { Box, Flex } from '@chakra-ui/react';
 
 import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../../../../shared/context';
-import { IGrupo, IUser, UserRolEnum, getGrupos, getEstados, getPaises, IEstado, IPais, UserRemotoEnum } from 'data';
+import { IGrupo, IUser, UserRolEnum, getGrupos, getEstados, getPaises, IEstado, IPais } from 'data';
 import { InformationMultiSelect, InformationInput, InformationSelect } from '../../../../../shared/components';
 
 type TabInformacionProps = {

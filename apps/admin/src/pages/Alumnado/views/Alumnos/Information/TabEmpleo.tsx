@@ -4,7 +4,7 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 
 import { isRoleAllowed } from 'utils';
 import { LoginContext } from '../../../../../shared/context';
-import { IUser, UserRolEnum, getGrupos, UserRemotoEnum, HabilidadTiemposEnum, HabilidadExperiencia } from 'data';
+import { IUser, UserRolEnum, UserRemotoEnum, HabilidadTiemposEnum, HabilidadExperiencia } from 'data';
 import { InformationInput, InformationSelect } from '../../../../../shared/components';
 
 type TabEmpleoProps = {
@@ -15,21 +15,6 @@ type TabEmpleoProps = {
 
 export const TabEmpleo = ({ user: alumno, updateValue, refreshState }: TabEmpleoProps) => {
   const { user } = useContext(LoginContext);
-
-  const [estados, setEstados] = useState([]);
-  const [countries, setCountries] = useState([]);
-
-  const loadGruposByName = async (value: string) => {
-    const _grupos = await getGrupos({
-      client: 'admin',
-      query: [{ nombre: value }],
-    });
-
-    return _grupos?.data?.map((exp: any) => ({
-      value: exp.id,
-      label: exp.nombre,
-    }));
-  };
 
   return (
     <Flex p="30px" boxSize="100%" rowGap="30px" overflow="auto" direction="column">

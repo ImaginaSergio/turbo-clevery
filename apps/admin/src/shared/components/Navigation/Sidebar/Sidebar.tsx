@@ -8,11 +8,10 @@ import { BiCog, BiBox, BiBriefcase, BiBookBookmark } from 'react-icons/bi';
 import { NavLink } from './NavLink';
 import { UserRolEnum } from 'data';
 import { isRoleAllowed } from 'utils';
-import { LoginContext } from '../../../context';
 
-import { LogoOB } from 'apps/campus/src/assets/logos/openbootcamp/LogoOB';
-import { LogoOM } from 'apps/campus/src/assets/logos/openmarketers/LogoOM';
-import { LogoImagina } from 'apps/campus/src/assets/logos/imagina/LogoImagina';
+import { LoginContext } from '../../../context';
+import { LogoOB } from '../../../../assets/logos/openbootcamp/LogoOB';
+import { LogoOM } from '../../../../assets/logos/openmarketers/LogoOM';
 
 const Sidebar = () => {
   const navigate = useNavigate();

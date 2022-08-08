@@ -3,11 +3,11 @@ import { Form as FormikForm, Formik } from 'formik';
 import { BiX, BiUser, BiGroup } from 'react-icons/bi';
 import { Box, Icon, Flex, Modal, Button, useToast, ModalBody, ModalHeader, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
+import { onFailure, onSuccess } from 'ui';
+import { addUser, getRutas, getUserByID } from 'data';
 import { IEmpresa, getGrupos, getEmpresas, updateProgresoGlobal } from 'data';
 
 import { FormInput, FormTextarea, FormAsyncSelect, FormAsyncMultiSelect } from '../../../shared/components';
-import { onFailure, onSuccess } from 'ui';
-import { addUser, getRutas, getUserByID } from 'data';
 
 export default function UsuariosModalForm({ state }: { state: { isOpen: boolean; onOpen: () => void; onClose: () => void } }) {
   const toast = useToast();

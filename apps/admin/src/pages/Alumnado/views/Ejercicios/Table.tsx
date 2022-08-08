@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { BiBookContent, BiGroup, BiPieChartAlt2, BiTask, BiPieChartAlt } from 'react-icons/bi';
 import * as Locale from 'date-fns/esm/locale';
 import { format, formatDistance } from 'date-fns/esm';
 import { Flex, Box, useToast, useDisclosure } from '@chakra-ui/react';
+import { BiBookContent, BiGroup, BiPieChartAlt2, BiTask, BiPieChartAlt } from 'react-icons/bi';
 
 import {
   getUsers,
@@ -19,8 +19,8 @@ import {
 import { isRoleAllowed } from 'utils';
 import { OpenColumn, OpenTable, onFailure, onSuccess_Undo } from 'ui';
 
-import { PageHeader, PageSidebar, DeleteModal, rowQuickActions, badgeRowTemplate } from '../../../../shared/components';
 import { LoginContext } from '../../../../shared/context';
+import { PageHeader, PageSidebar, DeleteModal, rowQuickActions, badgeRowTemplate } from '../../../../shared/components';
 
 export default function EjerciciosTable() {
   const toast = useToast();

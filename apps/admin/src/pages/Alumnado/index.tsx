@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-  Navigate,
-} from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 import { Header } from '../../shared/components';
 
@@ -61,9 +55,7 @@ const Usuarios = () => {
         head={{
           title: 'Alumnado',
           onClick: () => navigate(breadcrumbNavigate),
-          children: breadcrumbChildren
-            ? [{ title: breadcrumbChildren, isActive: true }]
-            : undefined,
+          children: breadcrumbChildren ? [{ title: breadcrumbChildren, isActive: true }] : undefined,
         }}
       />
 
