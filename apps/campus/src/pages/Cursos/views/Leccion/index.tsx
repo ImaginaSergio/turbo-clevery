@@ -170,16 +170,16 @@ const Leccion = () => {
    * @param leccion Lección sobre la que crear el progreso.
    */
   const onLeccionStarted = async (leccion: ILeccion) => {
-    if (user?.id && curso?.id && leccion.id && leccion.moduloId) {
+    if (user?.id && leccion?.modulo?.cursoId && leccion.id && leccion.moduloId) {
       const progresoExists = await checkIfProgresoDuplicado(user.id, leccion.id, ProgresoTipoEnum.VISTO);
 
       if (!progresoExists)
         await addProgreso({
           progreso: {
             userId: user?.id,
-            cursoId: curso?.id,
             leccionId: leccion.id,
             moduloId: leccion.moduloId,
+            cursoId: leccion?.modulo?.cursoId,
             tipo: ProgresoTipoEnum.VISTO,
           },
         }).catch((error) => {
@@ -194,16 +194,16 @@ const Leccion = () => {
    * @param leccion Lección sobre la que crear el progreso.
    */
   const onLeccionCompleted = async (leccion: ILeccion) => {
-    if (user?.id && curso?.id && leccion?.id && leccion?.moduloId) {
+    if (user?.id && leccion?.modulo?.cursoId && leccion?.id && leccion?.moduloId) {
       const progresoExists = await checkIfProgresoDuplicado(user.id, leccion.id, ProgresoTipoEnum.COMPLETADO);
 
       if (!progresoExists)
         await addProgreso({
           progreso: {
             userId: user?.id,
-            cursoId: curso?.id,
             leccionId: leccion.id,
             moduloId: leccion.moduloId,
+            cursoId: leccion?.modulo?.cursoId,
             tipo: ProgresoTipoEnum.COMPLETADO,
           },
         })

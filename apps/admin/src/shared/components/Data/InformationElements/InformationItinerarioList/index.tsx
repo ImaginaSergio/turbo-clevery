@@ -8,6 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {
   IRuta,
   getCursos,
+  sortByRoadmap,
   IProyectoBoost,
   addProyectoBoost,
   getProyectosBoosts,
@@ -15,7 +16,6 @@ import {
   RutaItinerarioLoaded,
   RutaItinerarioTipoEnum,
 } from 'data';
-import { sortByRoadmap } from 'utils';
 
 import ItinerarioListItem from './ListItem';
 import { ProyectoModal } from './ProyectoModal';
