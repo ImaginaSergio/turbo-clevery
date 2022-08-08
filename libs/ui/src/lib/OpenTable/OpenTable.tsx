@@ -1,30 +1,8 @@
 import { useCallback, useEffect, useState, useMemo, Fragment } from 'react';
 
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  Input,
-  Spinner,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react';
 import { debounce, throttle } from 'lodash';
-
-import {
-  BiSort,
-  BiSortUp,
-  BiSortDown,
-  BiChevronUp,
-  BiChevronDown,
-  BiChevronLeft,
-  BiChevronRight,
-} from 'react-icons/bi';
+import { Td, Th, Tr, Box, Flex, Icon, Input, Table, Tbody, Thead, Button, Spinner } from '@chakra-ui/react';
+import { BiSort, BiSortUp, BiSortDown, BiChevronUp, BiChevronDown, BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 import { FilterAsyncSelect } from './FilterAsyncSelect';
 
@@ -38,9 +16,7 @@ export interface OpenColumn {
   filterable?: boolean;
   options?: { label: String; value: any }[];
   render?: (data: any) => JSX.Element | undefined;
-  loadOptions?: (
-    search: string
-  ) => Promise<{ label: String; value: string }[] | undefined>;
+  loadOptions?: (search: string) => Promise<{ label: String; value: string }[] | undefined>;
 }
 
 interface OpenTableProps {
@@ -97,35 +73,20 @@ export const OpenTable = ({
 
   useEffect(() => {
     if (typing === false) {
-      let _filters = Object.keys(filters).map(
-        (filter: string) => `${filter}=${filters[filter]}`
-      );
+      let _filters = Object.keys(filters).map((filter: string) => `${filter}=${filters[filter]}`);
 
-      onQueryChange &&
-        onQueryChange(
-          `&${_filters.join(
-            '&'
-          )}&sort_by=${sortBy}&order=${sortOrder}&page=${currentPage}`
-        );
+      onQueryChange && onQueryChange(`&${_filters.join('&')}&sort_by=${sortBy}&order=${sortOrder}&page=${currentPage}`);
     }
   }, [typing, currentPage]);
 
   const onHeaderClick = (column: OpenColumn) => {
-    let _filters = Object.keys(filters).map(
-      (filter: string) => `${filter}=${filters[filter]}`
-    );
+    let _filters = Object.keys(filters).map((filter: string) => `${filter}=${filters[filter]}`);
 
     let _sortOrder = sortOrder;
 
-    if (sortBy === column.field)
-      _sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    if (sortBy === column.field) _sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
 
-    onQueryChange &&
-      onQueryChange(
-        `&${_filters.join('&')}&sort_by=${
-          column.field
-        }&order=${_sortOrder}&page=${currentPage}`
-      );
+    onQueryChange && onQueryChange(`&${_filters.join('&')}&sort_by=${column.field}&order=${_sortOrder}&page=${currentPage}`);
 
     setSortOrder(_sortOrder);
     setSortBy(column.field);
@@ -169,9 +130,7 @@ export const OpenTable = ({
     const options = args[0];
     const search = args[1];
 
-    return options.filter((option: any) =>
-      option.label.toLowerCase().trim().includes(search.toLowerCase().trim())
-    );
+    return options.filter((option: any) => option.label.toLowerCase().trim().includes(search.toLowerCase().trim()));
   };
 
   const onInputChange = useCallback(
@@ -181,13 +140,7 @@ export const OpenTable = ({
 
   return (
     <Flex boxSize="100%" bg="white" direction="column" justify="space-between">
-      <Flex
-        bg="white"
-        mb="100px"
-        boxSize="100%"
-        overflowX="auto"
-        direction="column"
-      >
+      <Flex bg="white" mb="100px" boxSize="100%" overflowX="auto" direction="column">
         <Table>
           <Thead p="0px">
             <Tr top="0" bg="white" zIndex="20">
@@ -210,23 +163,12 @@ export const OpenTable = ({
                     gap="12px"
                     align="center"
                     onClick={c.sortable ? () => onHeaderClick(c) : () => {}}
-                    _hover={
-                      c.sortable && c.field !== sortBy ? { color: 'black' } : {}
-                    }
+                    _hover={c.sortable && c.field !== sortBy ? { color: 'black' } : {}}
                   >
                     <Box>{c.header}</Box>
 
                     {c.sortable && (
-                      <Icon
-                        fontSize="16px"
-                        as={
-                          sortBy === c.field
-                            ? sortOrder === 'asc'
-                              ? BiSortUp
-                              : BiSortDown
-                            : BiSort
-                        }
-                      />
+                      <Icon fontSize="16px" as={sortBy === c.field ? (sortOrder === 'asc' ? BiSortUp : BiSortDown) : BiSort} />
                     )}
                   </Flex>
 
@@ -236,14 +178,8 @@ export const OpenTable = ({
                         defaultOptions
                         debounceDeps={[]}
                         placeholder={`Filtrar por ${c.header}`}
-                        onChange={(e: any) =>
-                          changeFilter(c.field, e ? e.value : '')
-                        }
-                        loadOptions={
-                          c.options
-                            ? loadDefaultOptions.bind(null, c.options)
-                            : c.loadOptions
-                        }
+                        onChange={(e: any) => changeFilter(c.field, e ? e.value : '')}
+                        loadOptions={c.options ? loadDefaultOptions.bind(null, c.options) : c.loadOptions}
                       />
                     ) : (
                       <Input
@@ -256,13 +192,7 @@ export const OpenTable = ({
                       />
                     )
                   ) : (
-                    <Flex
-                      w="100%"
-                      h="40px"
-                      bg="white"
-                      borderRadius="4px"
-                      border="1px solid #E7E7E7"
-                    />
+                    <Flex w="100%" h="40px" bg="white" borderRadius="4px" border="1px solid #E7E7E7" />
                   )}
                 </Th>
               ))}
@@ -310,35 +240,20 @@ export const OpenTable = ({
                     {isExpandable && (
                       <Td maxW="50px" textAlign="center" px="0px">
                         {(refresh || !refresh) && (
-                          <Icon
-                            as={isExpanded[index] ? BiChevronUp : BiChevronDown}
-                            onClick={() => handleExpand(index)}
-                          />
+                          <Icon as={isExpanded[index] ? BiChevronUp : BiChevronDown} onClick={() => handleExpand(index)} />
                         )}
                       </Td>
                     )}
 
                     {columns?.map((column, i) => (
-                      <Td
-                        key={i}
-                        onClick={
-                          onRowClick ? () => onRowClick(item) : () => undefined
-                        }
-                      >
-                        {column.render
-                          ? column.render(item)
-                          : item[column.field] || '-'}
+                      <Td key={i} onClick={onRowClick ? () => onRowClick(item) : () => undefined}>
+                        {column.render ? column.render(item) : item[column.field] || '-'}
                       </Td>
                     ))}
                   </Tr>
 
                   {(refresh || !refresh) && isExpanded[index] && (
-                    <Td
-                      w="100%"
-                      bg="gray_2"
-                      alignContent="center"
-                      colSpan={columns.length + 1}
-                    >
+                    <Td w="100%" bg="gray_2" alignContent="center" colSpan={columns.length + 1}>
                       {rowExpansionTemplate(data[index])}
                     </Td>
                   )}
@@ -350,15 +265,7 @@ export const OpenTable = ({
       </Flex>
 
       {isPaginable && (
-        <Flex
-          w="100%"
-          h="60px"
-          bottom="0"
-          bg="white"
-          align="center"
-          justify="center"
-          position="sticky"
-        >
+        <Flex w="100%" h="60px" bottom="0" bg="white" align="center" justify="center" position="sticky">
           {!!total && (
             <Box position="absolute" left="24px" color="gray_4">
               {total} elementos en total
@@ -366,22 +273,14 @@ export const OpenTable = ({
           )}
 
           <Flex gap="6px" align="center">
-            <Button
-              bg="transparent"
-              onClick={pageBack}
-              isDisabled={currentPage === 1 || isLoading}
-            >
+            <Button bg="transparent" onClick={pageBack} isDisabled={currentPage === 1 || isLoading}>
               <Icon fontSize="20px" as={BiChevronLeft} />
             </Button>
 
             <Box>{currentPage}</Box>
             <Box>de {maxPages}</Box>
 
-            <Button
-              bg="transparent"
-              onClick={pageForward}
-              isDisabled={currentPage === maxPages || isLoading}
-            >
+            <Button bg="transparent" onClick={pageForward} isDisabled={currentPage === maxPages || isLoading}>
               <Icon fontSize="20px" as={BiChevronRight} />
             </Button>
           </Flex>
