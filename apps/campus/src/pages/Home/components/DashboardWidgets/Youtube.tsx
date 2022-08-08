@@ -95,7 +95,7 @@ export const YoutubeWidget = () => {
         <Icon as={BiPlay} boxSize="32px" /> Ver vídeo
       </Flex>
 
-      <a href={yt_enlace} target="_blank">
+      <a href={yt_enlace} target="_blank" rel="noreferrer">
         <Image
           w="100%"
           h="278px"
