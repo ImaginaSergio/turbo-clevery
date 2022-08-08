@@ -5,8 +5,6 @@ import { FormLabel, FormControl, FormErrorMessage } from '@chakra-ui/react';
 
 import { OpenEditor } from './OpenEditor';
 
-import 'react-quill/dist/quill.bubble.css';
-
 type FormTextEditorProps = {
   name: string;
   label: string;
