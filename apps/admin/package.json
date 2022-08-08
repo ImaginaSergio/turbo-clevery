@@ -32,6 +32,7 @@
     "react-chartjs-2": "^4.0.1",
     "react-datepicker": "^4.7.0",
     "primeicons": "^5.0.0",
+    "react-mde": "^11.5.0",
     "react-beautiful-dnd": "^13.1.0",
     "react-select": "^5.2.2",
     "clipboard": "^2.0.8",
@@ -52,6 +53,7 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/react-datepicker": "^4.3.4",
+    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-phone-number-input": "^3.0.13",
     "tsconfig": "*",
     "typescript": "^4.5.4"
