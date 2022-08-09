@@ -15,8 +15,8 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "turbo": "latest",
     "eslint": "^8.4.1",
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "prettier": "^2.5.1"
   }
 }
