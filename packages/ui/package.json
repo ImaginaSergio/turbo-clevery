@@ -13,12 +13,6 @@
   },
   "dependencies": {
     "data": "*",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "@chakra-ui/react": "1.8.8",
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "framer-motion": "^6.2.10",
     "@monaco-editor/react": "^4.4.5",
     "@tiptap/react": "^2.0.0-beta.108",
     "@tiptap/starter-kit": "^2.0.0-beta.183",
@@ -35,7 +29,6 @@
     "react-phone-number-input": "^3.2.2"
   },
   "devDependencies": {
-   
     "tsconfig": "*",
     "tsup": "^5.10.1",
     "typescript": "^4.5.3"
