@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -41,19 +43,14 @@ Cypress.Commands.add('login', () => {
 
   cy.url().then((url) => {
     if (url.endsWith('/login'))
-      cy.task('getUserData').then(
-        (userData: { email: string; password: string }) => {
-          cy.get('[data-cy="login_email"]').type(
-            userData?.email || 'demo-cypress@gmail.com'
-          );
+      // !Todo: Arreglar tipo 'any' de userData
+      cy.task('getUserData').then((userData: any) => {
+        cy.get('[data-cy="login_email"]').type(userData?.email || 'demo-cypress@gmail.com');
 
-          cy.get('[data-cy="login_password"]').type(
-            userData?.password || 'DemoCypress123456!'
-          );
+        cy.get('[data-cy="login_password"]').type(userData?.password || 'DemoCypress123456!');
 
-          cy.get('[data-cy="login_submit"]').click();
-        }
-      );
+        cy.get('[data-cy="login_submit"]').click();
+      });
   });
 });
 
@@ -79,9 +76,7 @@ type RouteEnum =
   | 'favoritos';
 
 Cypress.Commands.add('navigateTo', (route: RouteEnum) => {
-  cy.get(`[data-cy="sidebar_${route}"]`, { timeout: 10000 })
-    .should('be.visible')
-    .click();
+  cy.get(`[data-cy="sidebar_${route}"]`, { timeout: 10000 }).should('be.visible').click();
 
   if (route !== 'home') cy.url().should('include', '/' + route);
 });

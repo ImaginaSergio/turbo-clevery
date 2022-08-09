@@ -14,21 +14,25 @@ module.exports = (on: any) => {
   on('task', {
     setUserData: (userData: { email: string; password: string }) => {
       global.userData = userData;
+
       return null;
     },
 
-    getUserData: () => global.userData,
+    getUserData: () => {
+      let data: { email: string; password: string } = { ...global.userData };
 
-    setForoData: (foroData: {
-      id: number
-      titulo: string;
-      descripcion: string;
-      tipo: string;
-    }) => {
+      return data;
+    },
+
+    setForoData: (foroData: { id: number; titulo: string; descripcion: string; tipo: string }) => {
       global.foroData = foroData;
       return null;
     },
 
-    getForoData: () => global.foroData,
+    getForoData: () => {
+      let data: { id: number; titulo: string; descripcion: string; tipo: string } = { ...global.foroData };
+
+      return data;
+    },
   });
 };

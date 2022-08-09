@@ -10,6 +10,7 @@ describe('#### Boosts | Probando Listado ####', () => {
     it('La ruta se carga correctamente', () => {
       cy.url().should('include', '/boosts');
     });
+
     it('Se renderiza bien el título de la página', () => {
       cy.get('[data-cy="Boosts_titulo_header"]').contains('Boosts');
     });
@@ -19,10 +20,7 @@ describe('#### Boosts | Probando Listado ####', () => {
     });
 
     it('Aparece un boost, se puede clickar y lleva hacia el', () => {
-      cy.get('[data-cy="Fullstack Developer_boost"]')
-        .first()
-        .should('be.visible')
-        .click();
+      cy.get('[data-cy="Fullstack Developer_boost"]').first().should('be.visible').click();
       cy.url().should('include', '/boosts/1');
     });
   });
