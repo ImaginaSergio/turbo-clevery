@@ -1,0 +1,9 @@
+{
+  "nombre": "Demo",
+  "apellidos": "Cypress",
+  "email": "demo-cypress@gmail.com",
+  "username": "demo_cypress",
+  "password": "DemoCypress123456!",
+  "password_confirmation": "DemoCypress123456!",
+  "preferencias": { "conocimientos": "principiante" }
+}

@@ -1,0 +1,18 @@
+{
+  "nombre": "Demo",
+  "apellidos": "Cypress",
+  "email": "demo-cypress@gmail.com",
+  "origen": "otros",
+  "username": "",
+  "password": "DemoCypress2022!!",
+  "password_confirmation": "DemoCypress2022!!",
+  "terminos_condiciones": true,
+  "trabajoRemoto": "remoto",
+  "posibilidadTraslado": true,
+  "preferencias": {
+    "conocimientos": "principiante",
+    "ruta": "frontend"
+  },
+  "pais": "",
+  "estado": ""
+}
