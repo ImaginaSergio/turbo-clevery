@@ -287,10 +287,10 @@ export const HomeDashboard = () => {
 
               <Text fontSize="15px">
                 {`Open Bootcamp ha nacido para reinventar la formación
-                especializada.\nNuestra misión es que puedas tener acceso a la
+                especializada.\n\nNuestra misión es que puedas tener acceso a la
                 formación tecnológica de máxima calidad sin coste alguno. Con
                 nuestra formación, podrás acceder a empleos que se ajusten a tus
-                necesidades.\nDependiendo del momento en el que te encuentres,
+                necesidades.\n\nDependiendo del momento en el que te encuentres,
                 podrás elegir entre nuestras dos fases:`}
               </Text>
             </Flex>
