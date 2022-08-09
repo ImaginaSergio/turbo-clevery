@@ -286,9 +286,12 @@ export const HomeDashboard = () => {
               </Text>
 
               <Text fontSize="15px">
-                OB ha nacido para poder cambiar la forma en la que los desarrolladores se forman y consiguen sus empleos.
-                Nuestra misión es formarte en la últimas tecnologías y frameworks para que puedas acceder a puestos laborales
-                acorde a tus necesidades. Estas son nuestras fases:
+                {`Open Bootcamp ha nacido para reinventar la formación
+                especializada.\nNuestra misión es que puedas tener acceso a la
+                formación tecnológica de máxima calidad sin coste alguno. Con
+                nuestra formación, podrás acceder a empleos que se ajusten a tus
+                necesidades.\nDependiendo del momento en el que te encuentres,
+                podrás elegir entre nuestras dos fases:`}
               </Text>
             </Flex>
 
