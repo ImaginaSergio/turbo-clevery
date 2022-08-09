@@ -1,51 +1,22 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { Flex, Image, useToast, CloseButton, Button, Icon, Box } from '@chakra-ui/react';
-
-import { onFailure } from 'ui';
-import { getUserByID, updateUser } from 'data';
-import { LoginContext } from '../../../../shared/context';
-import { useNavigate } from 'react-router-dom';
 import { BiPlay } from 'react-icons/bi';
+import { Flex, Image, Icon } from '@chakra-ui/react';
 
-const yt_enlace = 'https://www.youtube.com/watch?v=kQYudTGkmBw';
-const yt_thumbnail = 'https://i.ytimg.com/vi/kQYudTGkmBw/hqdefault.jpg';
+import { LoginContext } from '../../../../shared/context';
+
+const yt_enlace = 'https://www.youtube.com/watch?v=01byq8fmu8s';
+const yt_thumbnail = 'https://i.ytimg.com/vi/01byq8fmu8s/maxresdefault.jpg';
 
 export const YoutubeWidget = () => {
-  const toast = useToast();
-  const navigate = useNavigate();
-
-  const { user, setUser } = useContext(LoginContext);
+  const { user } = useContext(LoginContext);
 
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (user?.preferencias?.showYoutube === false || process.env.REACT_APP_SHOW_YOUTUBE === 'FALSE') setOpen(false);
+    if (process.env.REACT_APP_SHOW_YOUTUBE === 'FALSE') setOpen(false);
     else setOpen(true);
   }, [user]);
-
-  const closeYoutube = () => {
-    if (!user?.id) {
-      onFailure(toast, 'Error inesperado', 'El ID de usuario es undefined. Por favor, contacte con soporte.');
-      return;
-    }
-
-    setOpen(false);
-
-    updateUser({
-      id: user.id,
-      user: {
-        preferencias: { ...(user?.preferencias || {}), showYoutube: false },
-      },
-    })
-      .then(async (res) => {
-        const dataUser = await getUserByID({ id: user.id || 0 });
-
-        if (!dataUser.isAxiosError) setUser({ ...dataUser });
-        else console.error({ error: dataUser });
-      })
-      .catch((err) => console.error({ err }));
-  };
 
   return !open ? null : (
     <Flex
@@ -58,22 +29,9 @@ export const YoutubeWidget = () => {
       justify="space-between"
       bg="linear-gradient(237.96deg, #8925ED -16.34%, #121784 102.3%)"
     >
-      <CloseButton
-        pos="absolute"
-        top={5}
-        right={5}
-        zIndex={5}
-        color="#fff"
-        rounded="full"
-        onClick={closeYoutube}
-        _hover={{ opacity: 0.8 }}
-        boxSize={{ base: '44px', md: '10px' }}
-        bgColor={{ base: 'rgba(255, 255, 255, 0.16)', md: 'transparent' }}
-      />
-
       <Flex
         as="a"
-        href={yt_enlace}
+        href={process.env.REACT_APP_YOUTUBE_URL || yt_enlace}
         target="_blank"
         rounded="112.5px"
         w="128px"
@@ -95,13 +53,13 @@ export const YoutubeWidget = () => {
         <Icon as={BiPlay} boxSize="32px" /> Ver vídeo
       </Flex>
 
-      <a href={yt_enlace} target="_blank" rel="noreferrer">
+      <a href={yt_enlace} target="_blank">
         <Image
           w="100%"
           h="278px"
           fit="cover"
           bgPos="center"
-          src={yt_thumbnail}
+          src={process.env.REACT_APP_YOUTUBE_THUMBNAIL || yt_thumbnail}
           zIndex={{ base: 0, md: 'unset' }}
           position={{ base: 'absolute', md: 'static' }}
         />

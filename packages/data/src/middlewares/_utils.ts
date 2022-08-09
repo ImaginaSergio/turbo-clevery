@@ -6,8 +6,7 @@ export const extractQuery = (query: any[] = []) => {
   query?.forEach((item: any) => {
     let [key, value] = Object.entries(item)[0];
 
-    if (Object.entries(item).length > 1)
-      errors.push('Encontrada query con más de una entrada');
+    if (Object.entries(item).length > 1) errors.push('Encontrada query con más de una entrada');
 
     if (key) queryTxt += `&${key}=${value}`;
   });
@@ -33,7 +32,7 @@ export const shouldFetch = (
   id?: number | string
 ): boolean => {
   // Caso ESPECIAL - REFACTOR: Si el ID no es un numero, cancelamos TODO
-  if (id === NaN) return false;
+  if (isNaN(+(id || NaN))) return false;
   // Caso 1: La estrategia es 'accept-all'.
   // Devolvemos siempre TRUE como respuesta
   if (strategy === 'accept-all') return true;
@@ -42,29 +41,20 @@ export const shouldFetch = (
   else if (strategy === 'invalidate-on-undefined' && useId) {
     return (
       id !== 0 &&
-      id !== NaN &&
       id !== null &&
       id !== undefined &&
+      !isNaN(+(id || NaN)) &&
       strategy === 'invalidate-on-undefined' &&
       query?.find((item) => {
         if (!item) return true;
 
-        let values = Object.values(item);
+        let values: any = Object.values(item);
 
         if (!values || values?.length !== 1) return true;
         let value = values[0];
 
-        if (
-          value === 0 ||
-          value === '' ||
-          value === '0' ||
-          value === NaN ||
-          value === null ||
-          value === undefined
-        )
-          return true;
-        else if (value === '[]' || value === '[0]' || value === '[undefined]')
-          return true;
+        if (value === 0 || value === '' || value === '0' || isNaN(value) || value === null || value === undefined) return true;
+        else if (value === '[]' || value === '[0]' || value === '[undefined]') return true;
         else return false;
       }) === undefined
     );
@@ -78,22 +68,13 @@ export const shouldFetch = (
       query?.find((item) => {
         if (!item) return true;
 
-        let values = Object.values(item);
+        let values: any[] = Object.values(item);
 
         if (!values || values?.length !== 1) return true;
         let value = values[0];
 
-        if (
-          value === 0 ||
-          value === '' ||
-          value === '0' ||
-          value === NaN ||
-          value === null ||
-          value === undefined
-        )
-          return true;
-        else if (value === '[]' || value === '[0]' || value === '[undefined]')
-          return true;
+        if (value === 0 || value === '' || value === '0' || isNaN(value) || value === null || value === undefined) return true;
+        else if (value === '[]' || value === '[0]' || value === '[undefined]') return true;
         else return false;
       }) === undefined
     );
